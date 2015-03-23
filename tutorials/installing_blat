@@ -1,53 +1,51 @@
-Tutorial na web: http://bioinformatica.blog.br/2015/03/23/instalando-o-blat/
+Tutorial Installing BLAT
 
-Faça o download do BLAT em:
+Download on: https://users.soe.ucsc.edu/~kent/src/
 
-https://users.soe.ucsc.edu/~kent/src/
-
-Faça o download do arquivo blatSrc35.zip. O que nós iremos fazer é compilar o código. Irei fazer isso como root, então abra o terminal e dê o seguinte comando:
+Download of file blatSrc35.zip. What we will do is compile the code. I will do this as root, then open a terminal and give the following command:
 
 sudo su
 
-Digite sua senha de root e tecle enter. Crie um diretório chamado blat em /usr/local/src com o seguinte comando:
+Type your password and hit enter. Create a directory called blat on /usr/local/src with the following command:
 
 mkdir /usr/local/src/blat
 
-Descompacte o arquivo blatSrc35.zip em /usr/local/src/blat
+Unzip the file blatSrc35.zip in /usr/local/src/blat
 
-Para construir o BLAT, você precisa setar a variável  MACHTYPE para que os fontes do BLAT saibam qual o tipo de máquina que você está compilando o software.
+To build the BLAT, you need to set the MACHTYPE variable for that the sources of BLAT to know what the type machine that you is compiling the software.
 
-Na maioria das máquinas derivadas do unix, digite: echo $MACHTYPE
+In the most machines derived of unix, type: echo $MACHTYPE
 
-Isso servirá para retornar o tipo de arquitetura da sua máquina. No meu apareceu:
+This will serve to return the type architecture of the your machine. In the mina appears:
 
 x86_64-pc-linux-gnu
 
-Contudo, o que o BLAT requer é um “short value”, ou seja, a primeira parte do MACHTYPE. Para corrigir isto, dê os comandos no terminal:
+But the BLAT need of a "short value" that is the first part of MACHTYPE. To fix this, give the commands in terminal:
 
 MACHTYPE=x86_64
 
 export MACHTYPE
 
-Agora faça: echo $MACHTYPE
+now type: echo $MACHTYPE
 
-Deverá mostrar na forma: x86_64
+will show this: x86_64
 
-Agora crie o diretório /lib/$MACHTYPE com o seguinte comando:
+now create the directory /lib/$MACHTYPE with the following command:
 
 mkdir /lib/$MACHTYPE
 
-O BLAT assume que você está compilando como usuário não-root. Entre em blatSrc e depois no diretório inc. Abra o arquivo common.mk:
+The BLAT assumes that you is compiling as non-root user. Enter in blatSrc directory and then enter in inc directory. Open the file common.mk:
 
 nano common.mk
 
-Procure pela seguinte linha: BINDIR = ${HOME}/bin/${MACHTYPE}
+Search for the line: BINDIR = ${HOME}/bin/${MACHTYPE}
 
-Modifique a linha anterior por: BINDIR = /usr/local/bin
+Modify for this: BINDIR = /usr/local/bin
 
-Volte para o diretório blatSrc e rode o comando: make
+Back to the directory blatSrc e run the command: make
 
-Após compilar, os executáveis estarão em /usr/local/bin
+After compile, the executables will be in /usr/local/bin
 
-Para utilizar o BLAT, rode o seguinte comando: blat
+To use the BLAT, run the command: blat
 
-Serão exibidas informações de como utilizar o BLAT.
+Will be shown instructions to use the BLAT.
