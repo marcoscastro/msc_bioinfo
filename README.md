@@ -1,2 +1,2 @@
-# msc_bioinfo
+# MSc bioinformatics
 MSc bioinformatics
