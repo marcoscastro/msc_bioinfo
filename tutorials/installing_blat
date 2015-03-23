@@ -1,0 +1,53 @@
+Tutorial na web: http://bioinformatica.blog.br/2015/03/23/instalando-o-blat/
+
+Faça o download do BLAT em:
+
+https://users.soe.ucsc.edu/~kent/src/
+
+Faça o download do arquivo blatSrc35.zip. O que nós iremos fazer é compilar o código. Irei fazer isso como root, então abra o terminal e dê o seguinte comando:
+
+sudo su
+
+Digite sua senha de root e tecle enter. Crie um diretório chamado blat em /usr/local/src com o seguinte comando:
+
+mkdir /usr/local/src/blat
+
+Descompacte o arquivo blatSrc35.zip em /usr/local/src/blat
+
+Para construir o BLAT, você precisa setar a variável  MACHTYPE para que os fontes do BLAT saibam qual o tipo de máquina que você está compilando o software.
+
+Na maioria das máquinas derivadas do unix, digite: echo $MACHTYPE
+
+Isso servirá para retornar o tipo de arquitetura da sua máquina. No meu apareceu:
+
+x86_64-pc-linux-gnu
+
+Contudo, o que o BLAT requer é um “short value”, ou seja, a primeira parte do MACHTYPE. Para corrigir isto, dê os comandos no terminal:
+
+MACHTYPE=x86_64
+
+export MACHTYPE
+
+Agora faça: echo $MACHTYPE
+
+Deverá mostrar na forma: x86_64
+
+Agora crie o diretório /lib/$MACHTYPE com o seguinte comando:
+
+mkdir /lib/$MACHTYPE
+
+O BLAT assume que você está compilando como usuário não-root. Entre em blatSrc e depois no diretório inc. Abra o arquivo common.mk:
+
+nano common.mk
+
+Procure pela seguinte linha: BINDIR = ${HOME}/bin/${MACHTYPE}
+
+Modifique a linha anterior por: BINDIR = /usr/local/bin
+
+Volte para o diretório blatSrc e rode o comando: make
+
+Após compilar, os executáveis estarão em /usr/local/bin
+
+Para utilizar o BLAT, rode o seguinte comando: blat
+
+Serão exibidas informações de como utilizar o BLAT.
