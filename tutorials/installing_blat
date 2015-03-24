@@ -1,4 +1,4 @@
-Tutorial Installing BLAT - Author: Marcos Castro
+Tutorial Installing BLAT
 
 Download on: https://users.soe.ucsc.edu/~kent/src/
 
@@ -16,7 +16,7 @@ To build the BLAT, you need to set the MACHTYPE variable for that the sources of
 
 In the most machines derived of unix, type: echo $MACHTYPE
 
-This will serve to return the type architecture of the your machine. In the mina appears:
+This will serve to return the type architecture of the your machine. In the mine appears:
 
 x86_64-pc-linux-gnu
 
