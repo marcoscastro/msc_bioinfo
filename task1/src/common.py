@@ -1,8 +1,6 @@
 # encoding: utf-8
 
-'''
-	This file implements common functions
-'''
+# This file implements common functions
 
 '''
 	This function returns the reverse-complement of a DNA sequence
