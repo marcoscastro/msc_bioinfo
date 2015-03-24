@@ -2,6 +2,11 @@
 
 '''
 	This file implements common functions
+
+	Parameters:
+		dna_sequence: a DNA sequence
+
+	Return: reverse complement of DNA
 '''
 
 # returns the reverse-complement of a DNA sequence
