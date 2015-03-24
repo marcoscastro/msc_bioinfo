@@ -2,14 +2,16 @@
 
 '''
 	This file implements common functions
+'''
 
+'''
+	This function returns the reverse-complement of a DNA sequence
+	
 	Parameters:
 		dna_sequence: a DNA sequence
 
 	Return: reverse complement of DNA
 '''
-
-# returns the reverse-complement of a DNA sequence
 def reverse_complement(dna_sequence):
 	dict_bases = {'A':'T', 'T':'A', 'G':'C', 'C':'G'}
 	reverse_dna = dna_sequence.upper()[::-1]
