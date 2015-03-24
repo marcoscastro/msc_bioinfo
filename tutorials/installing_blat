@@ -1,4 +1,4 @@
-Tutorial Installing BLAT
+Tutorial Installing BLAT - Author: Marcos Castro
 
 Download on: https://users.soe.ucsc.edu/~kent/src/
 
@@ -49,3 +49,5 @@ After compile, the executables will be in /usr/local/bin
 To use the BLAT, run the command: blat
 
 Will be shown instructions to use the BLAT.
+
+Doubts? Contact me: mcastrosouza@live.com
