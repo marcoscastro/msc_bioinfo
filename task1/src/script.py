@@ -72,6 +72,10 @@ def get_sequences(path_file_cazy):
 		file_cazy: path of file with the sequences cazy of table
 
 	Returns: assembly of genome
+
+	Do you like of shell script? In shell script (shows number of characters):
+
+	grep -iv "^>NODE" <path_file_assembly> | tr -d '\n' | wc -c
 '''
 def get_assembly(path_file_assembly):
 	
