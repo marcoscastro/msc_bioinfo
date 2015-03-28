@@ -2,11 +2,11 @@
 
 # Works in Python 2.x and 3.x
 
-import sys
+import sys, string
 
 
 help_msg = '''
-Execute: python <script_name.py> <file_cazy_table>
+Execute: python <script_name.py> <file_cazy_table> <file_assembly>
 '''
 
 
@@ -17,7 +17,7 @@ Execute: python <script_name.py> <file_cazy_table>
 	Parameters:
 		file_cazy: path of file with the sequences cazy of table
 
-	Return: list of sequences
+	Returns: list of sequences
 '''
 def get_sequences(path_file_cazy):
 	
@@ -54,16 +54,53 @@ def get_sequences(path_file_cazy):
 						
 	file_cazy.close() # closes the file
 
-	return list_sequences
+	return list_sequences # returns list of sequences
+
+
+'''
+	This functions gets assembly of genome of a file in format FASTA
+	Example of the file's part:
+		>NODE_105-0.1930
+		CGCGAGCGTTGCTGG
+		GAGAGGTGCGATGCA
+		>NODE_438-0.460
+		GAGAGGTGCGATGCA
+		CGCGAGCGTTGCTGG
+		(...)
+
+	Parameters:
+		file_cazy: path of file with the sequences cazy of table
+
+	Returns: assembly of genome
+'''
+def get_assembly(path_file_assembly):
+	
+	try:
+		file_assembly = open(path_file_assembly, 'r') # try to open file to reading
+	except:
+		sys.exit('\nError: file %s not exists!\n' % path_file_assembly)
+
+	text = file_assembly.read() # get text of the file
+	lines = text.splitlines() # splits lines of the file
+
+	# gets all lines that do not begin with '>' and joins them
+	assembly = ''.join([line for line in lines if not line.startswith('>')])
+
+	file_assembly.close() # closes the file
+
+	return assembly # returns assembly
 
 
 if __name__ == "__main__":
 
 	len_args = len(sys.argv) # gets the amount of arguments
 
-	if len_args < 2:
+	if len_args < 3: # checks the amount of args
 		sys.exit(help_msg)
 	
-	path_file_cazy = sys.argv[1]
-	sequences = get_sequences(path_file_cazy)
-	print(len(sequences))
+	path_file_cazy, path_file_assembly = sys.argv[1], sys.argv[2]
+
+	sequences = get_sequences(path_file_cazy) # gets the sequences
+	assembly = get_assembly(path_file_assembly) # gets the assembly
+
+	print(len(assembly))

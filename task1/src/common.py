@@ -8,7 +8,7 @@
 	Parameters:
 		dna_sequence: a DNA sequence
 
-	Return: reverse complement of DNA
+	Returns: reverse complement of DNA
 '''
 def reverse_complement(dna_sequence):
 	dict_bases = {'A':'T', 'T':'A', 'G':'C', 'C':'G'}
