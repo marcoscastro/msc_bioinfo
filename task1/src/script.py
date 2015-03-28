@@ -21,7 +21,11 @@ Execute: python <script_name.py> <file_cazy_table>
 '''
 def get_sequences(path_file_cazy):
 	
-	file_cazy = open(path_file_cazy, 'r') # opens file to reading
+	try:
+		file_cazy = open(path_file_cazy, 'r') # try to open file to reading
+	except:
+		sys.exit('\nError: file %s not exists!\n' % path_file_cazy)
+
 	text = file_cazy.read() # get text of the file
 	list_lines = text.splitlines() # splits lines of the file
 	stop_codons = ['TAG', 'TGA', 'TAA'] # list with stop codons
@@ -58,9 +62,8 @@ if __name__ == "__main__":
 	len_args = len(sys.argv) # gets the amount of arguments
 
 	if len_args < 2:
-		print('\nError: insufficient arguments.')
-		print(help_msg)
-	else:
-		path_file_cazy = sys.argv[1]
-		sequences = get_sequences(path_file_cazy)
-		print(sequences[463])
+		sys.exit(help_msg)
+	
+	path_file_cazy = sys.argv[1]
+	sequences = get_sequences(path_file_cazy)
+	print(len(sequences))
