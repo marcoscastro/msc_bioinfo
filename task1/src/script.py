@@ -27,7 +27,6 @@ def get_sequences(path_file_cazy):
 	stop_codons = ['TAG', 'TGA', 'TAA'] # list with stop codons
 	list_sequences = [] # list of sequences filtered
 
-	# get the sequences that start with ATG and terminate with stop codon
 	for line in list_lines:
 		sequence = line.split('\t')[-1] # get the sequence of the line
 
@@ -36,10 +35,17 @@ def get_sequences(path_file_cazy):
 		if sequence[0:3] == 'ATG' and sequence[-3:] in stop_codons:
 
 			sub_seq = sequence[3:len(sequence)-3] # gets a subsequence
+			len_sub_seq = len(sub_seq) # gets length subsequence
 
 			# test if not contains stop codon in the middle
 			# if contains, then probably the sequence is wrong
-			if not any(stop_codon in sub_seq for stop_codon in stop_codons):
+			contains_stop_codon_middle = False # flag to checks if exists stop codon in the middle
+			for i in range(0,len_sub_seq,3): # each codon (step 3)
+				if sub_seq[i:3] in stop_codons: # checks if codon is stop codon
+					contains_stop_codon_middle = True # updates the flag
+					break # left the loop
+
+			if not contains_stop_codon_middle: # checks is contains stop codon in the middle
 				list_sequences.append(sequence) # adds in the list
 						
 	file_cazy.close() # closes the file
@@ -57,4 +63,4 @@ if __name__ == "__main__":
 	else:
 		path_file_cazy = sys.argv[1]
 		sequences = get_sequences(path_file_cazy)
-		print(len(sequences))
+		print(sequences[463])
