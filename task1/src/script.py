@@ -15,7 +15,7 @@ Execute: python <script_name.py> <file_cazy_table> <file_assembly>
 	and terminate with stop codon: TAG, TGA, TAA
 
 	Parameters:
-		file_cazy: path of file with the sequences cazy of table
+		path_file_cazy: path of file with the sequences cazy of table
 
 	Returns: list of sequences
 '''
@@ -58,7 +58,7 @@ def get_sequences(path_file_cazy):
 
 
 '''
-	This functions gets assembly of genome of a file in format FASTA
+	This functions gets assembly of genome of a file in FASTA format
 	Example of the file's part:
 		>NODE_105-0.1930
 		CGCGAGCGTTGCTGG
@@ -69,7 +69,7 @@ def get_sequences(path_file_cazy):
 		(...)
 
 	Parameters:
-		file_cazy: path of file with the sequences cazy of table
+		path_file_assembly: path of file with the assembly of genome in FASTA format
 
 	Returns: assembly of genome
 
