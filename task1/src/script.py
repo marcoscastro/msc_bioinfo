@@ -4,7 +4,7 @@
 # SO: Linux
 
 import sys
-from common import execute_shell
+from common import execute_shell_command
 
 
 help_msg = '''
@@ -109,5 +109,5 @@ if __name__ == "__main__":
 	sequences = get_sequences(path_file_cazy) # gets the sequences
 	assembly = get_assembly(path_file_assembly) # gets the assembly
 
-	output_command = execute_shell('blat')
+	output_command = execute_shell_command('blat')
 	print(output_command)

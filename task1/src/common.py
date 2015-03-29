@@ -19,16 +19,16 @@ def reverse_complement(dna_sequence):
 
 
 '''
-	This function executes a command shell and stores in a output variable
+	This function executes a shell command and stores the output in a variable
 
 	Parameters:
 		command: command shell
 
 	Returns: output of command
 '''
-def execute_shell(command):
+def execute_shell_command(command):
 	
-	# executes a command shell and stores in a output variable
+	# executes a shell command and stores in a output variable
 	p = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 	(output, err) = p.communicate()
 	return output.strip() # returns the output
