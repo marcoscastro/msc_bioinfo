@@ -1,8 +1,10 @@
 # encoding:utf-8
 
 # Works in Python 2.x and 3.x
+# SO: Linux
 
-import sys, string
+import sys
+from common import execute_shell
 
 
 help_msg = '''
@@ -107,4 +109,5 @@ if __name__ == "__main__":
 	sequences = get_sequences(path_file_cazy) # gets the sequences
 	assembly = get_assembly(path_file_assembly) # gets the assembly
 
-	print(len(assembly))
+	output_command = execute_shell('blat')
+	print(output_command)
