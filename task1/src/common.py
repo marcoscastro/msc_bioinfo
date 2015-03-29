@@ -42,3 +42,5 @@ if __name__ == "__main__":
 		print('Success in the reverse_complement')
 	else:
 		print('Fail in the reverse_complement')
+
+	print(execute_shell_command('date'))

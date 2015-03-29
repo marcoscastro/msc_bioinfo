@@ -97,6 +97,23 @@ def get_assembly(path_file_assembly):
 	return assembly # returns assembly
 
 
+'''
+	This function executes blat command:
+		blat database query [-ooc=11.ooc] output.psl
+
+	Parameters:
+		database and query are each either a .fa , .nib or .2bit file
+		output is where to put the output (file output.psl)
+
+	Returns: nothing yet...
+'''
+def execute_blat_command(database, query, output):
+
+	command_blat = 'blat %s %s %s' % (database, query, output + '.psl')
+	output_command = execute_shell_command(command_blat)
+
+
+
 if __name__ == "__main__":
 
 	len_args = len(sys.argv) # gets the amount of arguments
@@ -108,6 +125,3 @@ if __name__ == "__main__":
 
 	sequences = get_sequences(path_file_cazy) # gets the sequences
 	assembly = get_assembly(path_file_assembly) # gets the assembly
-
-	output_command = execute_shell_command('blat')
-	print(output_command)
