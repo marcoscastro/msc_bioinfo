@@ -191,6 +191,29 @@ def execute_pslpretty_command(in_psl, target, query, output_filename):
 
 	Parameters:
 		in of the file psl, target, query and output filename
+
+	A .psl file describes a series of alignments in a dense easily parsed text format.  It begins with a five line header which describes each field.  Following this is one line for each alignment with a tab between each field.  The fields are describe below in  a format suitable for many relational databases.
+    matches int unsigned ,           # Number of bases that match that aren't repeats
+    misMatches int unsigned ,        # Number of bases that don't match
+    repMatches int unsigned ,        # Number of bases that match but are part of repeats
+    nCount int unsigned ,            # Number of 'N' bases
+    qNumInsert int unsigned ,        # Number of inserts in query
+    qBaseInsert int unsigned ,       # Number of bases inserted in query
+    tNumInsert int unsigned ,        # Number of inserts in target
+    tBaseInsert int unsigned ,       # Number of bases inserted in target
+    strand char(2) ,                 # + or - for query strand, optionally followed by + or – for target strand
+    qName varchar(255) ,             # Query sequence name
+    qSize int unsigned ,             # Query sequence size
+    qStart int unsigned ,            # Alignment start position in query
+    qEnd int unsigned ,              # Alignment end position in query
+    tName varchar(255) ,             # Target sequence name
+    tSize int unsigned ,             # Target sequence size
+    tStart int unsigned ,            # Alignment start position in target
+    tEnd int unsigned ,              # Alignment end position in target
+    blockCount int unsigned ,        # Number of blocks in alignment. A block contains no gaps.
+    blockSizes longblob ,            # Size of each block in a comma separated list
+    qStarts longblob ,               # Start of each block in query in a comma separated list
+    
 '''
 def processFileBlat(path_file_blat):
 
