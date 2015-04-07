@@ -15,7 +15,7 @@ Execute: python <script_name.py> <file_cazy_table> <file_assembly>
 '''
 	This function gets only sequences that start with ATG
 	and terminate with stop codon: TAG, TGA, TAA
-	and generates FILE FASTA:
+	and generates a fasta file:
 
 	>name_sequence
 	sequence
@@ -27,18 +27,18 @@ Execute: python <script_name.py> <file_cazy_table> <file_assembly>
 		path_file_cazy: path of file with the sequences cazy of table
 		fasta_file_name: name of the file fasta
 '''
-def generates_fasta(path_file_cazy, fasta_file_name):
+def generates_fasta(path_file_cazy, output_filename):
 	
 	try:
 		file_cazy = open(path_file_cazy, 'r') # try to open file to reading
 	except:
-		sys.exit('\nError: file %s not exists!\n' % path_file_cazy)
+		sys.exit('Error: file %s not exists!' % path_file_cazy)
 
 	text = file_cazy.read() # gets text of the file
 	list_lines = text.splitlines() # splits lines of the file
 	stop_codons = ['TAG', 'TGA', 'TAA'] # list with stop codons
 
-	fasta_file = open(fasta_file_name ,'w')
+	fasta_file = open(output_filename ,'w')
 
 	for line in list_lines:
 		name_sequence = line.split('\t')[0] # gets the name of sequence
@@ -60,11 +60,17 @@ def generates_fasta(path_file_cazy, fasta_file_name):
 					break # left the loop
 
 			if not contains_stop_codon_middle: # checks is contains stop codon in the middle
-				# stores the sequence in the file
+				# stores the name of the sequence in the file
 				fasta_file.write('>' + name_sequence + '\n')
-				fasta_file.write(sequence + '\n')
+				
+				len_sequence = len(sequence) # gets size of the sequence
+				# stores each part of the sequence - 60 characters per line
+				for i in range(0,len_sequence,60):
+					fasta_file.write(sequence[i:i+60] + '\n')
+
+	print('Generated the file \"%s\" successfully.' % output_filename)
 					
-	# closes the file	
+	# closes the files	
 	file_cazy.close()
 	fasta_file.close()
 
@@ -94,7 +100,7 @@ def get_assembly(path_file_assembly):
 	try:
 		file_assembly = open(path_file_assembly, 'r') # try to open file to reading
 	except:
-		sys.exit('\nError: file %s not exists!\n' % path_file_assembly)
+		sys.exit('Error: file %s not exists!' % path_file_assembly)
 
 	text = file_assembly.read() # get text of the file
 	lines = text.splitlines() # splits lines of the file
@@ -114,14 +120,37 @@ def get_assembly(path_file_assembly):
 	Parameters:
 		database and query are each either a .fa , .nib or .2bit file
 		output is where to put the output (file output.psl)
-
-	Returns: output of the command
 '''
-def execute_blat_command(database, query, output='output_blat'):
+def execute_blat_command(database, query, output_filename):
 
-	command_blat = 'blat %s %s %s' % (database, query, output + '.psl')
-	return execute_shell_command(command_blat)
+	# generates blat command
+	command_blat = 'blat %s %s %s' % (database, query, output_filename)
+	output, error = execute_shell_command(command_blat) # executes blat command
 
+	if not error:
+		print('Generated the file \"%s\" successfully.' % output_filename)
+	else:
+		sys.exit('Error in the execution of the blat command.')
+
+
+'''
+	This function executes pslPretty command:
+		pslPretty in.psl target.lst query.lst pretty.out
+
+	Parameters:
+		in of the file psl, target, query and output filename
+'''
+def execute_pslpretty_command(in_psl, target, query, output_filename):
+
+	# generates pslPretty command
+	command_pslpretty = 'pslPretty %s %s %s %s' % \
+					(in_psl, target, query, output_filename)
+	output, error = execute_shell_command(command_pslpretty) # executes pslPretty command
+
+	if not error:
+		print('Generated the file \"%s\" successfully.' % output_filename)
+	else:
+		sys.exit('Error in the execution of the pslPretty command.')
 
 
 if __name__ == "__main__":
@@ -133,10 +162,15 @@ if __name__ == "__main__":
 	
 	path_file_cazy, path_file_assembly = sys.argv[1], sys.argv[2]
 
-	fasta_file_name = 'sequences_cazy.fa'
-	generates_fasta(path_file_cazy, fasta_file_name) # generates fasta file
+	print('')
 
-	output_command = execute_blat_command(database=path_file_assembly, query=fasta_file_name)
-	print(output_command)
-	
-	#assembly = get_assembly(path_file_assembly) # gets the assembly
+	fasta_filename = 'sequences_cazy.fa'
+	generates_fasta(path_file_cazy=path_file_cazy, output_filename=fasta_filename) # generates fasta file
+
+	output_filename_blat = 'output_blat.psl'
+	execute_blat_command(database=path_file_assembly, 
+							query=fasta_filename, output_filename=output_filename_blat)
+
+	output_filename_pslpretty = 'output_pretty.out'
+	execute_pslpretty_command(in_psl=output_filename_blat, target=path_file_assembly, 
+				query=fasta_filename, output_filename=output_filename_pslpretty)

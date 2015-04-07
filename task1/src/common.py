@@ -31,7 +31,7 @@ def execute_shell_command(command):
 	# executes a shell command and stores in a output variable
 	p = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 	(output, err) = p.communicate()
-	return output.strip() # returns the output
+	return (output.strip(), err) # returns the output
 
 
 # tests
