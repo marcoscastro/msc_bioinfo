@@ -192,7 +192,11 @@ def execute_pslpretty_command(in_psl, target, query, output_filename):
 	Parameters:
 		in of the file psl, target, query and output filename
 
-	A .psl file describes a series of alignments in a dense easily parsed text format.  It begins with a five line header which describes each field.  Following this is one line for each alignment with a tab between each field.  The fields are describe below in  a format suitable for many relational databases.
+	A .psl file describes a series of alignments in a dense easily parsed text format.
+	It begins with a five line header which describes each field.
+	Following this is one line for each alignment with a tab between each field.
+	The fields are describe below in  a format suitable for many relational databases.
+	
     matches int unsigned ,           # Number of bases that match that aren't repeats
     misMatches int unsigned ,        # Number of bases that don't match
     repMatches int unsigned ,        # Number of bases that match but are part of repeats
@@ -213,7 +217,7 @@ def execute_pslpretty_command(in_psl, target, query, output_filename):
     blockCount int unsigned ,        # Number of blocks in alignment. A block contains no gaps.
     blockSizes longblob ,            # Size of each block in a comma separated list
     qStarts longblob ,               # Start of each block in query in a comma separated list
-    
+
 '''
 def processFileBlat(path_file_blat):
 
