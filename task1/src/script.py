@@ -11,6 +11,34 @@ help_msg = '''
 Execute: python <script_name.py> <file_cazy_table> <file_assembly>
 '''
 
+# map of the sequences - key: name of the sequence, value: sequence object
+map_sequences = {}
+
+# class that represents a sequence
+class Sequence:
+
+	def __init__(self, name, sequence):
+		self.name, self.sequence = name, sequence
+		self.t_start, self.t_end = None, None
+
+	def getName(self):
+		return self.name
+
+	def getSequence(self):
+		return self.sequence
+
+	def setTStart(self, t_start):
+		self.t_start = t_start
+
+	def getTStart(self):
+		return self.t_start
+
+	def setTEnd(self, t_end):
+		self.t_end = t_end
+
+	def getTEnd(self):
+		return self.t_end
+
 
 '''
 	This function gets only sequences that start with ATG
@@ -60,6 +88,10 @@ def generates_fasta(path_file_cazy, output_filename):
 					break # left the loop
 
 			if not contains_stop_codon_middle: # checks is contains stop codon in the middle
+
+				# inserts in the map of the sequences
+				map_sequences[name_sequence] = Sequence(name=name_sequence, sequence=sequence)
+
 				# stores the name of the sequence in the file
 				fasta_file.write('>' + name_sequence + '\n')
 				
@@ -153,6 +185,34 @@ def execute_pslpretty_command(in_psl, target, query, output_filename):
 		sys.exit('Error in the execution of the pslPretty command.')
 
 
+'''
+	This function process a file blat
+		path_file_blat: path of the file
+
+	Parameters:
+		in of the file psl, target, query and output filename
+'''
+def processFileBlat(path_file_blat):
+
+	try:
+		file_blat = open(path_file_blat, 'r') # try to open file to reading
+	except:
+		sys.exit('Error: file %s not exists!' % path_file_blat)
+
+	
+	lines = file_blat.readlines() # read all the lines
+	size_lines = len(lines) # gets amount of lines
+
+	for i in range(5, size_lines):
+		name_sequence = lines[i].split('\t')[9] # gets the name of the sequence
+		t_start = lines[i].split('\t')[15] # gets the t_start
+		t_end = lines[i].split('\t')[16] # gets the t_end
+		map_sequences[name_sequence].setTStart(t_start) # set the t_start
+		map_sequences[name_sequence].setTEnd(t_end) # set the t_end
+
+	file_blat.close()
+
+
 if __name__ == "__main__":
 
 	len_args = len(sys.argv) # gets the amount of arguments
@@ -174,3 +234,7 @@ if __name__ == "__main__":
 	output_filename_pslpretty = 'output_pretty.out'
 	execute_pslpretty_command(in_psl=output_filename_blat, target=path_file_assembly, 
 				query=fasta_filename, output_filename=output_filename_pslpretty)
+
+
+	# process the file "blat"
+	processFileBlat(path_file_blat=output_filename_blat)
