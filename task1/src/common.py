@@ -24,7 +24,7 @@ def reverse_complement(dna_sequence):
 	Parameters:
 		command: command shell
 
-	Returns: output of command
+	Returns: output of the command
 '''
 def execute_shell_command(command):
 	
