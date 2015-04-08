@@ -237,6 +237,14 @@ def processFileBlat(path_file_blat):
 		map_sequences[name_sequence].setTStart(t_start) # set the t_start
 		map_sequences[name_sequence].setTEnd(t_end) # set the t_end
 
+		'''
+		print(lines[i].split('\t')[17])
+		print(lines[i].split('\t')[18])
+		print(lines[i].split('\t')[19])
+		print(lines[i].split('\t')[20])
+		break
+		'''
+
 	file_blat.close()
 
 
