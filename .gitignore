@@ -1,3 +1,5 @@
 task1/files
 *.pyc
 *.psl
+*.fa
+*.out
