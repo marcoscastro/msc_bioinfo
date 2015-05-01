@@ -7,11 +7,7 @@
 
 	Smith-Waterman algorithm perfoms local sequence alignment; that is,
 	for determining similar regions between two strings or nucleotide or
-	protein sequences. (Wikipedia)
-
-	References:
-		http://en.wikipedia.org/wiki/Smith–Waterman_algorithm
-		http://pt.slideshare.net/avrilcoghlan/the-smith-waterman-algorithm
+	protein sequences.
 '''
 
 import sys
@@ -36,8 +32,11 @@ def print_pretty_matrix(matrix, rows):
 		s1: sequence 1
 		s2: sequence 2
 		gap_penalty: gap penalty
+
+	Returns:
+		a tuple (s1, s2)
 '''
-def smith_waterman(s1, s2, match=2, mismatch=-1, gap_penalty=-1):
+def smith_waterman(s1, s2, match=2, mismatch=-1, gap_penalty=-1, verbose=True):
 
 	# gets the lengths of the sequences
 	len_s1, len_s2 = len(s1), len(s2)
@@ -113,11 +112,36 @@ def smith_waterman(s1, s2, match=2, mismatch=-1, gap_penalty=-1):
 			s1_result += s1[j_next-1]
 			s2_result += '-'
 
-	print('\nMatrix:\n')
-	print_pretty_matrix(matrix, rows)
+	if verbose:
+		print('\nMatrix:\n')
+		print_pretty_matrix(matrix, rows)
 
-	print('\nSequence 1: %s' % s1_result)
-	print('Sequence 2: %s\n' % s2_result)
+		print('\nSequence 1: %s' % s1_result)
+		print('Sequence 2: %s\n' % s2_result)
+	return (s1_result, s2_result)
+
+
+# run tests
+def run_tests():
+
+	# test 1
+	r1 = smith_waterman('ACACACTA', 'AGCACACA', match=2, mismatch=-1, gap_penalty=0, verbose=False)
+	if r1 == ('A-CACACTA', 'AGCACAC-A'):
+		print('test1 successfully executed')
+	else:
+		print('fail in test1')
+	# test 2
+	r2 = smith_waterman('GGCTCAATCA', 'ACCTAAGG', match=2, mismatch=-1, gap_penalty=-2, verbose=False)
+	if r2 == ('CTCAA', 'CT-AA'):
+		print('test2 successfully executed')
+	else:
+		print('fail in test2')
+	# test 3
+	r3 = smith_waterman('ACCGT', 'AGT', match=1, mismatch=0, gap_penalty=0, verbose=False)
+	if r3 == ('ACCGT', 'A--GT'):
+		print('test3 successfully executed')
+	else:
+		print('fail in test3')
 
 
 if __name__ == "__main__":
@@ -126,15 +150,18 @@ if __name__ == "__main__":
 	
 	# checks the parameters
 	if len_sys_argv < 3 or len_sys_argv > 6:
-		print('\nExecute: python <script_name.py> <sequence1> <sequence2> [match] [mismatch] [gap_penalty]')
-		print('\n[match], [mismatch] and [gap_penalty] are optional parameters.')
-		print('\nExamples:')
-		print('\tpython smith_waterman.py ACACACTA AGCACACA')
-		print('\tpython smith_waterman.py ACACACTA AGCACACA 2 -1 -1')
-		print('\tpython smith_waterman.py GGCTCAATCA ACCTAAGG 2 -1 -2\n')
 
+		if len_sys_argv == 2 and sys.argv[1] == 'tests':
+			run_tests()
+		else:
+			print('\nExecute:\n\tpython <script_name.py> <sequence1> <sequence2> [match] [mismatch] [gap_penalty]')
+			print('\n[match], [mismatch] and [gap_penalty] are optional parameters.')
+			print('\nExamples:')
+			print('\tpython smith_waterman.py ACACACTA AGCACACA')
+			print('\tpython smith_waterman.py ACACACTA AGCACACA 2 -1 -1')
+			print('\tpython smith_waterman.py GGCTCAATCA ACCTAAGG 2 -1 -2\n')
+			print('For run tests: python <script_name.py> run_tests\n')
 	else:
-
 		# gets the sequences
 		s1, s2 = sys.argv[1], sys.argv[2]
 
