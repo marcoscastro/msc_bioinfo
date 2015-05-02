@@ -125,7 +125,7 @@ def smith_waterman(s1, s2, match=2, mismatch=-1, gap_penalty=-1, verbose=True):
 def run_tests():
 
 	# test 1
-	r1 = smith_waterman('ACACACTA', 'AGCACACA', match=2, mismatch=-1, gap_penalty=0, verbose=False)
+	r1 = smith_waterman('ACACACTA', 'AGCACACA', match=2, mismatch=-1, gap_penalty=-1, verbose=False)
 	if r1 == ('A-CACACTA', 'AGCACAC-A'):
 		print('test1 successfully executed')
 	else:
