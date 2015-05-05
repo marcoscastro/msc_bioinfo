@@ -101,7 +101,7 @@ def smith_waterman(s1, s2, match=2, mismatch=-1, gap_penalty=-1, verbose=True):
 
 		# diagonal jump implies there is an alignment
 		if (i + 1) == i_next and (j + 1) == j_next:
-			s1_result += s2[i_next-1]
+			s1_result += s1[j_next-1]
 			s2_result += s2[i_next-1]
 		# top-down jump implies there is a deletion
 		elif (i + 1) == i_next and j == j_next:
