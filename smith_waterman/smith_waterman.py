@@ -50,6 +50,11 @@ def smith_waterman(s1, s2, match=2, mismatch=-1, gap_penalty=-1, verbose=True):
 	# directions for to reconstruct the path
 	directions = {}
 
+	for i in range(1, cols):
+		directions[(0, i)] = (0, i - 1)
+	for i in range(1, rows):
+		directions[(i, 0)] = (i - 1, 0)
+
 	# info_max_value is a list with 3 elements: max_value, line position, col position
 	info_max_value = 3 * [-1]
 
@@ -83,38 +88,28 @@ def smith_waterman(s1, s2, match=2, mismatch=-1, gap_penalty=-1, verbose=True):
 		for j in range(1, cols):
 			matrix[i][j] = max_value(i, j)
 
-	# traceback path
-	traceback = []
-
-	# starts at the highest scoring cell in the matrix and
-	# travels up/left while the score is still positive
-	position = (info_max_value[1], info_max_value[2]) # 2-tuple
+	s1_result, s2_result = '', '' # alignment results
+	# starts at the highest scoring cell in the matrix
+	i, j = info_max_value[1], info_max_value[2]
 	while True:
-		traceback.append(position)
-		if not matrix[position[0]][position[1]]:
-			break
-		position = directions[tuple(position)]
 
-	traceback = traceback[::-1]
-	s1_result, s2_result = '', ''
-	len_traceback = len(traceback)
-	for k in range(len_traceback - 1):
+		i_next, j_next = directions[(i, j)]
 
-		i, j = traceback[k]
-		i_next, j_next = traceback[k+1]
-
-		# diagonal jump implies there is an alignment
-		if (i + 1) == i_next and (j + 1) == j_next:
-			s1_result += s1[j_next-1]
-			s2_result += s2[i_next-1]
-		# top-down jump implies there is a deletion
-		elif (i + 1) == i_next and j == j_next:
+		if (i - 1) == i_next and (j - 1) == j_next: # diagonal
+			s1_result += s1[j_next]
+			s2_result += s2[i_next]
+		elif (i - 1) == i_next and j == j_next: # top
 			s1_result += '-'
-			s2_result += s2[i_next-1]
-		# left-right jump implies there is a insertion
-		elif i == i_next and (j + 1) == j_next:
-			s1_result += s1[j_next-1]
+			s2_result += s2[i_next]
+		elif i == i_next and (j - 1) == j_next: # left
+			s1_result += s1[j_next]
 			s2_result += '-'
+
+		i, j = i_next, j_next
+		if not matrix[i][j] or (not i and not j):
+			break
+
+	s1_result, s2_result = s1_result[::-1], s2_result[::-1]
 
 	if verbose:
 		print('\nMatrix:\n')
