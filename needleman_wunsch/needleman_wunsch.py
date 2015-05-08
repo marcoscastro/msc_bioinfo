@@ -9,20 +9,31 @@
 		Match: two letters are the same
 		Mismatch: two letters are differential
 		Indel (insertion or deletion): one letter aligns to a gap in the other string
-
-	References:
-		http://en.wikipedia.org/wiki/Needleman%E2%80%93Wunsch_algorithm
-		http://www.cs.utoronto.ca/~brudno/bcb410/lec2notes.pdf
 '''
 
 import sys, operator
 
 
+'''
+	Shows the pretty matrix
+
+	Parameters:
+		matrix, rows
+'''
 def show_pretty_matrix(matrix, rows):
 	for i in range(rows):
 		print('\t'.join(str(i) for i in matrix[i]))
 
 
+'''
+	Returns the score
+
+	Parameters:
+		s1 (sequence 1), s2 (sequence 2), match, mismatch, gap (penalty)
+
+	Returns:
+		the score
+'''
 def get_score(s1, s2, match, mismatch, gap):
 	len_s, score = len(s1), 0
 	for i in range(len_s):
@@ -36,101 +47,129 @@ def get_score(s1, s2, match, mismatch, gap):
 	return score
 
 
+'''
+	Needleman-Wunsch Algorithm
+
+	Parameters:
+		s1: sequence 1
+		s2: sequence 2
+		match, mismatch, gap, verbose
+
+	Returns:
+		a tuple (s1, s2)
+'''
 def needleman_wunsch(s1, s2, match, mismatch, gap, verbose=True):
 
 	if verbose:
 		print('\nSequence 1: %s' % s1)
 		print('Sequence 2: %s' % s2)
 
-	len_s1, len_s2 = len(s1) + 1, len(s2) + 1
+	cols, rows = len(s1) + 1, len(s2) + 1
 	
 	# creates the matrix
-	matrix = [[0 for x in range(len_s1)] for x in range(len_s2)]
+	matrix = [[0 for x in range(cols)] for x in range(rows)]
+
+	# directions for to reconstruct the path
+	directions = {}
 
 	# fills first column and first line
 	matrix[0][0] = 0
-	for i in range(1, len_s1):
-		matrix[0][i] = matrix[0][i-1] + gap
-	for i in range(1, len_s2):
-		matrix[i][0] = matrix[i-1][0] + gap
+	for i in range(1, cols):
+		matrix[0][i] = matrix[0][i - 1] + gap
+		directions[(0, i)] = (0, i - 1)
+	for i in range(1, rows):
+		matrix[i][0] = matrix[i - 1][0] + gap
+		directions[(i, 0)] = (i - 1, 0)
+
+
+	# function that returns the maximum value
+	def max_value(i, j):
+
+		value1 = matrix[i - 1][j - 1] + (match if s2[i - 1] == s1[j - 1] else mismatch) # left diagonal
+		value2 = matrix[i - 1][j] + gap # top
+		value3 = matrix[i][j - 1] + gap # left
+
+		# calculates max value
+		max_value = max([value1, value2, value3])
+
+		# checks max value
+		if max_value == value1:
+			directions[(i,j)] = (i - 1, j - 1)
+		elif max_value == value2:
+			directions[(i,j)] = (i - 1, j)
+		else:
+			directions[(i,j)] = (i, j - 1)
+
+		return max_value
+
 
 	# fills remaining of the matrix
-	for i in range(1, len_s2):
-		for j in range(1 ,len_s1):
-			# calculates score
-			cell_top = matrix[i - 1][j] + gap
-			cell_diag = matrix[i - 1][j - 1] + (match if s1[j - 1] == s2[i - 1] else mismatch)
-			cell_left = matrix[i][j - 1] + gap
-			max_score = max(cell_top, cell_diag, cell_left)
-			matrix[i][j] = max_score
+	for i in range(1, rows):
+		for j in range(1, cols):
+			matrix[i][j] = max_value(i, j)
 
-	alignments = {}
+	s1_result, s2_result = '', '' # alignment results
+	i, j = rows - 1, cols - 1 # starting with the last value
 
-	def get_alignments(i, j, s1_aux, s2_aux):
+	while True:
 
-		top = matrix[i - 1][j] if (i - 1) >= 0 and j >= 0 else None
-		diag = matrix[i - 1][j - 1] if (i - 1) >= 0 and (j - 1) >= 0 else None
-		left = matrix[i][j - 1] if i >= 0 and (j - 1) >= 0 else None
+		i_next, j_next = directions[(i, j)]
 
-		values = []
-		if top != None:
-			values.append(top)
-		if diag != None:
-			values.append(diag)
-		if left != None:
-			values.append(left)
+		if (i - 1) == i_next and (j - 1) == j_next: # diagonal
+			s1_result += s1[j_next]
+			s2_result += s2[i_next]
+		elif (i - 1) == i_next and j == j_next: # top
+			s1_result += '-'
+			s2_result += s2[i_next]
+		elif i == i_next and (j - 1) == j_next: # left
+			s1_result += s1[j_next]
+			s2_result += '-'
 
-		if values:
-			max_value = max(values)
-			if top != None and max_value == top:
-				get_alignments(i - 1, j, s1_aux + '-', s2_aux + s2[i - 1])
-			if diag != None and max_value == diag:
-				get_alignments(i - 1, j - 1, s1_aux + s1[j - 1], s2_aux + s2[i - 1])
-			if left != None and max_value == left:
-				get_alignments(i, j - 1, s1_aux + s1[j - 1], s2_aux + '-')
-		else:
-			s1_aux, s2_aux = s1_aux[::-1], s2_aux[::-1]
-			alignments[(s1_aux, s2_aux)] = get_score(s1_aux, s2_aux, match, mismatch, gap)
+		i, j = i_next, j_next
+		if not i and not j:
+			break
 
-	get_alignments(len_s2 - 1, len_s1 - 1, '', '')
-
-	max_value = max(alignments.iteritems(), key=operator.itemgetter(1))[1]
+	s1_result, s2_result = s1_result[::-1], s2_result[::-1]
 
 	if verbose:
 		print('\nMatrix:\n')
-		show_pretty_matrix(matrix, len_s2)
-		print('\nBest alignments:\n')
-		for alignment in alignments:
-			if max_value == alignments[alignment]:
-				print('\n'.join(alignment))
-				print('Score: %d\n' % alignments[alignment])
-	return alignments
+		show_pretty_matrix(matrix, rows)
+		print('\nSequence 1: %s' % s1_result)
+		print('Sequence 2: %s\n' % s2_result)
 
+	return (s1_result, s2_result)
 
 
 def tests():
 
-	print('\nRunning tests...')
+	print('\nRunning tests...\n')
 
 	# test1
 	s1_s2 = ('ACTGATTCA', 'ACGCATCA')
-	s1_s2_expected = ('ACTG-ATTCA', 'AC-GCAT-CA')
-	alignments = needleman_wunsch(s1_s2[0], s1_s2[1], 2, -3, -2)
-	if s1_s2_expected in alignments:
+	alignment = needleman_wunsch(s1_s2[0], s1_s2[1], 2, -3, -2, False)
+	if alignment == ('ACTG-ATTCA', 'AC-GCA-TCA'):
 		print('test1 successfully!')
 	else:
 		print('fail in test1...')
 
 	# test2
 	s1_s2 = ('GCATGCU', 'GATTACA')
-	s1_s2_expected1 = ('GCATG-CU', 'G-ATTACA')
-	s1_s2_expected2 = ('GCAT-GCU', 'G-ATTACA')
-	s1_s2_expected3 = ('GCA-TGCU', 'G-ATTACA')
-	alignments = needleman_wunsch(s1_s2[0], s1_s2[1], 1, -1, -1)
-	if s1_s2_expected1 in alignments or s1_s2_expected2 in alignments or s1_s2_expected3 in alignments:
-		print('test2 successfully!\n')
+	alignments = [('GCATG-CU', 'G-ATTACA'), ('GCAT-GCU', 'G-ATTACA'), ('GCA-TGCU', 'G-ATTACA')]
+	alignment = needleman_wunsch(s1_s2[0], s1_s2[1], 1, -1, -1, False)
+	if alignment in alignments:
+		print('test2 successfully!')
 	else:
-		print('fail in test2...\n')
+		print('fail in test2...')
+
+	# test3
+	s1_s2 = ('AACGTTAC', 'CGATAAC')
+	alignment = needleman_wunsch(s1_s2[0], s1_s2[1], 1, -1, -1, False)
+	if alignment == ('AACG-TTAC', '--CGATAAC'):
+		print('test3 successfully!\n')
+	else:
+		print('fail in test3...')
+
+	print('Finished.\n')
 
 
 if __name__ == "__main__":

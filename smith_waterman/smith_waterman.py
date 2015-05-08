@@ -31,7 +31,7 @@ def print_pretty_matrix(matrix, rows):
 	Parameters:
 		s1: sequence 1
 		s2: sequence 2
-		gap_penalty: gap penalty
+		match, mismatch, gap, verbose
 
 	Returns:
 		a tuple (s1, s2)
