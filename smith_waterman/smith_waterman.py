@@ -42,27 +42,28 @@ def smith_waterman(s1, s2, match=2, mismatch=-1, gap_penalty=-1, verbose=True):
 	len_s1, len_s2 = len(s1), len(s2)
 
 	# matrix with order (len_s2 + 1) x (len_s1 + 1)
-	# (len_s2 + 1) = rows and (len_s1 + 1) = cols
 	rows, cols = (len_s2 + 1), (len_s1 + 1)
 
-	# initializes the matrix with 0
+	# creates and initializes the matrix with 0
 	matrix = [[0] * cols for i in range(rows)]
 
 	# directions for to reconstruct the path
 	directions = {}
 
-	# max_value is list with 3 elements: max_value, line position, col position
+	# info_max_value is a list with 3 elements: max_value, line position, col position
 	info_max_value = 3 * [-1]
 
-	# function that returns the max value between 3 values
+	# function that returns the maximum value
 	def max_value(i, j):
 
-		value1 = matrix[i-1][j-1] + (match if s2[i - 1] == s1[j - 1] else mismatch)
-		value2 = matrix[i-1][j] + gap_penalty
-		value3 = matrix[i][j-1] + gap_penalty
+		value1 = matrix[i-1][j-1] + (match if s2[i - 1] == s1[j - 1] else mismatch) # left diagonal
+		value2 = matrix[i-1][j] + gap_penalty # top
+		value3 = matrix[i][j-1] + gap_penalty # left
 
+		# calculates max value
 		max_value = max([0, value1, value2, value3])
 
+		# checks max value
 		if max_value == value1:
 			directions[(i,j)] = (i-1, j-1)
 		elif max_value == value2:
@@ -70,6 +71,7 @@ def smith_waterman(s1, s2, match=2, mismatch=-1, gap_penalty=-1, verbose=True):
 		else:
 			directions[(i,j)] = (i, j-1)
 
+		# checks the highest scoring cell
 		if info_max_value[0] <= max_value:
 			info_max_value[0], info_max_value[1], info_max_value[2] = max_value, i, j
 
@@ -81,9 +83,11 @@ def smith_waterman(s1, s2, match=2, mismatch=-1, gap_penalty=-1, verbose=True):
 		for j in range(1, cols):
 			matrix[i][j] = max_value(i, j)
 
+	# traceback path
+	traceback = []
+
 	# starts at the highest scoring cell in the matrix and
 	# travels up/left while the score is still positive
-	traceback = [] # path
 	position = (info_max_value[1], info_max_value[2]) # 2-tuple
 	while True:
 		traceback.append(position)
@@ -115,14 +119,16 @@ def smith_waterman(s1, s2, match=2, mismatch=-1, gap_penalty=-1, verbose=True):
 	if verbose:
 		print('\nMatrix:\n')
 		print_pretty_matrix(matrix, rows)
-
 		print('\nSequence 1: %s' % s1_result)
 		print('Sequence 2: %s\n' % s2_result)
+
 	return (s1_result, s2_result)
 
 
 # run tests
 def run_tests():
+
+	print('\nRunning tests...\n')
 
 	# test 1
 	r1 = smith_waterman('ACACACTA', 'AGCACACA', match=2, mismatch=-1, gap_penalty=-1, verbose=False)
@@ -137,11 +143,19 @@ def run_tests():
 	else:
 		print('fail in test2')
 	# test 3
-	r3 = smith_waterman('ACCGT', 'AGT', match=1, mismatch=0, gap_penalty=0, verbose=False)
-	if r3 == ('ACCGT', 'A--GT'):
+	r3 = smith_waterman('ACCGT', 'AGT', match=1, mismatch=-2, gap_penalty=-8, verbose=False)
+	if r3 == ('GT', 'GT'):
 		print('test3 successfully executed')
 	else:
 		print('fail in test3')
+	# test 4
+	r4 = smith_waterman('AACGTTAC', 'CGATAAC', match=1, mismatch=-1, gap_penalty=-1, verbose=False)
+	if r4 == ('CG-TTAC', 'CGATAAC'):
+		print('test4 successfully executed')
+	else:
+		print('fail in test4')
+
+	print('\nFinished.\n')
 
 
 if __name__ == "__main__":
@@ -174,4 +188,5 @@ if __name__ == "__main__":
 				if len_sys_argv > 5:
 					gap_penalty = int(sys.argv[5])
 
+		# runs the algorithm
 		smith_waterman(s1, s2, match=match, mismatch=mismatch, gap_penalty=gap_penalty)
