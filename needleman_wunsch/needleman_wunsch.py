@@ -165,11 +165,19 @@ def tests():
 	s1_s2 = ('AACGTTAC', 'CGATAAC')
 	alignment = needleman_wunsch(s1_s2[0], s1_s2[1], 1, -1, -1, False)
 	if alignment == ('AACG-TTAC', '--CGATAAC'):
-		print('test3 successfully!\n')
+		print('test3 successfully!')
 	else:
 		print('fail in test3...')
 
-	print('Finished.\n')
+	# test4
+	s1_s2 = ('GACTAC', 'ACGC')
+	alignment = needleman_wunsch(s1_s2[0], s1_s2[1], 1, 0, -1, False)
+	if alignment == ('GACTAC', '-AC-GC'):
+		print('test4 successfully!')
+	else:
+		print('fail in test4...')
+
+	print('\nFinished.\n')
 
 
 if __name__ == "__main__":
