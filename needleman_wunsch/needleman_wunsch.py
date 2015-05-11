@@ -11,7 +11,7 @@
 		Indel (insertion or deletion): one letter aligns to a gap in the other string
 '''
 
-import sys, operator
+import sys
 
 
 '''
