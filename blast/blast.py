@@ -69,35 +69,41 @@ class Blast:
 
 					for hit_database in hits_database:
 
-						alignment, num_gaps_extension = word[:], 0
+						alignment, num_gaps_left, num_gaps_right = word[:], 0, 0
 						left_query, right_query = hit_query - 1, hit_query + self.size_word
 						left_database, right_database = hit_database - 1, hit_database + self.size_word
 
 						while True:
-							if left_query < 0 and right_query == self.len_query:
+
+							if (left_query < 0 and right_query >= self.len_query) and (left_database < 0 and right_database >= self.len_database):
 								break
-							if left_database < 0 and right_database == self.len_database:
-								break
-							if num_gaps_extension >= self.limit_gaps_extension:
-								break
+
 							if left_query >= 0 and left_database >= 0:
 								if self.query[left_query] == self.database[left_database]:
 									alignment = self.query[left_query] + alignment[:]
+									num_gaps_left = 0
 								else:
 									alignment = '-' + alignment[:]
-									num_gaps_extension += 1
-								left_query -= 1
-								left_database -= 1
-							if num_gaps_extension >= self.limit_gaps_extension:
+									num_gaps_left += 1
+
+							if num_gaps_left >= self.limit_gaps_extension:
 								break
+
 							if right_query < self.len_query and right_database < self.len_database:
 								if self.query[right_query] == self.database[right_database]:
 									alignment += self.query[right_query]
+									num_gaps_right = 0
 								else:
 									alignment = alignment[:] + '-'
-									num_gaps_extension += 1
-								right_query += 1
-								right_database += 1
+									num_gaps_right += 1
+
+							if num_gaps_right >= self.limit_gaps_extension:
+								break
+
+							left_query -= 1
+							left_database -= 1
+							right_query += 1
+							right_database += 1
 
 						# add alignment
 						self.alignments.append(alignment)
@@ -123,10 +129,10 @@ Word size:
 '''
 
 # test
-query = 'ACTGACCT'
-database = 'ACTGACCTGAAACACTGGGCGTACCCATGC'
+query = 'CCCATCCACTGGGC'
+database = 'ACTGACCTGAAAATGGGACACTGGGCGTACCCATGC'
 alphabet = 'ACTG'
-blast = Blast(query=query, database=database, size_word=3, alphabet=alphabet, threshold=12, matrix=score_matrix.blosum62, limit_gaps_extension=3)
+blast = Blast(query=query, database=database, size_word=3, alphabet=alphabet, threshold=5, matrix=score_matrix.blosum62, limit_gaps_extension=3)
 #print(blast.getOriginalWords())
 #print(blast.getNeighbors())
 print(blast.getAlignments())
