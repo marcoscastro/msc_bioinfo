@@ -7,12 +7,13 @@
 '''
 
 from collections import defaultdict
-import score_matrix, operator
+import score_matrix, operator, random
 
 
 class Blast:
 
-	def __init__(self, query, database, alphabet, matrix, threshold=10, word_size=3, limit_gaps_extension=5, match=1, gap_open=-5, gap_extend=-1):
+	# default BLAST: threshold 12 for words of size 3
+	def __init__(self, query, database, alphabet, matrix, threshold=12, word_size=3, limit_gaps_extension=5, match=1, gap_open=-5, gap_extend=-1):
 		self.query = query
 		self.database = database
 		self.alphabet = alphabet
@@ -45,17 +46,14 @@ class Blast:
 						self.neighbors[original_word].append(neighbor)
 
 		# list of words to search in the database
-		self.words = []
+		# all the original words are considered for search in database
+		self.words = self.original_words[:]
 
-		# not all the original words are considered for search in database
 		# not all the neighbors are considered for search in database
 		# compares the neighbors with the original word using the scoring matrix
 		for original_word in self.original_words:
-			score = score_matrix.score_pairwise(original_word, self.query, matrix)
-			if score >= self.threshold:
-				self.words.append(original_word)
 			for neighbor in self.neighbors[original_word]:
-				score = score_matrix.score_pairwise(neighbor, self.query, matrix)
+				score = score_matrix.score_pairwise(sequence1=original_word, sequence2=neighbor, matrix=matrix)
 				if score >= self.threshold:
 					self.words.append(neighbor)
 
@@ -90,8 +88,11 @@ class Blast:
 								else:
 									num_gaps_left += 1
 									if num_gaps_left <= self.limit_gaps_extension:
+										# adds gap
 										alignment = '-' + alignment[:]
 									else:
+										# removes extra gaps
+										alignment = alignment[self.limit_gaps_extension:]
 										break
 
 							if right_query < self.len_query and right_database < self.len_database:
@@ -101,8 +102,11 @@ class Blast:
 								else:
 									num_gaps_right += 1
 									if num_gaps_right <= self.limit_gaps_extension:
+										# adds gap
 										alignment = alignment[:] + '-'
 									else:
+										# removes extra gaps
+										alignment = alignment[:-self.limit_gaps_extension]
 										break
 
 							left_query -= 1
@@ -166,6 +170,27 @@ class Blast:
 		return best_alignments
 
 
+# returns a random DNA sequence
+def randomDNA(size):
+
+	def random_base():
+		return ('ACTG')[random.randint(0,3)] 
+
+	seq = ''
+	for i in range(size):
+		seq += random_base()
+	return seq
+
+
+# random test
+def randomTest(query, database, alphabet, matrix, threshold, word_size, limit_gaps_extension, match, gap_open, gap_extend):
+
+	print('Random test...')
+	blast = Blast(query=query, database=database, alphabet=alphabet, matrix=score_matrix.blosum62, threshold=threshold, word_size=word_size, limit_gaps_extension=limit_gaps_extension, match=match, gap_open=gap_open, gap_extend=gap_extend)
+	print('\nBest alignments:\n')
+	print('\n'.join(blast.getBestAlignments()) + '\n')
+
+
 '''
 Word size:
 	for proteins, the word size is normally 3
@@ -175,8 +200,14 @@ Word size:
 
 # test
 if __name__ == "__main__":
-	query = 'CCCATCCACTGGGC'
-	database = 'ACTGACACACTGGGCGTACCTGAAAAGGCGTACTGGGACACTGGGCGTACCCAAAGGCTGCTGAC'
+
+	query = 'GCGTACCTGA'
+	database = 'ACTGACACACTGGGCGTACCTGAAAAGGCGTACTGGGACACTGGGCGTACCCAAAGGCTCCCATCCACTGGGCGCTGAC'
 	alphabet = 'ACTG'
-	blast = Blast(query=query, database=database, alphabet=alphabet, matrix=score_matrix.blosum62, threshold=5, word_size=3, limit_gaps_extension=3, match=1, gap_open=-5, gap_extend=-1)
-	print('\n'.join(blast.getBestAlignments()))
+	blast = Blast(query=query, database=database, alphabet=alphabet, matrix=score_matrix.nucleotide_matrix_ungapped, threshold=5, word_size=3, limit_gaps_extension=10, match=1, gap_open=-5, gap_extend=-1)
+	print('\nTotal original words: %d' % len(blast.getOriginalWords()))
+	print('Total words: %d' % len(blast.getWords()))
+	print('\nBest alignments:\n')
+	print('\n'.join(blast.getBestAlignments()) + '\n')
+
+	randomTest(randomDNA(size=100), randomDNA(size=10000), alphabet=alphabet, matrix=score_matrix.nucleotide_matrix_ungapped, threshold=5, word_size=7, limit_gaps_extension=5, match=1, gap_open=-5, gap_extend=-1)
