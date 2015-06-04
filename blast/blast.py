@@ -7,18 +7,18 @@
 '''
 
 from collections import defaultdict
-import score_matrix
+import score_matrix, operator
 
 
 class Blast:
 
-	def __init__(self, query, database, size_word, alphabet, threshold, matrix, limit_gaps_extension=5, match=1, gap_open=-5, gap_extend=-1):
+	def __init__(self, query, database, alphabet, matrix, threshold=10, word_size=3, limit_gaps_extension=5, match=1, gap_open=-5, gap_extend=-1):
 		self.query = query
 		self.database = database
-		self.size_word = size_word
 		self.alphabet = alphabet
-		self.threshold = threshold
 		self.matrix = matrix
+		self.threshold = threshold
+		self.word_size = word_size
 		self.limit_gaps_extension = limit_gaps_extension
 		self.match = match
 		self.gap_open = gap_open
@@ -26,8 +26,8 @@ class Blast:
 		self.len_query = len(query)
 		self.len_database = len(database)
 
-		# generates original words (seeds) with size "size_word"
-		self.original_words = [query[i:i+size_word] for i in range(self.len_query) if len(query[i:i+size_word]) == size_word]
+		# generates original words (seeds) with size "word_size"
+		self.original_words = [query[i:i+word_size] for i in range(self.len_query) if len(query[i:i+word_size]) == word_size]
 
 		# generates the neighbors for each original word
 		# each key is an original word and each value is a list with the neighbors
@@ -35,7 +35,7 @@ class Blast:
 		self.neighbors = defaultdict(list)
 		for original_word in self.original_words:
 			self.neighbors[original_word] = []
-			for i in range(self.size_word):
+			for i in range(self.word_size):
 				list_original_word = list(original_word[:])
 				for letter in alphabet:
 					if list_original_word[i] != letter:
@@ -75,8 +75,8 @@ class Blast:
 					for hit_database in hits_database:
 
 						alignment, num_gaps_left, num_gaps_right = word[:], 0, 0
-						left_query, right_query = hit_query - 1, hit_query + self.size_word
-						left_database, right_database = hit_database - 1, hit_database + self.size_word
+						left_query, right_query = hit_query - 1, hit_query + self.word_size
+						left_database, right_database = hit_database - 1, hit_database + self.word_size
 
 						while True:
 
@@ -152,6 +152,19 @@ class Blast:
 					score += self.gap_extend
 		return score
 
+	# returns the best alignments
+	def getBestAlignments(self):
+		best_alignments = []
+		if self.alignments:
+			try: # python 2.x
+				max_score_alignment = max(self.alignments.iteritems(), key=operator.itemgetter(1))[1]
+			except: # python 3.x
+				max_score_alignment = max(self.alignments.items(), key=operator.itemgetter(1))[1]
+			for alignment in self.alignments:
+				if self.alignments[alignment] == max_score_alignment:
+					best_alignments.append(alignment)
+		return best_alignments
+
 
 '''
 Word size:
@@ -161,10 +174,9 @@ Word size:
 '''
 
 # test
-query = 'CCCATCCACTGGGC'
-database = 'ACTGACACACTGGGCGTACCTGAAAAGGCGTACTGGGACACTGGGCGTACCCAAAGGCTGCTGAC'
-alphabet = 'ACTG'
-blast = Blast(query=query, database=database, size_word=3, alphabet=alphabet, threshold=5, matrix=score_matrix.blosum62, limit_gaps_extension=2, match=1, gap_open=-5, gap_extend=-1)
-#print(blast.getOriginalWords())
-#print(blast.getNeighbors())
-print(blast.getAlignments())
+if __name__ == "__main__":
+	query = 'CCCATCCACTGGGC'
+	database = 'ACTGACACACTGGGCGTACCTGAAAAGGCGTACTGGGACACTGGGCGTACCCAAAGGCTGCTGAC'
+	alphabet = 'ACTG'
+	blast = Blast(query=query, database=database, alphabet=alphabet, matrix=score_matrix.blosum62, threshold=5, word_size=3, limit_gaps_extension=3, match=1, gap_open=-5, gap_extend=-1)
+	print('\n'.join(blast.getBestAlignments()))
