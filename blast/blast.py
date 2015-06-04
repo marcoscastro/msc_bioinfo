@@ -2,6 +2,7 @@
 
 '''
 	An simple implementation of Blast algorithm
+	All the references are in the folder "references".
 	Author: Marcos Castro
 '''
 
@@ -11,7 +12,7 @@ import score_matrix
 
 class Blast:
 
-	def __init__(self, query, database, size_word, alphabet, threshold, matrix, limit_gaps_extension):
+	def __init__(self, query, database, size_word, alphabet, threshold, matrix, limit_gaps_extension=5, match=1, gap_open=-5, gap_extend=-1):
 		self.query = query
 		self.database = database
 		self.size_word = size_word
@@ -19,6 +20,9 @@ class Blast:
 		self.threshold = threshold
 		self.matrix = matrix
 		self.limit_gaps_extension = limit_gaps_extension
+		self.match = match
+		self.gap_open = gap_open
+		self.gap_extend = gap_extend
 		self.len_query = len(query)
 		self.len_database = len(database)
 
@@ -42,6 +46,7 @@ class Blast:
 
 		# list of words to search in the database
 		self.words = []
+
 		# not all the original words are considered for search in database
 		# not all the neighbors are considered for search in database
 		# compares the neighbors with the original word using the scoring matrix
@@ -56,7 +61,7 @@ class Blast:
 
 
 		# the extension is made from the selected words
-		self.alignments = []
+		self.alignments = {}
 
 		for word in self.words:
 
@@ -83,22 +88,22 @@ class Blast:
 									alignment = self.query[left_query] + alignment[:]
 									num_gaps_left = 0
 								else:
-									alignment = '-' + alignment[:]
 									num_gaps_left += 1
-
-							if num_gaps_left >= self.limit_gaps_extension:
-								break
+									if num_gaps_left <= self.limit_gaps_extension:
+										alignment = '-' + alignment[:]
+									else:
+										break
 
 							if right_query < self.len_query and right_database < self.len_database:
 								if self.query[right_query] == self.database[right_database]:
 									alignment += self.query[right_query]
 									num_gaps_right = 0
 								else:
-									alignment = alignment[:] + '-'
 									num_gaps_right += 1
-
-							if num_gaps_right >= self.limit_gaps_extension:
-								break
+									if num_gaps_right <= self.limit_gaps_extension:
+										alignment = alignment[:] + '-'
+									else:
+										break
 
 							left_query -= 1
 							left_database -= 1
@@ -106,19 +111,46 @@ class Blast:
 							right_database += 1
 
 						# add alignment
-						self.alignments.append(alignment)
+						self.alignments[alignment] = 0
 
+		# calculates the score of the alignments
+		for alignment in self.alignments:
+			self.alignments[alignment] = self.getScoreAlignment(alignment)
+
+
+	# returns all the original words
 	def getOriginalWords(self):
 		return self.original_words
 
+	# returns all the neighbors
 	def getNeighbors(self):
 		return self.neighbors
 
+	# returns all the words
 	def getWords(self):
 		return self.words
 
+	# returns all the alignments
 	def getAlignments(self):
 		return self.alignments
+
+	# calculates the score of the alignment
+	def getScoreAlignment(self, alignment):
+		gap, score = False, 0
+		for c in alignment:
+			if not gap:
+				if c == '-':
+					gap = True
+					score += self.gap_open
+				else:
+					score += self.match
+			else:
+				if c != '-':
+					gap = False
+					score += self.match
+				else:
+					score += self.gap_extend
+		return score
 
 
 '''
@@ -130,9 +162,9 @@ Word size:
 
 # test
 query = 'CCCATCCACTGGGC'
-database = 'ACTGACCTGAAAATGGGACACTGGGCGTACCCATGC'
+database = 'ACTGACACACTGGGCGTACCTGAAAAGGCGTACTGGGACACTGGGCGTACCCAAAGGCTGCTGAC'
 alphabet = 'ACTG'
-blast = Blast(query=query, database=database, size_word=3, alphabet=alphabet, threshold=5, matrix=score_matrix.blosum62, limit_gaps_extension=3)
+blast = Blast(query=query, database=database, size_word=3, alphabet=alphabet, threshold=5, matrix=score_matrix.blosum62, limit_gaps_extension=2, match=1, gap_open=-5, gap_extend=-1)
 #print(blast.getOriginalWords())
 #print(blast.getNeighbors())
 print(blast.getAlignments())
