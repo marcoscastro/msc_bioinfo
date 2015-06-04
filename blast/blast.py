@@ -58,9 +58,10 @@ class Blast:
 					self.words.append(neighbor)
 
 
-		# the extension is made from the selected words
+		# each key is a 2-tuple (alignment_query, alignment_database) and the value is score alignment
 		self.alignments = {}
 
+		# the extension is made from the selected words
 		for word in self.words:
 
 			if word in self.query and word in self.database:
@@ -72,7 +73,7 @@ class Blast:
 
 					for hit_database in hits_database:
 
-						alignment, num_gaps_left, num_gaps_right = word[:], 0, 0
+						alignment_query, alignment_database, num_gaps_left, num_gaps_right = word[:], word[:], 0, 0
 						left_query, right_query = hit_query - 1, hit_query + self.word_size
 						left_database, right_database = hit_database - 1, hit_database + self.word_size
 
@@ -83,30 +84,34 @@ class Blast:
 
 							if left_query >= 0 and left_database >= 0:
 								if self.query[left_query] == self.database[left_database]:
-									alignment = self.query[left_query] + alignment[:]
+									alignment_query = self.query[left_query] + alignment_query[:]
+									alignment_database = self.database[left_database] + alignment_database[:]
 									num_gaps_left = 0
 								else:
 									num_gaps_left += 1
 									if num_gaps_left <= self.limit_gaps_extension:
-										# adds gap
-										alignment = '-' + alignment[:]
+										alignment_query = self.query[left_query] + alignment_query[:]
+										alignment_database = self.database[left_database] + alignment_database[:]
 									else:
-										# removes extra gaps
-										alignment = alignment[self.limit_gaps_extension:]
+										# removes extra characters (gaps)
+										alignment_query = alignment_query[self.limit_gaps_extension:]
+										alignment_database = alignment_database[self.limit_gaps_extension:]
 										break
 
 							if right_query < self.len_query and right_database < self.len_database:
 								if self.query[right_query] == self.database[right_database]:
-									alignment += self.query[right_query]
+									alignment_query += self.query[right_query]
+									alignment_database += self.database[right_database]
 									num_gaps_right = 0
 								else:
 									num_gaps_right += 1
 									if num_gaps_right <= self.limit_gaps_extension:
-										# adds gap
-										alignment = alignment[:] + '-'
+										alignment_query += self.query[right_query]
+										alignment_database += self.database[right_database]
 									else:
-										# removes extra gaps
-										alignment = alignment[:-self.limit_gaps_extension]
+										# removes extra characters (gaps)
+										alignment_query = alignment_query[:-self.limit_gaps_extension]
+										alignment_database = alignment_database[:-self.limit_gaps_extension]
 										break
 
 							left_query -= 1
@@ -115,11 +120,12 @@ class Blast:
 							right_database += 1
 
 						# add alignment
-						self.alignments[alignment] = 0
+						self.alignments[(alignment_query, alignment_database)] = 0
 
 		# calculates the score of the alignments
 		for alignment in self.alignments:
-			self.alignments[alignment] = self.getScoreAlignment(alignment)
+			alignment_query, alignment_database = alignment
+			self.alignments[alignment] = self.getScoreAlignment(alignment_query, alignment_database)
 
 
 	# returns all the original words
@@ -139,26 +145,12 @@ class Blast:
 		return self.alignments
 
 	# calculates the score of the alignment
-	def getScoreAlignment(self, alignment):
-		gap, score = False, 0
-		for c in alignment:
-			if not gap:
-				if c == '-':
-					gap = True
-					score += self.gap_open
-				else:
-					score += self.match
-			else:
-				if c != '-':
-					gap = False
-					score += self.match
-				else:
-					score += self.gap_extend
-		return score
+	def getScoreAlignment(self, alignment_query, alignment_database):
+		return score_matrix.score_pairwise(sequence1=alignment_query, sequence2=alignment_database, matrix=self.matrix)
 
 	# returns the best alignments
 	def getBestAlignments(self):
-		best_alignments = []
+		best_alignments = [] # 3-tuple (alignment_query, alignment_database, score)
 		if self.alignments:
 			try: # python 2.x
 				max_score_alignment = max(self.alignments.iteritems(), key=operator.itemgetter(1))[1]
@@ -166,8 +158,24 @@ class Blast:
 				max_score_alignment = max(self.alignments.items(), key=operator.itemgetter(1))[1]
 			for alignment in self.alignments:
 				if self.alignments[alignment] == max_score_alignment:
-					best_alignments.append(alignment)
+					best_alignments.append((alignment[0], alignment[1], max_score_alignment))
 		return best_alignments
+
+	# shows pretty the best alignments
+	def showPrettyBestAlignments(self):
+		print('\nBest alignments:\n')
+		best_alignments = blast.getBestAlignments()
+		for alignment in best_alignments:
+			print(alignment[0])
+			slashes, size_alignment = '', len(alignment[0])
+			for i in range(size_alignment):
+				if alignment[0][i] == alignment[1][i]:
+					slashes += '|'
+				else:
+					slashes += ' '
+			print(slashes)
+			print(alignment[1])
+			print('Score: %d\n' % alignment[2])
 
 
 # returns a random DNA sequence
@@ -180,15 +188,7 @@ def randomDNA(size):
 	for i in range(size):
 		seq += random_base()
 	return seq
-
-
-# random test
-def randomTest(query, database, alphabet, matrix, threshold, word_size, limit_gaps_extension, match, gap_open, gap_extend):
-
-	print('Random test...')
-	blast = Blast(query=query, database=database, alphabet=alphabet, matrix=score_matrix.blosum62, threshold=threshold, word_size=word_size, limit_gaps_extension=limit_gaps_extension, match=match, gap_open=gap_open, gap_extend=gap_extend)
-	print('\nBest alignments:\n')
-	print('\n'.join(blast.getBestAlignments()) + '\n')
+	
 
 
 '''
@@ -205,9 +205,10 @@ if __name__ == "__main__":
 	database = 'ACTGACACACTGGGCGTACCTGAAAAGGCGTACTGGGACACTGGGCGTACCCAAAGGCTCCCATCCACTGGGCGCTGAC'
 	alphabet = 'ACTG'
 	blast = Blast(query=query, database=database, alphabet=alphabet, matrix=score_matrix.nucleotide_matrix_ungapped, threshold=5, word_size=3, limit_gaps_extension=10, match=1, gap_open=-5, gap_extend=-1)
-	print('\nTotal original words: %d' % len(blast.getOriginalWords()))
-	print('Total words: %d' % len(blast.getWords()))
-	print('\nBest alignments:\n')
-	print('\n'.join(blast.getBestAlignments()) + '\n')
+	#print('\nTotal original words: %d' % len(blast.getOriginalWords()))
+	#print('Total words: %d' % len(blast.getWords()))
+	blast.showPrettyBestAlignments()
 
-	randomTest(randomDNA(size=100), randomDNA(size=10000), alphabet=alphabet, matrix=score_matrix.nucleotide_matrix_ungapped, threshold=5, word_size=7, limit_gaps_extension=5, match=1, gap_open=-5, gap_extend=-1)
+	print('Random test...')
+	blast = Blast(randomDNA(size=1000), randomDNA(size=10000), alphabet=alphabet, matrix=score_matrix.nucleotide_matrix_ungapped, threshold=5, word_size=3, limit_gaps_extension=5, match=1, gap_open=-5, gap_extend=-1)
+	blast.showPrettyBestAlignments()
