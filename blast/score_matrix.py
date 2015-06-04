@@ -105,7 +105,7 @@ nucleotide_matrix_gapped = {
 	Returns:
 		score of the alignment
 '''
-def score_pairwise(sequence1, sequence2, matrix, gap_open=0, gap_extend=0):
+def score_pairwise(sequence1, sequence2, matrix, gap_open=-5, gap_extend=-1):
 	score, gap, len_sequence1 = 0, False, len(sequence1)
 	for i in range(len_sequence1):
 		pair = (sequence1[i], sequence2[i])
