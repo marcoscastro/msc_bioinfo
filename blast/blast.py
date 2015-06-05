@@ -58,7 +58,7 @@ class Blast:
 		# each key is a 2-tuple (alignment_query, alignment_database) and the value is score alignment
 		self.alignments = {}
 
-		# the extension is made from the selected words
+		# the extension (ungapped alignment) is made from the selected words
 		for word in self.words:
 
 			if word in self.query and word in self.database:
@@ -194,7 +194,6 @@ def randomDNA(size):
 		seq += random_base()
 	return seq
 	
-
 
 '''
 Word size:
