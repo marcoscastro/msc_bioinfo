@@ -13,17 +13,14 @@ import score_matrix, operator, random
 class Blast:
 
 	# default BLAST: threshold 12 for words of size 3
-	def __init__(self, query, database, alphabet, matrix, threshold=12, word_size=3, limit_gaps_extension=5, match=1, gap_open=-5, gap_extend=-1):
+	def __init__(self, query, database, alphabet, matrix, threshold=12, word_size=3, limit_mismatch_extension=5):
 		self.query = query
 		self.database = database
 		self.alphabet = alphabet
 		self.matrix = matrix
 		self.threshold = threshold
 		self.word_size = word_size
-		self.limit_gaps_extension = limit_gaps_extension
-		self.match = match
-		self.gap_open = gap_open
-		self.gap_extend = gap_extend
+		self.limit_mismatch_extension = limit_mismatch_extension
 		self.len_query = len(query)
 		self.len_database = len(database)
 
@@ -79,47 +76,55 @@ class Blast:
 
 						while True:
 
-							if (left_query < 0 and right_query >= self.len_query) and (left_database < 0 and right_database >= self.len_database):
+							# checks the extremes (if can not more extend)
+							if (left_query < 0 or left_database < 0) and (right_query >= self.len_query or right_database >= self.len_database):
 								break
 
+							# checks the extremes of the left
 							if left_query >= 0 and left_database >= 0:
 								if self.query[left_query] == self.database[left_database]:
+									# add characters
 									alignment_query = self.query[left_query] + alignment_query[:]
 									alignment_database = self.database[left_database] + alignment_database[:]
-									num_gaps_left = 0
+									num_gaps_left = 0 # updates gaps number
 								else:
 									num_gaps_left += 1
-									if num_gaps_left <= self.limit_gaps_extension:
+									if num_gaps_left <= self.limit_mismatch_extension:
+										# add characters
 										alignment_query = self.query[left_query] + alignment_query[:]
 										alignment_database = self.database[left_database] + alignment_database[:]
 									else:
 										# removes extra characters (gaps)
-										alignment_query = alignment_query[self.limit_gaps_extension:]
-										alignment_database = alignment_database[self.limit_gaps_extension:]
+										alignment_query = alignment_query[self.limit_mismatch_extension:]
+										alignment_database = alignment_database[self.limit_mismatch_extension:]
 										break
 
+								# decrements the extremes of the lest
+								left_query -= 1
+								left_database -= 1
+
+							# checks the extremes of the right
 							if right_query < self.len_query and right_database < self.len_database:
 								if self.query[right_query] == self.database[right_database]:
 									alignment_query += self.query[right_query]
 									alignment_database += self.database[right_database]
-									num_gaps_right = 0
+									num_gaps_right = 0 # updates gaps number
 								else:
-									num_gaps_right += 1
-									if num_gaps_right <= self.limit_gaps_extension:
+									num_gaps_right += 1 # updates gaps number
+									if num_gaps_right <= self.limit_mismatch_extension:
 										alignment_query += self.query[right_query]
 										alignment_database += self.database[right_database]
 									else:
 										# removes extra characters (gaps)
-										alignment_query = alignment_query[:-self.limit_gaps_extension]
-										alignment_database = alignment_database[:-self.limit_gaps_extension]
+										alignment_query = alignment_query[:-self.limit_mismatch_extension]
+										alignment_database = alignment_database[:-self.limit_mismatch_extension]
 										break
 
-							left_query -= 1
-							left_database -= 1
-							right_query += 1
-							right_database += 1
+								# increments the extremes of the right
+								right_query += 1
+								right_database += 1
 
-						# add alignment
+						# add the alignment in the dictionary
 						self.alignments[(alignment_query, alignment_database)] = 0
 
 		# calculates the score of the alignments
@@ -196,19 +201,19 @@ Word size:
 	for proteins, the word size is normally 3
 	for nucleotides, the word size is typically 7, 11 or 15
 	w = 15 for example gives fewer matches and is faster than w = 11 or w = 7
+
+The original BLAST only generates ungapped alignments.
 '''
 
 # test
 if __name__ == "__main__":
 
-	query = 'GCGTACCTGA'
-	database = 'ACTGACACACTGGGCGTACCTGAAAAGGCGTACTGGGACACTGGGCGTACCCAAAGGCTCCCATCCACTGGGCGCTGAC'
+	query = 'GCGTAAACCTGA'
+	database = 'ACTGACACACTGGGCGTACCTGAAAAGGAC'
 	alphabet = 'ACTG'
-	blast = Blast(query=query, database=database, alphabet=alphabet, matrix=score_matrix.nucleotide_matrix_ungapped, threshold=5, word_size=3, limit_gaps_extension=10, match=1, gap_open=-5, gap_extend=-1)
-	#print('\nTotal original words: %d' % len(blast.getOriginalWords()))
-	#print('Total words: %d' % len(blast.getWords()))
+	blast = Blast(query=query, database=database, alphabet=alphabet, matrix=score_matrix.nucleotide_matrix_ungapped, threshold=5, word_size=3, limit_mismatch_extension=5)
 	blast.showPrettyBestAlignments()
 
 	print('Random test...')
-	blast = Blast(randomDNA(size=1000), randomDNA(size=10000), alphabet=alphabet, matrix=score_matrix.nucleotide_matrix_ungapped, threshold=5, word_size=3, limit_gaps_extension=5, match=1, gap_open=-5, gap_extend=-1)
+	blast = Blast(randomDNA(size=1000), randomDNA(size=10000), alphabet=alphabet, matrix=score_matrix.nucleotide_matrix_ungapped, threshold=5, word_size=7, limit_mismatch_extension=5)
 	blast.showPrettyBestAlignments()
