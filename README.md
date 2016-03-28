@@ -1,2 +1,15 @@
-# MSc bioinformatics
-Source-Code of the project of the Masters in Computer Science.
+# MSc Bioinformatics
+
+Project's page of the master's degree in computer science.
+
+Project: De Bruijn Graphs for detection of genetic variations by GBS (Genotyping By Sequencing).
+
+The file "Proposal.pdf" contains the project proposal (in portuguese). If you want in english, contact me please: mcastrosouza@live.com
+
+The folder "alignment_algorithms" contains implementations of some algorithms for the alignment of biological sequences.
+
+The folder "detection_genetic_variations" contains the code of the application (in development). The application is being made in C++.
+
+News coming soon...
+
+Doubts? mcastrosouza@live.com
