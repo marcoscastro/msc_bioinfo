@@ -1,0 +1,6 @@
+{
+  "name": "De Bruijn Graphs for Detection of Genetic Variations by GBS",
+  "tagline": "bioinformatics",
+  "body": "# MSc Bioinformatics\r\n\r\nProject's page of the master's degree in computer science.\r\n\r\nProject: De Bruijn Graphs for detection of genetic variations by GBS (Genotyping By Sequencing).\r\n\r\nThe file \"Proposal.pdf\" contains the project proposal (in portuguese). If you want in english, contact me please: mcastrosouza@live.com\r\n\r\nThe folder \"alignment_algorithms\" contains implementations of some algorithms for the alignment of biological sequences.\r\n\r\nThe folder \"detection_genetic_variations/src\" contains the code of the application (in development). The application is being made in C++.\r\n\r\nThe folder \"detection_genetic_variations/documentation\" contains the documentation of the project.\r\n\r\nNews coming soon...\r\n\r\nDoubts? mcastrosouza@live.com\r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
