@@ -12,6 +12,8 @@ The folder "detection_genetic_variations/src" contains the code of the applicati
 
 The folder "detection_genetic_variations/documentation" contains the documentation of the project.
 
+The project in github-pages: http://marcoscastro.github.io/msc_bioinfo/
+
 News coming soon...
 
 Doubts? mcastrosouza@live.com
