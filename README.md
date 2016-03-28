@@ -10,6 +10,8 @@ The folder "alignment_algorithms" contains implementations of some algorithms fo
 
 The folder "detection_genetic_variations/src" contains the code of the application (in development). The application is being made in C++.
 
+The folder "detection_genetic_variations/documentation" contains the documentation of the project.
+
 News coming soon...
 
 Doubts? mcastrosouza@live.com
