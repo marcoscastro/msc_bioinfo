@@ -19,7 +19,12 @@ private:
 	   
 public:
 	
-	FASTQReader(std::string filename)
+	/*!
+	 * Constructor
+	 *
+	 * @param[in] filename The name of the FASTQ file.
+	 */
+	FASTQReader(std::string & filename)
 	{
 		this->filename = filename;
 	}
