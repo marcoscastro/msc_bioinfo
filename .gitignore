@@ -1,5 +1,31 @@
-task1/files
 *.pyc
 *.psl
 *.fa
+*.out
+
+# Byte-compiled
+__pycache__/
+
+# Falcon project
+*.fpj
+
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Shared objects
+*.dll
+*.so
+*.so.*
+
+# Executables
+*.exe
 *.out
