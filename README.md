@@ -8,7 +8,7 @@ The file "Proposal.pdf" contains the project proposal (in portuguese). If you wa
 
 The folder "alignment_algorithms" contains implementations of some algorithms for the alignment of biological sequences.
 
-The folder "detection_genetic_variations" contains the code of the application (in development). The application is being made in C++.
+The folder "detection_genetic_variations/src" contains the code of the application (in development). The application is being made in C++.
 
 News coming soon...
 
