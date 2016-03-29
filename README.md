@@ -10,9 +10,7 @@ The folder "alignment_algorithms" contains implementations of some algorithms fo
 
 The folder "detection_genetic_variations/src" contains the code of the application (in development). The application is being made in C++.
 
-The folder "detection_genetic_variations/documentation" contains the documentation of the project.
-
-The project in github-pages: http://marcoscastro.github.io/msc_bioinfo/
+Documentation: http://marcoscastro.github.io/msc_bioinfo/
 
 News coming soon...
 
