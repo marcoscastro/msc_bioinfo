@@ -1,10 +1,14 @@
 #ifndef FASTQ_READER_H
 #define FASTQ_READER_H
 
+#include <vector>
+
 /*! \brief Class to read a FASTQ file.
  *	\author Marcos Castro
  *	\copyright GNU Public License.
  *	\date 28/03/2016
+ *
+ *	Last modified: 01/04/2016
  *
  *	FASTQ format stores sequences and qualities in a single file. It is concise and compact.
  *
@@ -16,18 +20,19 @@
 class FASTQReader
 {
 private:
-	   std::string pathfile;
-	   
+	   std::string file_path; //**< path of the file */
+	   std::vector<Read> reads; //**< set of reads of the FASTQ file */
+
 public:
 	
 	/*!
 	 * Constructor
 	 *
-	 * @param[in] pathfile The path of the FASTQ file.
+	 * @param[in] file_path The path of the FASTQ file.
 	 */
-	FASTQReader(std::string & pathfile)
+	FASTQReader(std::string & file_path)
 	{
-		this->pathfile = pathfile;
+		this->file_path = file_path;
 	}
 };
 
