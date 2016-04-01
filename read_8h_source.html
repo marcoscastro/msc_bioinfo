@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>Detection of Genetic Variations: C:/Users/Marcos/Documents/Mestrado/Projeto/Codigo/detection_genetic_variations/src/fastq_reader.h File Reference</title>
+<title>Detection of Genetic Variations: C:/Users/Marcos/Documents/Mestrado/Projeto/Codigo/detection_genetic_variations/src/read.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -86,25 +86,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 </div><!-- top -->
 <div class="header">
-  <div class="summary">
-<a href="#nested-classes">Classes</a>  </div>
   <div class="headertitle">
-<div class="title">fastq_reader.h File Reference</div>  </div>
+<div class="title">read.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;vector&gt;</code><br />
-<code>#include &lt;fstream&gt;</code><br />
-<code>#include &quot;<a class="el" href="read_8h_source.html">read.h</a>&quot;</code><br />
-</div>
-<p><a href="fastq__reader_8h_source.html">Go to the source code of this file.</a></p>
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_a_s_t_q_reader.html">FASTQReader</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class to read a FASTQ file.  <a href="class_f_a_s_t_q_reader.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
-</div><!-- contents -->
+<a href="read_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef READ_H</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define READ_H</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div><div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="class_read.html">   21</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_read.html">Read</a></div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;{</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">private</span>:</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    std::string header; <span class="comment">//**&lt; Header of the FASTQ file */</span></div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    std::string sequence; <span class="comment">//**&lt; sequence */</span></div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    std::string quality_score; <span class="comment">//**&lt; quality score */</span></div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="class_read.html#a679687905fae16c340c4e2217838fbc9">Read</a>(std::string &amp; read_data);</div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;};</div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#endif</span></div><div class="ttc" id="class_read_html"><div class="ttname"><a href="class_read.html">Read</a></div><div class="ttdoc">Class that represents a read. </div><div class="ttdef"><b>Definition:</b> read.h:21</div></div>
+<div class="ttc" id="class_read_html_a679687905fae16c340c4e2217838fbc9"><div class="ttname"><a href="class_read.html#a679687905fae16c340c4e2217838fbc9">Read::Read</a></div><div class="ttdeci">Read(std::string &amp;read_data)</div><div class="ttdef"><b>Definition:</b> read.cpp:3</div></div>
+</div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

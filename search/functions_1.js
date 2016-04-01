@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['main',['main',['../main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main.cpp']]]
+  ['fastqreader',['FASTQReader',['../class_f_a_s_t_q_reader.html#a59f97834a7eb820da16fcb868237dd20',1,'FASTQReader']]]
 ];

@@ -98,52 +98,124 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a794202383b7c9a5ed978bf6e27a86248"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_a_s_t_q_reader.html#a794202383b7c9a5ed978bf6e27a86248">FASTQReader</a> (std::string &amp;filename)</td></tr>
-<tr class="separator:a794202383b7c9a5ed978bf6e27a86248"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59f97834a7eb820da16fcb868237dd20"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_a_s_t_q_reader.html#a59f97834a7eb820da16fcb868237dd20">FASTQReader</a> ()</td></tr>
+<tr class="separator:a59f97834a7eb820da16fcb868237dd20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a529e106308b9ebc3c833d85814cdc2ee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_a_s_t_q_reader.html#a529e106308b9ebc3c833d85814cdc2ee">addFASTQ</a> (const char *file_path)</td></tr>
+<tr class="separator:a529e106308b9ebc3c833d85814cdc2ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a019f4982e5e51b15e3f0a3e7ec85ce3e"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_read.html">Read</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_a_s_t_q_reader.html#a019f4982e5e51b15e3f0a3e7ec85ce3e">getReads</a> ()</td></tr>
+<tr class="separator:a019f4982e5e51b15e3f0a3e7ec85ce3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc379eb06484747c6ad784f923bbd039"><td class="memItemLeft" align="right" valign="top">long long int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_a_s_t_q_reader.html#acc379eb06484747c6ad784f923bbd039">getTotalReads</a> ()</td></tr>
+<tr class="separator:acc379eb06484747c6ad784f923bbd039"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class to read a FASTQ file. </p>
 <dl class="section author"><dt>Author</dt><dd>Marcos Castro </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>GNU Public License. </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>28/03/2016</dd></dl>
+<p>Last modified: 01/04/2016</p>
 <p>FASTQ format stores sequences and qualities in a single file. It is concise and compact.</p>
 <p>References: <br />
+ <a href="http://goo.gl/ZMShLe">http://goo.gl/ZMShLe</a> (Illumina website) <br />
  <a href="http://maq.sourceforge.net/fastq.shtml">http://maq.sourceforge.net/fastq.shtml</a> <br />
  <a href="https://en.wikipedia.org/wiki/FASTQ_format">https://en.wikipedia.org/wiki/FASTQ_format</a> </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a794202383b7c9a5ed978bf6e27a86248"></a>
+<a class="anchor" id="a59f97834a7eb820da16fcb868237dd20"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">FASTQReader::FASTQReader </td>
           <td>(</td>
-          <td class="paramtype">std::string &amp;&#160;</td>
-          <td class="paramname"><em>filename</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
-<p>Constructor</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">filename</td><td>The name of the FASTQ file. </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Construtor of the <a class="el" href="class_f_a_s_t_q_reader.html" title="Class to read a FASTQ file. ">FASTQReader</a> class. </p>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following file:<ul>
-<li>Mestrado/Projeto/Codigo/detection_genetic_variations/src/<a class="el" href="fastq__reader_8h_source.html">fastq_reader.h</a></li>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a529e106308b9ebc3c833d85814cdc2ee"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FASTQReader::addFASTQ </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>file_path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Adds the data of a FASTQ file.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">file_path</td><td>The path of the FASTQ file. </td></tr>
+  </table>
+  </dd>
+</dl>
+<p>opens the file file_path</p>
+<p>tests if the file exists</p>
+<p>terminates the execution</p>
+<p>line will be read</p>
+<p>data of the read</p>
+<p>marker that indicates the amount of read lines</p>
+<p>counter of reads</p>
+<p>flag that indicates if should create a read</p>
+<p>to get you all the lines</p>
+<p>saves the line in string data</p>
+<p>tests should be created to read</p>
+<p>creates a new read</p>
+<p>adds the read in the vector of reads</p>
+<p>increases number of reads</p>
+<p>reset the variables</p>
+<p>adds the data</p>
+<p>increments the count</p>
+<p>checks if was obtained all data of the read</p>
+<p>increases the total of reads</p>
+<p>closes the file </p>
+
+</div>
+</div>
+<a class="anchor" id="a019f4982e5e51b15e3f0a3e7ec85ce3e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="class_read.html">Read</a> &gt; &amp; FASTQReader::getReads </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Returns the vector of reads.</p>
+<dl class="section return"><dt>Returns</dt><dd>The vector of reads. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="acc379eb06484747c6ad784f923bbd039"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">long long int FASTQReader::getTotalReads </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Returns the total of reads.</p>
+<dl class="section return"><dt>Returns</dt><dd>the total of reads. </dd></dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>C:/Users/Marcos/Documents/Mestrado/Projeto/Codigo/detection_genetic_variations/src/<a class="el" href="fastq__reader_8h_source.html">fastq_reader.h</a></li>
+<li>C:/Users/Marcos/Documents/Mestrado/Projeto/Codigo/detection_genetic_variations/src/<a class="el" href="fastq__reader_8cpp.html">fastq_reader.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

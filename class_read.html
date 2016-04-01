@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>Detection of Genetic Variations: Mestrado/Projeto Directory Reference</title>
+<title>Detection of Genetic Variations: Read Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -40,8 +40,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="annotated.html"><span>Classes</span></a></li>
-      <li class="current"><a href="files.html"><span>Files</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -62,8 +62,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li class="current"><a href="files.html"><span>File&#160;List</span></a></li>
-      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
+      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -80,22 +81,62 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_d99b96375d1359323fba47f84de21e54.html">Mestrado</a></li><li class="navelem"><a class="el" href="dir_168c87edb29c5973b3dc2ccb5012e36b.html">Projeto</a></li>  </ul>
-</div>
 </div><!-- top -->
 <div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="class_read-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">Projeto Directory Reference</div>  </div>
+<div class="title">Read Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Class that represents a read.  
+ <a href="class_read.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="read_8h_source.html">read.h</a>&gt;</code></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="subdirs"></a>
-Directories</h2></td></tr>
-<tr class="memitem:dir_5cfe2f0b327e18937d3309042984c6d2"><td class="memItemLeft" align="right" valign="top">directory &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dir_5cfe2f0b327e18937d3309042984c6d2.html">Codigo</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a679687905fae16c340c4e2217838fbc9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_read.html#a679687905fae16c340c4e2217838fbc9">Read</a> (std::string &amp;read_data)</td></tr>
+<tr class="separator:a679687905fae16c340c4e2217838fbc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Class that represents a read. </p>
+<dl class="section author"><dt>Author</dt><dd>Marcos Castro </dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd>GNU Public License. </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>01/04/2016</dd></dl>
+<p>Last modified: 01/04/2016</p>
+<p>Each entry in a FASTQ file consists of four lines: 1) Sequence identifier 2) Sequence 3) Quality score identifier line (consisting of a +) 4) Quality score</p>
+<p>Reference: <a href="http://goo.gl/ZMShLe">http://goo.gl/ZMShLe</a> (Illumina website) </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a679687905fae16c340c4e2217838fbc9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Read::Read </td>
+          <td>(</td>
+          <td class="paramtype">std::string &amp;&#160;</td>
+          <td class="paramname"><em>read_data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Constructor</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">read_data</td><td>The data of read. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>C:/Users/Marcos/Documents/Mestrado/Projeto/Codigo/detection_genetic_variations/src/<a class="el" href="read_8h_source.html">read.h</a></li>
+<li>C:/Users/Marcos/Documents/Mestrado/Projeto/Codigo/detection_genetic_variations/src/<a class="el" href="read_8cpp.html">read.cpp</a></li>
+</ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
