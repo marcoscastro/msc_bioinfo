@@ -17,6 +17,7 @@ void FASTQReader::addFASTQ(const char * file_path)
 	// tests if the file exists
 	if (!infile.good())
 	{
+		infile.close(); //closes the file
 		std::cerr << "The file \"" << file_path << "\" does not exist!\n";
 		exit(0); // terminates the execution
 	}
@@ -39,7 +40,7 @@ void FASTQReader::addFASTQ(const char * file_path)
 		// saves the line in string data
 		getline(infile, line);
 
-		// tests should be created to read
+		// tests if should be created to read
 		if(create_read)
 		{
 			// creates a new read
