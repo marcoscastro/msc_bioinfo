@@ -1,6 +1,8 @@
 #ifndef READ_H
 #define READ_H
 
+#include <string>
+
 /*! \brief Class that represents a read.
  *	\author Marcos Castro
  *	\copyright GNU Public License.
@@ -28,12 +30,9 @@ public:
 	/*!
 	 * Constructor
 	 *
-	 * @param[in] file_path The path of the FASTQ file.
+	 * @param[in] read_data The data of read.
 	 */
-	FASTQReader(std::string & file_path)
-	{
-		this->file_path = file_path;
-	}
+	Read(std::string & read_data);
 };
 
 #endif

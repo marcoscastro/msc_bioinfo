@@ -10,11 +10,11 @@
  * The project's code is hosted in: https://github.com/marcoscastro/msc_bioinfo
  *
  * The application is being made in C++ language.
- * 
+ *
  * News coming soon...
  *
  * \section install_sec Installation
- *  
+ *
  * In soon... Keep calm!
  */
 
@@ -28,7 +28,15 @@
  */
 int main(int argc, char *argv[])
 {
-	std::cout << "hello ACTG" << std::endl;
-	
+	if(argc < 2)
+	{
+		std::cerr << "Insufficient arguments!\n";
+	}
+	else
+	{
+		std::string file_path(argv[1]);
+		FASTQReader fastq_reader(file_path);
+	}
+
 	return 0;
 }
