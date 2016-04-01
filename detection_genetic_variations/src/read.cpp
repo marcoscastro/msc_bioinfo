@@ -4,8 +4,6 @@
 
 Read::Read(const std::string & read_data)
 {
-	std::cout << read_data;
-	
 	// split string with the delimiter of newline
 
 	std::string::size_type i = 0;
@@ -23,8 +21,6 @@ Read::Read(const std::string & read_data)
 			v.push_back(read_data.substr(i, read_data.length()));
 		}
 	}
-	
-	std::cout << v.size() << "\n";
 
 	// make assignments
 	header = v[0];

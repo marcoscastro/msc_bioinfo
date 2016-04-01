@@ -40,9 +40,9 @@ int main(int argc, char *argv[])
 
 		std::cout << "Total de reads: " << fastq_reader.getTotalReads() << "\n";
 
-		long long int index = 0;
-		std::cout << "\nShowing the read " << index << ":\n";
-		fastq_reader.showRead(index);
+		long long int index = 25;
+		std::cout << "\nShowing the read " << index << ":\n\n";
+		fastq_reader.showRead(index - 1);
 	}
 
 	return 0;

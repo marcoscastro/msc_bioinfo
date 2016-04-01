@@ -58,7 +58,7 @@ void FASTQReader::addFASTQ(const char * file_path)
 			read_data = "";
 		}
 
-		read_data += line; // adds the data
+		read_data += line + "\n"; // adds the data
 		count++; // increments the count
 
 		// checks if was obtained all data of the read
