@@ -34,8 +34,11 @@ int main(int argc, char *argv[])
 	}
 	else
 	{
-		std::string file_path(argv[1]);
-		FASTQReader fastq_reader(file_path);
+		FASTQReader fastq_reader;
+
+		fastq_reader.addFASTQ(argv[1]);
+
+		std::cout << "Total de reads: " << fastq_reader.getTotalReads() << "\n";
 	}
 
 	return 0;

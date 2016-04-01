@@ -21,12 +21,12 @@
 class Read
 {
 private:
-	   std::string header; //**< Header of the FASTQ file */
-	   std::string sequence; //**< sequence */
-	   std::string quality_score; //**< quality score */
-	   
+	std::string header; //**< Header of the FASTQ file */
+	std::string sequence; //**< sequence */
+	std::string quality_score; //**< quality score */
+
 public:
-	
+
 	/*!
 	 * Constructor
 	 *

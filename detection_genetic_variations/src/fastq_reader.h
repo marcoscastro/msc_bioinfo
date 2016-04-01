@@ -2,6 +2,7 @@
 #define FASTQ_READER_H
 
 #include <vector>
+#include <fstream>
 #include "read.h"
 
 /*! \brief Class to read a FASTQ file.
@@ -21,26 +22,36 @@
 class FASTQReader
 {
 private:
-	   std::vector<Read> reads; //**< set of reads of the FASTQ file */
+	std::vector<Read> reads; //**< set of reads of the FASTQ file */
+	long long int total_reads; //**< total of reads */
 
 public:
-	
+
 	/*!
-	 * Constructor
+	 * Construtor of the FASTQReader class.
+	 */
+	FASTQReader();
+
+	/*!
+	 * Adds the data of a FASTQ file.
 	 *
 	 * @param[in] file_path The path of the FASTQ file.
 	 */
-	FASTQReader(std::string & file_path);
-	
+	void addFASTQ(const char * file_path);
+
 	/*!
 	 * Returns the vector of reads.
 	 *
 	 * \return The vector of reads.
 	 */
-	std::vector<Read> & getReads()
-	{
-		return reads;
-	}
+	std::vector<Read> & getReads();
+
+	/*!
+	 * Returns the total of reads.
+	 *
+	 * \return the total of reads.
+	 */
+	long long int getTotalReads();
 };
 
 #endif
