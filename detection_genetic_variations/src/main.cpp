@@ -39,6 +39,10 @@ int main(int argc, char *argv[])
 		fastq_reader.addFASTQ(argv[1]);
 
 		std::cout << "Total de reads: " << fastq_reader.getTotalReads() << "\n";
+
+		long long int index = 0;
+		std::cout << "\nShowing the read " << index << ":\n";
+		fastq_reader.showRead(index);
 	}
 
 	return 0;

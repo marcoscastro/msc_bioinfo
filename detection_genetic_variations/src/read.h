@@ -21,7 +21,7 @@
 class Read
 {
 private:
-	std::string header; //**< Header of the FASTQ file */
+	std::string header; //**< Header of the read */
 	std::string sequence; //**< sequence */
 	std::string quality_score; //**< quality score */
 
@@ -32,7 +32,28 @@ public:
 	 *
 	 * @param[in] read_data The data of read.
 	 */
-	Read(std::string & read_data);
+	Read(const std::string & read_data);
+	
+	/*!
+	 * Gets the header.
+	 *
+	 * \return The header of read.
+	 */
+	std::string& getHeader();
+	
+	/*!
+	 * Gets the sequence.
+	 *
+	 * \return The sequence.
+	 */
+	std::string& getSequence();
+	
+	/*!
+	 * Gets the quality score.
+	 *
+	 * \return The quality score.
+	 */
+	std::string& getQualityScore();
 };
 
 #endif

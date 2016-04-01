@@ -52,6 +52,12 @@ public:
 	 * \return the total of reads.
 	 */
 	long long int getTotalReads();
+	
+	/*!
+	 * Shows a read by index.
+	 *
+	 */
+	void showRead(long long int index);
 };
 
 #endif

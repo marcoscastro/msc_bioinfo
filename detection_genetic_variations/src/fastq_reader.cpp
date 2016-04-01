@@ -84,3 +84,16 @@ long long int FASTQReader::getTotalReads()
 {
 	return total_reads;
 }
+
+void FASTQReader::showRead(long long int index)
+{
+	if(index >= total_reads)
+	{
+		std::cerr << "The index " << index << " not exists!\n";
+		exit(0); // terminates the execution
+	}
+	
+	std::cout << reads[index].getHeader() << "\n";
+	std::cout << reads[index].getSequence() << "\n";
+	std::cout << reads[index].getQualityScore() << "\n";
+}
