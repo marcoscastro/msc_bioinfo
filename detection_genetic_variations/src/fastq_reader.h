@@ -9,24 +9,25 @@
  *	FASTQ format stores sequences and qualities in a single file. It is concise and compact.
  *
  *	References:
+ *	\n http://goo.gl/ZMShLe (Illumina website)
  *	\n http://maq.sourceforge.net/fastq.shtml
  *	\n https://en.wikipedia.org/wiki/FASTQ_format
  */
 class FASTQReader
 {
 private:
-	   std::string filename;
+	   std::string pathfile;
 	   
 public:
 	
 	/*!
 	 * Constructor
 	 *
-	 * @param[in] filename The name of the FASTQ file.
+	 * @param[in] pathfile The path of the FASTQ file.
 	 */
-	FASTQReader(std::string & filename)
+	FASTQReader(std::string & pathfile)
 	{
-		this->filename = filename;
+		this->pathfile = pathfile;
 	}
 };
 
