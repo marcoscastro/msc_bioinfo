@@ -40,14 +40,14 @@ public:
 	void addFASTQ(const char * file_path);
 
 	/*!
-	 * Returns the vector of reads.
+	 * Gets the vector of reads.
 	 *
 	 * \return The vector of reads.
 	 */
 	std::vector<Read> & getReads();
 
 	/*!
-	 * Returns the total of reads.
+	 * Gets the total number of reads.
 	 *
 	 * \return the total of reads.
 	 */

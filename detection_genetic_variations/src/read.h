@@ -11,10 +11,10 @@
  *	Last modified: 01/04/2016
  *
  *	Each entry in a FASTQ file consists of four lines:
- *	1) Sequence identifier
- *	2) Sequence
- *	3) Quality score identifier line (consisting of a +)
- *	4) Quality score
+ *	\n 1) Sequence identifier
+ *	\n 2) Sequence
+ *	\n 3) Quality score identifier line (consisting of a +)
+ *	\n 4) Quality score
  *
  *	Reference: http://goo.gl/ZMShLe (Illumina website)
  */
