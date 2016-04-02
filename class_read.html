@@ -98,8 +98,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a679687905fae16c340c4e2217838fbc9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_read.html#a679687905fae16c340c4e2217838fbc9">Read</a> (std::string &amp;read_data)</td></tr>
-<tr class="separator:a679687905fae16c340c4e2217838fbc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82eba44b97aeef9ba1b205bf28aa5515"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_read.html#a82eba44b97aeef9ba1b205bf28aa5515">Read</a> (const std::string &amp;read_data)</td></tr>
+<tr class="separator:a82eba44b97aeef9ba1b205bf28aa5515"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a7c35a8da562a8e69a0aca95bf686da"><td class="memItemLeft" align="right" valign="top">std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_read.html#a2a7c35a8da562a8e69a0aca95bf686da">getHeader</a> ()</td></tr>
+<tr class="separator:a2a7c35a8da562a8e69a0aca95bf686da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82ab15c3fb5712b0d2c003818039be03"><td class="memItemLeft" align="right" valign="top">std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_read.html#a82ab15c3fb5712b0d2c003818039be03">getSequence</a> ()</td></tr>
+<tr class="separator:a82ab15c3fb5712b0d2c003818039be03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeaf12ee8ef28072450a53976c0a85208"><td class="memItemLeft" align="right" valign="top">std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_read.html#aeaf12ee8ef28072450a53976c0a85208">getQualityScore</a> ()</td></tr>
+<tr class="separator:aeaf12ee8ef28072450a53976c0a85208"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class that represents a read. </p>
@@ -116,14 +122,14 @@ Public Member Functions</h2></td></tr>
 
 <p>Definition at line <a class="el" href="read_8h_source.html#l00021">21</a> of file <a class="el" href="read_8h_source.html">read.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a679687905fae16c340c4e2217838fbc9"></a>
+<a class="anchor" id="a82eba44b97aeef9ba1b205bf28aa5515"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">Read::Read </td>
           <td>(</td>
-          <td class="paramtype">std::string &amp;&#160;</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>read_data</em></td><td>)</td>
           <td></td>
         </tr>
@@ -137,7 +143,65 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="read_8cpp_source.html#l00003">3</a> of file <a class="el" href="read_8cpp_source.html">read.cpp</a>.</p>
+<p>Definition at line <a class="el" href="read_8cpp_source.html#l00005">5</a> of file <a class="el" href="read_8cpp_source.html">read.cpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a2a7c35a8da562a8e69a0aca95bf686da"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string &amp; Read::getHeader </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Gets the header.</p>
+<dl class="section return"><dt>Returns</dt><dd>The header of read. </dd></dl>
+
+<p>Definition at line <a class="el" href="read_8cpp_source.html#l00031">31</a> of file <a class="el" href="read_8cpp_source.html">read.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aeaf12ee8ef28072450a53976c0a85208"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string &amp; Read::getQualityScore </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Gets the quality score.</p>
+<dl class="section return"><dt>Returns</dt><dd>The quality score. </dd></dl>
+
+<p>Definition at line <a class="el" href="read_8cpp_source.html#l00041">41</a> of file <a class="el" href="read_8cpp_source.html">read.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a82ab15c3fb5712b0d2c003818039be03"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string &amp; Read::getSequence </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Gets the sequence.</p>
+<dl class="section return"><dt>Returns</dt><dd>The sequence. </dd></dl>
+
+<p>Definition at line <a class="el" href="read_8cpp_source.html#l00036">36</a> of file <a class="el" href="read_8cpp_source.html">read.cpp</a>.</p>
 
 </div>
 </div>
