@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['read',['Read',['../class_read.html',1,'Read'],['../class_read.html#a82eba44b97aeef9ba1b205bf28aa5515',1,'Read::Read()']]],
-  ['read_2ecpp',['read.cpp',['../read_8cpp.html',1,'']]],
-  ['read_2eh',['read.h',['../read_8h.html',1,'']]]
+  ['main_20page_20of_20the_20project',['Main Page of the project',['../index.html',1,'']]],
+  ['main',['main',['../main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main.cpp']]],
+  ['main_2ecpp',['main.cpp',['../main_8cpp.html',1,'']]]
 ];

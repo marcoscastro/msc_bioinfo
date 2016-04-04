@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['read',['Read',['../class_read.html',1,'']]]
+  ['fastqreader',['FASTQReader',['../class_f_a_s_t_q_reader.html',1,'']]]
 ];

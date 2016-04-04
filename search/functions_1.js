@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['fastqreader',['FASTQReader',['../class_f_a_s_t_q_reader.html#a59f97834a7eb820da16fcb868237dd20',1,'FASTQReader']]]
+  ['debruijngraph',['DeBruijnGraph',['../class_de_bruijn_graph.html#a6e015a56cf3ac5c14e5dbd19445830a3',1,'DeBruijnGraph']]]
 ];
