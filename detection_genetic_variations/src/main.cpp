@@ -48,7 +48,9 @@ int main(int argc, char *argv[])
 
 		// test DeBruijnGraph class
 		int K = 10;
-		DeBruijnGraph graph(K, fastq_reader.getReads());
+		
+		DeBruijnGraph graph(K, fastq_reader.getReads(),
+							fastq_reader.getTotalReads());
 	}
 
 	return 0;

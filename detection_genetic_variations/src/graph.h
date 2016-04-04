@@ -2,6 +2,7 @@
 #define GRAPH_H
 
 #include <vector>
+#include <map>
 #include "read.h"
 
 /*! \brief Class to build De Bruijn Graph.
@@ -20,7 +21,8 @@
 class DeBruijnGraph
 {
 private:
-	short int K; //**< Length of the k-mer */
+	int K; //**< Length of the k-mer */
+	std::map<std::string, int> kmers; //**< Vector of K-mers */
 
 public:
 
@@ -29,7 +31,13 @@ public:
 	 *
 	 * @param[in] K length of the k-mers.
 	 */
-	DeBruijnGraph(short int K, std::vector<Read>& reads);
+	DeBruijnGraph(int K, std::vector<Read>& reads, int total_reads);
+	
+	/*!
+	 * Show all the k-mers.
+	 *
+	 */
+	void showKMears();
 };
 
 #endif
