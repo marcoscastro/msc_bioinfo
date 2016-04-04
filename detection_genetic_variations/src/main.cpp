@@ -1,5 +1,6 @@
 #include <iostream>
 #include "fastq_reader.h"
+#include "graph.h"
 
 /*! \mainpage Main Page of the project
  *
@@ -34,15 +35,20 @@ int main(int argc, char *argv[])
 	}
 	else
 	{
+		// test FASTQReader class
 		FASTQReader fastq_reader;
 
 		fastq_reader.addFASTQ(argv[1]);
 
-		std::cout << "Total de reads: " << fastq_reader.getTotalReads() << "\n";
+		//std::cout << "Total de reads: " << fastq_reader.getTotalReads() << "\n\n";
 
-		long long int index = 25;
-		std::cout << "\nShowing the read " << index << ":\n\n";
-		fastq_reader.showRead(index - 1);
+		//long long int index = 25;
+		//std::cout << "\nShowing the read " << index << ":\n\n";
+		//fastq_reader.showRead(index - 1);
+
+		// test DeBruijnGraph class
+		int K = 10;
+		DeBruijnGraph graph(K, fastq_reader.getReads());
 	}
 
 	return 0;

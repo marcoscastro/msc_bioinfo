@@ -1,6 +1,9 @@
 #ifndef GRAPH_H
 #define GRAPH_H
 
+#include <vector>
+#include "read.h"
+
 /*! \brief Class to build De Bruijn Graph.
  *	\author Marcos Castro
  *	\copyright GNU Public License.
@@ -11,13 +14,13 @@
  *	This file represents the De Bruijn Graph.
  *
  *	References:
- *	\n http://www.cs.jhu.edu/~langmea/resources/lecture_notes/assembly_dbg.pdf
+ *	\n https://www.youtube.com/watch?v=f-ecmECK7lw
  *	\n http://www.cs.jhu.edu/~langmea/resources/lecture_notes/assembly_dbg.pdf
  */
 class DeBruijnGraph
 {
 private:
-	const short int K; //**< Length of the k-mer */
+	short int K; //**< Length of the k-mer */
 
 public:
 
@@ -26,7 +29,7 @@ public:
 	 *
 	 * @param[in] K length of the k-mers.
 	 */
-	DeBruijnGraph(const short int K);
+	DeBruijnGraph(short int K, std::vector<Read>& reads);
 };
 
 #endif
