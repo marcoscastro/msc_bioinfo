@@ -29,7 +29,7 @@ void FASTQReader::addFASTQ(const char * file_path)
 	int count = 0;
 
 	// counter of reads
-	long long int number_reads = 0;
+	int number_reads = 0;
 
 	// flag that indicates if should create a read
 	bool create_read = false;
@@ -80,7 +80,7 @@ std::vector<Read> & FASTQReader::getReads()
 	return reads;
 }
 
-long long int FASTQReader::getTotalReads()
+int FASTQReader::getTotalReads()
 {
 	return total_reads;
 }

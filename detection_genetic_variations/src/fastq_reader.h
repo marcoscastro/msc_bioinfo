@@ -23,7 +23,7 @@ class FASTQReader
 {
 private:
 	std::vector<Read> reads; //**< set of reads of the FASTQ file */
-	long long int total_reads; //**< total of reads */
+	int total_reads; //**< total of reads */
 
 public:
 
@@ -51,7 +51,7 @@ public:
 	 *
 	 * \return the total of reads.
 	 */
-	long long int getTotalReads();
+	int getTotalReads();
 	
 	/*!
 	 * Shows a read by index.
