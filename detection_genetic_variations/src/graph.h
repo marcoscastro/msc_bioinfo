@@ -11,7 +11,7 @@
  *	This file represents the De Bruijn Graph.
  *
  *	References:
- *	\n https://www.youtube.com/watch?v=f-ecmECK7lw
+ *	\n http://www.cs.jhu.edu/~langmea/resources/lecture_notes/assembly_dbg.pdf
  *	\n http://www.cs.jhu.edu/~langmea/resources/lecture_notes/assembly_dbg.pdf
  */
 class DeBruijnGraph
