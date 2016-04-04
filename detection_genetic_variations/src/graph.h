@@ -22,6 +22,7 @@ class DeBruijnGraph
 {
 private:
 	int K; //**< Length of the k-mer */
+	long long int total_kmers; //**< Total of k-mers */
 	std::map<std::string, int> kmers; //**< Vector of K-mers */
 
 public:
@@ -38,6 +39,13 @@ public:
 	 *
 	 */
 	void showKMears();
+	
+	/*!
+	 * Return the total of k-mers.
+	 *
+	 * \return the total of k-mers.
+	 */
+	long long int getTotalKMears();
 };
 
 #endif

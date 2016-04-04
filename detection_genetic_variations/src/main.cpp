@@ -40,17 +40,22 @@ int main(int argc, char *argv[])
 
 		fastq_reader.addFASTQ(argv[1]);
 
-		//std::cout << "Total de reads: " << fastq_reader.getTotalReads() << "\n\n";
+		std::cout << "Total de reads: " << fastq_reader.getTotalReads() << "\n\n";
 
-		//long long int index = 25;
-		//std::cout << "\nShowing the read " << index << ":\n\n";
-		//fastq_reader.showRead(index - 1);
+		/*
+		int index = 25;
+
+		std::cout << "\nShowing the read " << index << ":\n\n";
+		fastq_reader.showRead(index - 1);
+		*/
 
 		// test DeBruijnGraph class
-		int K = 10;
-		
+		int K = 60;
+
 		DeBruijnGraph graph(K, fastq_reader.getReads(),
 							fastq_reader.getTotalReads());
+
+		graph.showKMears();
 	}
 
 	return 0;

@@ -15,7 +15,8 @@ DeBruijnGraph::DeBruijnGraph(int K, std::vector<Read>& reads, int total_reads)
 	*/
 
 	// checks the K value
-	if(K < 0 || K < size_read / 2 || K >= size_read)
+	//if(K < 0 || K < size_read / 2 || K >= size_read)
+	if(K < 0 || K >= size_read)
 	{
 		std::cerr << "Invalid value for the parameter K.\n";
 		exit(0); // terminates the execution
@@ -40,10 +41,9 @@ DeBruijnGraph::DeBruijnGraph(int K, std::vector<Read>& reads, int total_reads)
 			if((size_read - j) < K)
 				break;
 
-			kmer = "";
-
 			// forms the kmer
-			for(int k = j; k <= K; k++)
+			kmer = "";
+			for(int counter = 0, k = j; counter < K; counter++, k++)
 			{
 				kmer += sequence[k];
 			}
@@ -52,11 +52,23 @@ DeBruijnGraph::DeBruijnGraph(int K, std::vector<Read>& reads, int total_reads)
 			kmers[kmer]++;
 		}
 	}
+	
+	total_kmers = kmers.size();
 }
 
 void DeBruijnGraph::showKMears()
 {
-	std::map<std::string, int>::iterator it = kmers.begin();
+	std::map<std::string, int>::iterator it;
+
+	for(it = kmers.begin(); it != kmers.end(); it++)
+	{
+		std::cout << "KMer: " << it->first << " - appears " << it->second << "x\n";
+	}
 	
-	
+	std::cout << "\nTotal K-mers: " << total_kmers << "\n";
+}
+
+long long int DeBruijnGraph::getTotalKMears()
+{
+	return total_kmers;
 }
