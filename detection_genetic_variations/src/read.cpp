@@ -2,7 +2,7 @@
 #include <iostream>
 #include "read.h"
 
-Read::Read(const std::string & read_data)
+Read::Read(const std::string& read_data)
 {
 	// split string with the delimiter of newline
 

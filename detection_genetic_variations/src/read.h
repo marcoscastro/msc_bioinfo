@@ -8,7 +8,7 @@
  *	\copyright GNU Public License.
  *	\date 01/04/2016
  *
- *	Last modified: 01/04/2016
+ *	Last modified: 04/04/2016
  *
  *	Each entry in a FASTQ file consists of four lines:
  *	\n 1) Sequence identifier
@@ -32,22 +32,22 @@ public:
 	 *
 	 * @param[in] read_data The data of read.
 	 */
-	Read(const std::string & read_data);
-	
+	Read(const std::string& read_data);
+
 	/*!
 	 * Gets the header.
 	 *
 	 * \return The header of read.
 	 */
 	std::string& getHeader();
-	
+
 	/*!
 	 * Gets the sequence.
 	 *
 	 * \return The sequence.
 	 */
 	std::string& getSequence();
-	
+
 	/*!
 	 * Gets the quality score.
 	 *
