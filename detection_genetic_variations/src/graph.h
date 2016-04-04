@@ -8,7 +8,7 @@
  *
  *	Last modified: 04/04/2016
  *
- *	Description -> TODO
+ *	This file represents the De Bruijn Graph.
  *
  *	References:
  *	\n https://www.youtube.com/watch?v=f-ecmECK7lw
@@ -17,7 +17,7 @@
 class DeBruijnGraph
 {
 private:
-	const short int K;
+	const short int K; //**< Length of the k-mer */
 
 public:
 
