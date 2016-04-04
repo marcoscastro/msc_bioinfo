@@ -75,7 +75,7 @@ void FASTQReader::addFASTQ(const char * file_path)
 	infile.close();
 }
 
-std::vector<Read> & FASTQReader::getReads()
+std::vector<Read>& FASTQReader::getReads()
 {
 	return reads;
 }

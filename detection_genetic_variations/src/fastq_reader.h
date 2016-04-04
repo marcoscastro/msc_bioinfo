@@ -44,7 +44,7 @@ public:
 	 *
 	 * \return The vector of reads.
 	 */
-	std::vector<Read> & getReads();
+	std::vector<Read>& getReads();
 
 	/*!
 	 * Gets the total number of reads.
