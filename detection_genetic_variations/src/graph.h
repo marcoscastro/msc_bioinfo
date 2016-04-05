@@ -31,6 +31,8 @@ public:
 	 * Constructor
 	 *
 	 * @param[in] K length of the k-mers.
+	 * @param[in] reads vector of reads.
+	 * @param[in] total_reads the total of reads.
 	 */
 	DeBruijnGraph(int K, std::vector<Read>& reads, int total_reads);
 	
