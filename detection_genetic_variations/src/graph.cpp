@@ -66,7 +66,7 @@ void DeBruijnGraph::showKMears()
 
 	for(it = kmers.begin(); it != kmers.end(); it++)
 	{
-		// fix this!!
+		/** @bug NOT is bug, but improve it PLEASE!! */
 		KMer kmear = it->first;
 		std::cout << "KMer: " << kmear.getName() <<
 				  " - appears " << it->second << "x\n";
