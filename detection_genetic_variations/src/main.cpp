@@ -17,6 +17,9 @@
  * \section install_sec Installation
  *
  * In soon... Keep calm!
+ *
+ * \section Workflow
+ *
  */
 
 /*! \brief Main function of the application.
