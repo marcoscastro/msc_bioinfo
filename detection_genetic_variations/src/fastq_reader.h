@@ -10,8 +10,6 @@
  *	\copyright GNU Public License.
  *	\date 28/03/2016
  *
- *	Last modified: 04/04/2016
- *
  *	FASTQ format stores sequences and qualities in a single file. It is concise and compact.
  *
  *	References:

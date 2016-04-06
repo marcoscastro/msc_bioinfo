@@ -50,12 +50,12 @@ int main(int argc, char *argv[])
 		*/
 
 		// test DeBruijnGraph class
-		int K = 60;
+		int K = 2;
 
 		DeBruijnGraph graph(K, fastq_reader.getReads(),
 							fastq_reader.getTotalReads());
 
-		//graph.showKMears();
+		graph.showKMears();
 	}
 
 	return 0;

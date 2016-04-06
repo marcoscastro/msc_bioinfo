@@ -4,13 +4,12 @@
 #include <vector>
 #include <map>
 #include "read.h"
+#include "kmer.h"
 
 /*! \brief Class to build De Bruijn Graph.
  *	\author Marcos Castro
  *	\copyright GNU Public License.
  *	\date 04/04/2016
- *
- *	Last modified: 04/04/2016
  *
  *	This file represents the De Bruijn Graph.
  *
@@ -21,9 +20,9 @@
 class DeBruijnGraph
 {
 private:
-	int K; //**< Length of the k-mer */
-	long long int total_kmers; //**< Total of k-mers */
-	std::map<std::string, int> kmers; //**< Vector of K-mers */
+	int K; //**< Length of the K-mer */
+	long long int total_kmers; //**< Total of K-mers */
+	std::map<KMer, int> kmers; //**< Map of K-mers */
 
 public:
 
@@ -35,13 +34,13 @@ public:
 	 * @param[in] total_reads the total of reads.
 	 */
 	DeBruijnGraph(int K, std::vector<Read>& reads, int total_reads);
-	
+
 	/*!
 	 * Show all the k-mers.
 	 *
 	 */
 	void showKMears();
-	
+
 	/*!
 	 * Return the total of k-mers.
 	 *

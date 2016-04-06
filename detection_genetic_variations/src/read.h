@@ -8,8 +8,6 @@
  *	\copyright GNU Public License.
  *	\date 01/04/2016
  *
- *	Last modified: 04/04/2016
- *
  *	Each entry in a FASTQ file consists of four lines:
  *	\n 1) Sequence identifier
  *	\n 2) Sequence

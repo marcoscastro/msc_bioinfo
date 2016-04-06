@@ -26,7 +26,8 @@ DeBruijnGraph::DeBruijnGraph(int K, std::vector<Read>& reads, int total_reads)
 		Generates all kmers based in the parameter K.
 		Breaks the reads in substrings of length K.
 	*/
-	std::string kmer, sequence;
+
+	std::string kmer_name, sequence;
 
 	// iterates in all the reads
 	for(int i = 0; i < total_reads; i++)
@@ -42,29 +43,35 @@ DeBruijnGraph::DeBruijnGraph(int K, std::vector<Read>& reads, int total_reads)
 				break;
 
 			// forms the kmer
-			kmer = "";
+			kmer_name = "";
 			for(int counter = 0, k = j; counter < K; counter++, k++)
 			{
-				kmer += sequence[k];
+				kmer_name += sequence[k];
 			}
+
+			// creates a kmear
+			KMer kmer(kmer_name);
 
 			// insert the k-mer in the map of k-mers
 			kmers[kmer]++;
 		}
 	}
-	
+
 	total_kmers = kmers.size();
 }
 
 void DeBruijnGraph::showKMears()
 {
-	std::map<std::string, int>::iterator it;
+	std::map<KMer, int>::iterator it;
 
 	for(it = kmers.begin(); it != kmers.end(); it++)
 	{
-		std::cout << "KMer: " << it->first << " - appears " << it->second << "x\n";
+		// fix this!!
+		KMer kmear = it->first;
+		std::cout << "KMer: " << kmear.getName() <<
+				  " - appears " << it->second << "x\n";
 	}
-	
+
 	std::cout << "\nTotal K-mers: " << total_kmers << "\n";
 }
 
