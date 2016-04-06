@@ -3,7 +3,7 @@
 
 #include <string>
 
-/*! \brief Class to read a FASTQ file.
+/*! \brief Class that represents a K-Mer.
  *	\author Marcos Castro
  *	\copyright GNU Public License.
  *	\date 06/04/2016
