@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>Detection of Genetic Variations: C:/Users/Marcos/Documents/Mestrado/Projeto/Codigo/detection_genetic_variations/src Directory Reference</title>
+<title>Detection of Genetic Variations: C:/Users/Marcos/Documents/Mestrado/Projeto/Codigo/detection_genetic_variations/src/kmer.cpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -62,7 +62,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li class="current"><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
       <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
@@ -87,32 +87,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">src Directory Reference</div>  </div>
+<div class="title">kmer.cpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="files"></a>
-Files</h2></td></tr>
-<tr class="memitem:fastq__reader_8cpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fastq__reader_8cpp.html">fastq_reader.cpp</a> <a href="fastq__reader_8cpp_source.html">[code]</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:fastq__reader_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fastq__reader_8h.html">fastq_reader.h</a> <a href="fastq__reader_8h_source.html">[code]</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:graph_8cpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="graph_8cpp.html">graph.cpp</a> <a href="graph_8cpp_source.html">[code]</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:graph_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="graph_8h.html">graph.h</a> <a href="graph_8h_source.html">[code]</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:kmer_8cpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kmer_8cpp.html">kmer.cpp</a> <a href="kmer_8cpp_source.html">[code]</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:kmer_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kmer_8h.html">kmer.h</a> <a href="kmer_8h_source.html">[code]</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:main_8cpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html">main.cpp</a> <a href="main_8cpp_source.html">[code]</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:read_8cpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="read_8cpp.html">read.cpp</a> <a href="read_8cpp_source.html">[code]</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:read_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="read_8h.html">read.h</a> <a href="read_8h_source.html">[code]</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
-</div><!-- contents -->
+<a href="kmer_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="kmer_8h.html">kmer.h</a>&quot;</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;</div><div class="line"><a name="l00003"></a><span class="lineno"><a class="line" href="class_k_mer.html#a7e837a012d1d4b66f36efe955318327d">    3</a></span>&#160;<a class="code" href="class_k_mer.html#a7e837a012d1d4b66f36efe955318327d">KMer::KMer</a>(std::string&amp; name)</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;{</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    this-&gt;name = name;</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;}</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div><div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="class_k_mer.html#a0b6a9da118f2f862ee0af8c00de10b4f">    8</a></span>&#160;std::string&amp; <a class="code" href="class_k_mer.html#a0b6a9da118f2f862ee0af8c00de10b4f">KMer::getName</a>()</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keywordflow">return</span> name;</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;}</div><div class="ttc" id="kmer_8h_html"><div class="ttname"><a href="kmer_8h.html">kmer.h</a></div></div>
+<div class="ttc" id="class_k_mer_html_a7e837a012d1d4b66f36efe955318327d"><div class="ttname"><a href="class_k_mer.html#a7e837a012d1d4b66f36efe955318327d">KMer::KMer</a></div><div class="ttdeci">KMer(std::string &amp;name)</div><div class="ttdef"><b>Definition:</b> <a href="kmer_8cpp_source.html#l00003">kmer.cpp:3</a></div></div>
+<div class="ttc" id="class_k_mer_html_a0b6a9da118f2f862ee0af8c00de10b4f"><div class="ttname"><a href="class_k_mer.html#a0b6a9da118f2f862ee0af8c00de10b4f">KMer::getName</a></div><div class="ttdeci">std::string &amp; getName()</div><div class="ttdef"><b>Definition:</b> <a href="kmer_8cpp_source.html#l00008">kmer.cpp:8</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

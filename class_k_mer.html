@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>Detection of Genetic Variations: DeBruijnGraph Class Reference</title>
+<title>Detection of Genetic Variations: KMer Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -85,122 +85,104 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="class_de_bruijn_graph-members.html">List of all members</a>  </div>
+<a href="class_k_mer-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">DeBruijnGraph Class Reference</div>  </div>
+<div class="title">KMer Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Class to build De Bruijn Graph.  
- <a href="class_de_bruijn_graph.html#details">More...</a></p>
+<p>Class to read a FASTQ file.  
+ <a href="class_k_mer.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="graph_8h_source.html">graph.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="kmer_8h_source.html">kmer.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a6e015a56cf3ac5c14e5dbd19445830a3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_de_bruijn_graph.html#a6e015a56cf3ac5c14e5dbd19445830a3">DeBruijnGraph</a> (int K, std::vector&lt; <a class="el" href="class_read.html">Read</a> &gt; &amp;reads, int total_reads)</td></tr>
-<tr class="separator:a6e015a56cf3ac5c14e5dbd19445830a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a091b2f92525e09ff2a3d6a1730613a73"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_de_bruijn_graph.html#a091b2f92525e09ff2a3d6a1730613a73">showKMears</a> ()</td></tr>
-<tr class="separator:a091b2f92525e09ff2a3d6a1730613a73"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b08260c0fac9c4d201634032801a42f"><td class="memItemLeft" align="right" valign="top">long long int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_de_bruijn_graph.html#a1b08260c0fac9c4d201634032801a42f">getTotalKMears</a> ()</td></tr>
-<tr class="separator:a1b08260c0fac9c4d201634032801a42f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e837a012d1d4b66f36efe955318327d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_k_mer.html#a7e837a012d1d4b66f36efe955318327d">KMer</a> (std::string &amp;name)</td></tr>
+<tr class="separator:a7e837a012d1d4b66f36efe955318327d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b6a9da118f2f862ee0af8c00de10b4f"><td class="memItemLeft" align="right" valign="top">std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_k_mer.html#a0b6a9da118f2f862ee0af8c00de10b4f">getName</a> ()</td></tr>
+<tr class="separator:a0b6a9da118f2f862ee0af8c00de10b4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad5a8fd01a8f4d7f308632a09e8e5ccc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_k_mer.html#aad5a8fd01a8f4d7f308632a09e8e5ccc">operator&lt;</a> (const <a class="el" href="class_k_mer.html">KMer</a> &amp;src) const </td></tr>
+<tr class="separator:aad5a8fd01a8f4d7f308632a09e8e5ccc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Class to build De Bruijn Graph. </p>
+<div class="textblock"><p>Class to read a FASTQ file. </p>
 <dl class="section author"><dt>Author</dt><dd>Marcos Castro </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>GNU Public License. </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>04/04/2016</dd></dl>
-<p>This file represents the De Bruijn Graph.</p>
-<p>References: <br />
- <a href="https://www.youtube.com/watch?v=f-ecmECK7lw">https://www.youtube.com/watch?v=f-ecmECK7lw</a> <br />
- <a href="http://www.cs.jhu.edu/~langmea/resources/lecture_notes/assembly_dbg.pdf">http://www.cs.jhu.edu/~langmea/resources/lecture_notes/assembly_dbg.pdf</a> </p>
+<dl class="section date"><dt>Date</dt><dd>06/04/2016</dd></dl>
+<p>K-Mer is a string of length K. It's a substring of the read.</p>
+<p>The <a class="el" href="class_k_mer.html" title="Class to read a FASTQ file. ">KMer</a> class represents the vertex of the De Bruijn Graph. </p>
 
-<p>Definition at line <a class="el" href="graph_8h_source.html#l00020">20</a> of file <a class="el" href="graph_8h_source.html">graph.h</a>.</p>
+<p>Definition at line <a class="el" href="kmer_8h_source.html#l00016">16</a> of file <a class="el" href="kmer_8h_source.html">kmer.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a6e015a56cf3ac5c14e5dbd19445830a3"></a>
+<a class="anchor" id="a7e837a012d1d4b66f36efe955318327d"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">DeBruijnGraph::DeBruijnGraph </td>
+          <td class="memname">KMer::KMer </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>K</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">std::string &amp;&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="class_read.html">Read</a> &gt; &amp;&#160;</td>
-          <td class="paramname"><em>reads</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>total_reads</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Constructor</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">K</td><td>length of the k-mers. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">reads</td><td>vector of reads. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">total_reads</td><td>the total of reads. </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Construtor of the <a class="el" href="class_k_mer.html" title="Class to read a FASTQ file. ">KMer</a> class. </p>
 
-<p>Definition at line <a class="el" href="graph_8cpp_source.html#l00005">5</a> of file <a class="el" href="graph_8cpp_source.html">graph.cpp</a>.</p>
+<p>Definition at line <a class="el" href="kmer_8cpp_source.html#l00003">3</a> of file <a class="el" href="kmer_8cpp_source.html">kmer.cpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a1b08260c0fac9c4d201634032801a42f"></a>
+<a class="anchor" id="a0b6a9da118f2f862ee0af8c00de10b4f"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">long long int DeBruijnGraph::getTotalKMears </td>
+          <td class="memname">std::string &amp; KMer::getName </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Return the total of k-mers.</p>
-<dl class="section return"><dt>Returns</dt><dd>the total of k-mers. </dd></dl>
+<p>Gets the name of the K-mer.</p>
+<dl class="section return"><dt>Returns</dt><dd>the name of the K-mer. </dd></dl>
 
-<p>Definition at line <a class="el" href="graph_8cpp_source.html#l00078">78</a> of file <a class="el" href="graph_8cpp_source.html">graph.cpp</a>.</p>
+<p>Definition at line <a class="el" href="kmer_8cpp_source.html#l00008">8</a> of file <a class="el" href="kmer_8cpp_source.html">kmer.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a091b2f92525e09ff2a3d6a1730613a73"></a>
+<a class="anchor" id="aad5a8fd01a8f4d7f308632a09e8e5ccc"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void DeBruijnGraph::showKMears </td>
+          <td class="memname">bool KMer::operator&lt; </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td class="paramtype">const <a class="el" href="class_k_mer.html">KMer</a> &amp;&#160;</td>
+          <td class="paramname"><em>src</em></td><td>)</td>
+          <td> const</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-<p>Show all the k-mers. </p>
 
-<p>Definition at line <a class="el" href="graph_8cpp_source.html#l00063">63</a> of file <a class="el" href="graph_8cpp_source.html">graph.cpp</a>.</p>
+<p>Definition at line <a class="el" href="kmer_8h_source.html#l00035">35</a> of file <a class="el" href="kmer_8h_source.html">kmer.h</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>C:/Users/Marcos/Documents/Mestrado/Projeto/Codigo/detection_genetic_variations/src/<a class="el" href="graph_8h_source.html">graph.h</a></li>
-<li>C:/Users/Marcos/Documents/Mestrado/Projeto/Codigo/detection_genetic_variations/src/<a class="el" href="graph_8cpp_source.html">graph.cpp</a></li>
+<li>C:/Users/Marcos/Documents/Mestrado/Projeto/Codigo/detection_genetic_variations/src/<a class="el" href="kmer_8h_source.html">kmer.h</a></li>
+<li>C:/Users/Marcos/Documents/Mestrado/Projeto/Codigo/detection_genetic_variations/src/<a class="el" href="kmer_8cpp_source.html">kmer.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

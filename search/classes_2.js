@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['read',['Read',['../class_read.html',1,'']]]
+  ['kmer',['KMer',['../class_k_mer.html',1,'']]]
 ];
