@@ -55,7 +55,7 @@ int main(int argc, char *argv[])
 		DeBruijnGraph graph(K, fastq_reader.getReads(),
 							fastq_reader.getTotalReads());
 
-		graph.showKMears();
+		//graph.showKMears();
 	}
 
 	return 0;
