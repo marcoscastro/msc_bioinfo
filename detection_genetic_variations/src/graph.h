@@ -6,7 +6,7 @@
 #include "read.h"
 #include "kmer.h"
 
-/*! \brief This file builds the De Bruijn Graph.
+/*! \brief De Bruijn Graph representation.
  *	\author Marcos Castro
  *	\copyright GNU Public License.
  *	\date 04/04/2016
@@ -16,6 +16,10 @@
  *	References:
  *	\n https://www.youtube.com/watch?v=f-ecmECK7lw
  *	\n http://www.cs.jhu.edu/~langmea/resources/lecture_notes/assembly_dbg.pdf
+ */
+
+/*! \class DeBruijnGraph
+ * Class that represents the De Bruijn Graph.
  */
 class DeBruijnGraph
 {

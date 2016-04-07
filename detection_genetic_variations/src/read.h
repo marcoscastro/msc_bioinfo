@@ -16,6 +16,10 @@
  *
  *	Reference: http://goo.gl/ZMShLe (Illumina website)
  */
+
+/*! \class Read
+ * Class that represents a read.
+ */
 class Read
 {
 private:

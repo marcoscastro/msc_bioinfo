@@ -13,6 +13,10 @@
  * The KMer class represents the vertex of the De Bruijn Graph.
  *
  */
+
+/*! \class KMer
+ * Class that representes the K-Mer.
+ */
 class KMer
 {
 private:

@@ -17,6 +17,11 @@
  *	\n http://maq.sourceforge.net/fastq.shtml
  *	\n https://en.wikipedia.org/wiki/FASTQ_format
  */
+
+
+/*! \class FASTQReader
+ * Class that manipulates the FASTQ files.
+ */
 class FASTQReader
 {
 private:
