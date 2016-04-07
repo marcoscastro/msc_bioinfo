@@ -5,7 +5,7 @@
 #include <fstream>
 #include "read.h"
 
-/*! \brief Class to read a FASTQ file.
+/*! \brief File that manipulates the FASTQ files.
  *	\author Marcos Castro
  *	\copyright GNU Public License.
  *	\date 28/03/2016

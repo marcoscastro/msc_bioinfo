@@ -3,7 +3,7 @@
 
 #include <string>
 
-/*! \brief Class that represents a K-Mer.
+/*! \brief K-Mer representation.
  *	\author Marcos Castro
  *	\copyright GNU Public License.
  *	\date 06/04/2016

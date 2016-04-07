@@ -3,7 +3,7 @@
 
 #include <string>
 
-/*! \brief Class that represents a read.
+/*! \brief Read representation.
  *	\author Marcos Castro
  *	\copyright GNU Public License.
  *	\date 01/04/2016

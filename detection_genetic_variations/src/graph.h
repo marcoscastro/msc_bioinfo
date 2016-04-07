@@ -6,7 +6,7 @@
 #include "read.h"
 #include "kmer.h"
 
-/*! \brief Class to build De Bruijn Graph.
+/*! \brief This file builds the De Bruijn Graph.
  *	\author Marcos Castro
  *	\copyright GNU Public License.
  *	\date 04/04/2016
