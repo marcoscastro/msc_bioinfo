@@ -61,12 +61,13 @@ int main(int argc, char *argv[])
 		*/
 
 		// test DeBruijnGraph class
-		int K = 2;
+		int K = 30;
 
 		DeBruijnGraph graph(K, fastq_reader.getReads(),
 							fastq_reader.getTotalReads());
 
-		graph.showKMears();
+		//graph.showKMers();
+		std::cout << "Quantidade de k-mers: " << graph.getTotalKMers() << "\n";
 	}
 
 	return 0;

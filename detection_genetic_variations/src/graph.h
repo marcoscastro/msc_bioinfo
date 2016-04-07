@@ -44,14 +44,14 @@ public:
 	 * Show all the k-mers.
 	 *
 	 */
-	void showKMears();
+	void showKMers();
 
 	/*!
 	 * Return the total of k-mers.
 	 *
 	 * \return the total of k-mers.
 	 */
-	long long int getTotalKMears();
+	long long int getTotalKMers();
 };
 
 #endif

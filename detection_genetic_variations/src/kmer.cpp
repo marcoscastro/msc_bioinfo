@@ -8,12 +8,12 @@
  *
  */
 
-KMer::KMer(std::string& name)
+KMer::KMer(std::string& sequence)
 {
-	this->name = name;
+	this->sequence = sequence;
 }
 
-std::string& KMer::getName()
+std::string& KMer::getSequence()
 {
-	return name;
+	return sequence;
 }

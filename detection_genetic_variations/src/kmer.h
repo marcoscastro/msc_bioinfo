@@ -21,25 +21,25 @@
 class KMer
 {
 private:
-	std::string name; //**< kmer's name */
+	std::string sequence; //**< sequence kmer */
 
 public:
 
 	/*!
 	 * Construtor of the KMer class.
 	 */
-	KMer(std::string& name);
+	KMer(std::string& sequence);
 
 	/*!
 	 * Gets the name of the K-mer.
 	 *
 	 * \return the name of the K-mer.
 	 */
-	std::string& getName();
+	std::string& getSequence();
 	
 	bool operator<(const KMer& src) const
     {
-        return (this->name < src.name);
+        return (this->sequence < src.sequence);
     }
 };
 
