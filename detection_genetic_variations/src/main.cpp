@@ -8,7 +8,7 @@
  *
  * Project: De Bruijn Graphs for detection of genetic variations by GBS (Genotyping By Sequencing).
  *
- * The project's code is hosted in: https://github.com/marcoscastro/msc_bioinfo
+ * The project's code is hosted in: https://github.com/marcoscastro/msc_bioinfo (private, will be public in soon...)
  *
  * The application is being made in C++ language.
  *
@@ -19,6 +19,12 @@
  * In soon... Keep calm!
  *
  * \section Workflow
+ *
+ * <center><img src="workflow.png" /></center>
+ *
+ * \section Graph Graph structure idea
+ *
+ * <center><img src="graph_structure.jpg" height="720" width="1282" /></center>
  *
  */
 
