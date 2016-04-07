@@ -3,7 +3,8 @@
 
 #include <string>
 
-/*! \brief Read representation.
+/*! \file read.h
+ *	\brief Read representation.
  *	\author Marcos Castro
  *	\copyright GNU Public License.
  *	\date 01/04/2016

@@ -5,7 +5,8 @@
 #include <fstream>
 #include "read.h"
 
-/*! \brief File that manipulates the FASTQ files.
+/*! \file fastq_reader.h
+ *	\brief File that manipulates the FASTQ files.
  *	\author Marcos Castro
  *	\copyright GNU Public License.
  *	\date 28/03/2016

@@ -3,7 +3,8 @@
 
 #include <string>
 
-/*! \brief K-Mer representation.
+/*! \file kmer.h
+ *	\brief K-Mer representation.
  *	\author Marcos Castro
  *	\copyright GNU Public License.
  *	\date 06/04/2016

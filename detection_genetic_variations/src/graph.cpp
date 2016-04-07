@@ -2,6 +2,14 @@
 #include <stdlib.h>
 #include "graph.h"
 
+/*! \file graph.cpp
+ *	\brief Source-code of the class DeBruijnGraph.
+ *	\author Marcos Castro
+ *	\copyright GNU Public License.
+ *	\date 04/04/2016
+ *
+ */
+
 DeBruijnGraph::DeBruijnGraph(int K, std::vector<Read>& reads, int total_reads)
 {
 	this->K = K;

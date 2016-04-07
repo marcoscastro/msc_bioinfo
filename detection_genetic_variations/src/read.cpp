@@ -2,6 +2,14 @@
 #include <iostream>
 #include "read.h"
 
+/*! \file read.cpp
+ *	\brief Source-code of the class Read.
+ *	\author Marcos Castro
+ *	\copyright GNU Public License.
+ *	\date 01/04/2016
+ *
+ */
+
 Read::Read(const std::string& read_data)
 {
 	// split string with the delimiter of newline

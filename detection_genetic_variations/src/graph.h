@@ -6,7 +6,8 @@
 #include "read.h"
 #include "kmer.h"
 
-/*! \brief De Bruijn Graph representation.
+/*! \file graph.h
+ *	\brief De Bruijn Graph representation.
  *	\author Marcos Castro
  *	\copyright GNU Public License.
  *	\date 04/04/2016
