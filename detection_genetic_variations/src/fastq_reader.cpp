@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "fastq_reader.h"
 
-/*! \file fast_reader.cpp
+/*! \file fastq_reader.cpp
  *	\brief Source-code of the class FASTQReader.
  *	\author Marcos Castro
  *	\copyright GNU Public License.

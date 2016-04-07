@@ -2,7 +2,9 @@
 #include "fastq_reader.h"
 #include "graph.h"
 
-/*! \mainpage Main Page of the project
+/*! \file main.cpp
+ * \brief The file that contains the main function of the application.
+ * \mainpage Main Page of the project
  *
  * \section intro_sec Introduction
  *

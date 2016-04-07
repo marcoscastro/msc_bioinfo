@@ -1,6 +1,6 @@
 #include "kmer.h"
 
-/*! \file graph.cpp
+/*! \file kmer.cpp
  *	\brief Source-code of the class KMer.
  *	\author Marcos Castro
  *	\copyright GNU Public License.
