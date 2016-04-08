@@ -30,7 +30,7 @@ public:
 	 * @param[in] kmer_src vertex of source.
 	 * @param[in] kmer_dest vertex of destination.
 	 */
-	Edge(std::string& kmer_src, std::string& kmer_dest);
+	Edge(std::string& kmer_src, std::string& kmer_dest, int total_reads);
 
 	/*!
 	 * Return the k-mer of source.
@@ -45,6 +45,13 @@ public:
 	 * \return the k-mer of destination.
 	 */
 	std::string& getKMerDest();
+	
+	/*!
+	 * Return the total of reads that passing in the edge
+	 *
+	 * \return the total of reads of the edge.
+	 */
+	int getTotalReads();
 };
 
 #endif

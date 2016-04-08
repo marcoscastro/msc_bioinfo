@@ -1,18 +1,23 @@
 #include "edge.h"
 
-Edge::Edge(std::string& kmer_src, std::string& kmer_dest)
+Edge::Edge(std::string& kmer_src, std::string& kmer_dest, int total_reads)
 {
-	//TODO Generated function
+	this->kmer_src = kmer_src;
+	this->kmer_dest = kmer_dest;
+	this->total_reads = total_reads;
 }
 
 std::string& Edge::getKMerSrc()
 {
-	//TODO Generated function
-	return "";
+	return kmer_src;
 }
 
 std::string& Edge::getKMerDest()
 {
-	//TODO Generated function
-	return "";
+	return kmer_dest;
+}
+
+int Edge::getTotalReads()
+{
+	return total_reads;
 }
