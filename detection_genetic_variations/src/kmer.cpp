@@ -8,11 +8,11 @@
  *
  */
 
-KMer::KMer(std::string& sequence, int K)
+KMer::KMer(std::string& sequence, std::string& prefix, std::string& suffix)
 {
 	this->sequence = sequence;
-	prefix = sequence.substr(0, K - 1);
-	suffix = sequence.substr(1, K - 1);
+	this->prefix = prefix;
+	this->suffix = suffix;
 }
 
 std::string& KMer::getSequence()

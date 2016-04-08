@@ -32,14 +32,14 @@ DeBruijnGraph::DeBruijnGraph(int K, std::vector<Read>& reads, int total_reads)
 		Breaks the reads in substrings of length K.
 	*/
 
-	std::string kmer_name, sequence;
+	std::string read_sequence, kmer_sequence, kmer_prefix, kmer_suffix;
 	int i, j, counter, k;
 
 	// iterates in all the reads
 	for(i = 0; i < total_reads; i++)
 	{
 		// get the sequence of the read
-		sequence = reads[i].getSequence();
+		read_sequence = reads[i].getSequence();
 
 		// iterates in the characters of each read
 		for(j = 0; j < size_read; j++)
@@ -49,28 +49,44 @@ DeBruijnGraph::DeBruijnGraph(int K, std::vector<Read>& reads, int total_reads)
 				break;
 
 			// forms the kmer
-			kmer_name = "";
+			kmer_sequence = "";
 			for(counter = 0, k = j; counter < K; counter++, k++)
 			{
-				kmer_name += sequence[k];
+				kmer_sequence += read_sequence[k];
 			}
-			
-			// TODO - insert kmer in the map
+
+			// creates the prefix and suffix k-mer
+			kmer_prefix = kmer_sequence.substr(0, K - 1);
+			kmer_suffix = kmer_sequence.substr(1, K - 1);
+
+			// creates the k-mer
+			KMer kmer(kmer_sequence, kmer_prefix, kmer_suffix);
+
+			// insert the k-mer in the map and adds the read
+			kmers[kmer][reads[i].getID()]++;
 		}
 	}
+
+	total_kmers = kmers.size();
 }
 
-void DeBruijnGraph::showKMers()
+void DeBruijnGraph::showKMers(bool show_sequence)
 {
-	/*
-	std::map<KMer, int>::iterator it;
-	int i;
+	std::map<KMer, std::map<int, int> >::iterator it;
 
-	// shows information of each kmer
-	for(i = 0; i < total_kmers; i++)
+	// shows the information of each kmer
+
+	if(show_sequence)
 	{
-		std::cout << "K-Mer: " << kmers[i].getSequence() << "\n";
-	}*/
+		for(it = kmers.begin(); it != kmers.end(); it++)
+		{
+			KMer kmer = it->first;
+			std::cout << "K-Mer: " << kmer.getSequence() << ", ";
+			std::cout << "amount of reads: " << (it->second).size() << "\n";
+		}
+	}
+
+	std::cout << "\nTotal k-mers: " << total_kmers << "\n";
 }
 
 int DeBruijnGraph::getTotalKMers()

@@ -51,19 +51,21 @@ int main(int argc, char *argv[])
 		// test FASTQReader class
 		FASTQReader fastq_reader;
 
+		// adds the FASTQ file
 		fastq_reader.addFASTQ(argv[1]);
 
-		std::cout << "Total de reads: " << fastq_reader.getTotalReads() << "\n\n";
+		// shows the total of reads
+		std::cout << "Total de reads: " << fastq_reader.getTotalReads() << "\n";
 
-		// test DeBruijnGraph class
-		int K = 5;
+		// length of the k-mer
+		int K = 2;
 
 		// creates the graph
 		DeBruijnGraph graph(K, fastq_reader.getReads(),
 							fastq_reader.getTotalReads());
 
-		//graph.showKMers();
-		std::cout << "\nQuantidade de k-mers: " << graph.getTotalKMers() << "\n";
+		// shows the information of the k-mers
+		graph.showKMers(false);
 	}
 
 	return 0;

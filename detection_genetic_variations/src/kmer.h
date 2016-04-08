@@ -31,11 +31,10 @@ public:
 	 * Construtor of the KMer class.
 	 *
 	 * @param[in] sequence k-mer.
-	 * @param[in] length of the k-mer.
+	 * @param[in] prefix of the k-mer.
+	 * @param[in] suffix of the k-mer.
 	 */
-	KMer(std::string& sequence, int K);
-	
-	//KMer(){}
+	KMer(std::string& sequence, std::string& prefix, std::string& suffix);
 
 	/*!
 	 * Gets the name of the K-mer.
@@ -43,25 +42,25 @@ public:
 	 * \return the name of the K-mer.
 	 */
 	std::string& getSequence();
-	
+
 	/*!
 	 * Gets the prefix of the K-mer.
 	 *
 	 * \return the prefix of the K-mer.
 	 */
 	std::string& getPrefix();
-	
+
 	/*!
 	 * Gets the suffix of the K-mer.
 	 *
 	 * \return the suffix of the K-mer.
 	 */
 	std::string& getSuffix();
-	
+
 	bool operator<(const KMer& src) const
 	{
-	    return (this->sequence < src.sequence);
+		return (this->sequence < src.sequence);
 	}
 };
 
-#endif	
+#endif
