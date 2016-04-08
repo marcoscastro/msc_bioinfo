@@ -52,7 +52,7 @@ void FASTQReader::addFASTQ(const char * file_path)
 		if(create_read)
 		{
 			// creates a new read
-			Read read(read_data);
+			Read read(read_data, number_reads);
 
 			// adds the read in the vector of reads
 			reads.push_back(read);

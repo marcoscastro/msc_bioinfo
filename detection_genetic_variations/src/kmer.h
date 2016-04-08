@@ -36,11 +36,15 @@ public:
 	 * \return the name of the K-mer.
 	 */
 	std::string& getSequence();
-	
+
+	/*!
+	 * Compares the k-mers
+	 *
+	 */
 	bool operator<(const KMer& src) const
-    {
-        return (this->sequence < src.sequence);
-    }
+	{
+	    return (this->sequence < src.sequence);
+	}
 };
 
 #endif

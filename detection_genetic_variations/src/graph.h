@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <map>
+#include <set>
 #include "read.h"
 #include "kmer.h"
 
@@ -26,8 +27,8 @@ class DeBruijnGraph
 {
 private:
 	int K; //**< Length of the K-mer */
-	long long int total_kmers; //**< Total of K-mers */
-	std::map<KMer, int> kmers; //**< Map of K-mers */
+	unsigned long long total_kmers; //**< Total of K-mers */
+	std::map<KMer, std::set<Read> > kmers; //**< Map of K-mers */
 
 public:
 
@@ -51,7 +52,7 @@ public:
 	 *
 	 * \return the total of k-mers.
 	 */
-	long long int getTotalKMers();
+	unsigned long long getTotalKMers();
 };
 
 #endif

@@ -53,21 +53,14 @@ int main(int argc, char *argv[])
 
 		std::cout << "Total de reads: " << fastq_reader.getTotalReads() << "\n\n";
 
-		/*
-		int index = 25;
-
-		std::cout << "\nShowing the read " << index << ":\n\n";
-		fastq_reader.showRead(index - 1);
-		*/
-
 		// test DeBruijnGraph class
-		int K = 30;
+		int K = 5;
 
 		DeBruijnGraph graph(K, fastq_reader.getReads(),
 							fastq_reader.getTotalReads());
 
-		//graph.showKMers();
-		std::cout << "Quantidade de k-mers: " << graph.getTotalKMers() << "\n";
+		graph.showKMers();
+		std::cout << "\nQuantidade de k-mers: " << graph.getTotalKMers() << "\n";
 	}
 
 	return 0;

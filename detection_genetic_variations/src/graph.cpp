@@ -13,6 +13,7 @@
 DeBruijnGraph::DeBruijnGraph(int K, std::vector<Read>& reads, int total_reads)
 {
 	this->K = K;
+	total_kmers = 1;
 
 	// gets the size of the read
 	int size_read = reads[0].getSequence().size();
@@ -51,11 +52,11 @@ DeBruijnGraph::DeBruijnGraph(int K, std::vector<Read>& reads, int total_reads)
 				kmer_name += sequence[k];
 			}
 
-			// creates a kmear
+			// creates the kmer
 			KMer kmer(kmer_name);
 
-			// insert the k-mer in the map of k-mers
-			kmers[kmer]++;
+			// insert the kmer in the map
+			kmers[kmer].insert(reads[i]);
 		}
 	}
 
@@ -64,21 +65,21 @@ DeBruijnGraph::DeBruijnGraph(int K, std::vector<Read>& reads, int total_reads)
 
 void DeBruijnGraph::showKMers()
 {
-	std::map<KMer, int>::iterator it;
+	std::map<KMer, std::set<Read> >::iterator it;
 
+	// shows information of each kmer
 	for(it = kmers.begin(); it != kmers.end(); it++)
 	{
 		/** @bug NOT is bug, but improve it PLEASE!! */
-		// shows the kmer and the the amount of times that it appears
+		
 		KMer kmer = it->first;
-		std::cout << "K-Mer: " << kmer.getSequence() <<
-				  " - appears " << it->second << "x\n";
+		
+		std::cout << "K-Mer: " << kmer.getSequence() << ", ";
+		std::cout << "Total reads: " << (it->second).size() << "\n";
 	}
-
-	std::cout << "\nTotal K-mers: " << total_kmers << "\n";
 }
 
-long long int DeBruijnGraph::getTotalKMers()
+unsigned long long DeBruijnGraph::getTotalKMers()
 {
 	return total_kmers;
 }

@@ -10,8 +10,10 @@
  *
  */
 
-Read::Read(const std::string& read_data)
+Read::Read(const std::string& read_data, int ID)
 {
+	this->ID = ID;
+	
 	// split string with the delimiter of newline
 
 	std::string::size_type i = 0;
@@ -50,3 +52,9 @@ std::string& Read::getQualityScore()
 {
 	return quality_score;
 }
+
+int Read::getID()
+{
+	return ID;
+}
+

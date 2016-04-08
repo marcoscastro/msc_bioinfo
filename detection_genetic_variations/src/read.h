@@ -24,6 +24,7 @@
 class Read
 {
 private:
+	int ID; //**< ID of the read */
 	std::string header; //**< Header of the read */
 	std::string sequence; //**< sequence */
 	std::string quality_score; //**< quality score */
@@ -35,7 +36,7 @@ public:
 	 *
 	 * @param[in] read_data The data of read.
 	 */
-	Read(const std::string& read_data);
+	Read(const std::string& read_data, int ID);
 
 	/*!
 	 * Gets the header.
@@ -57,6 +58,22 @@ public:
 	 * \return The quality score.
 	 */
 	std::string& getQualityScore();
+	
+	/*!
+	 * ID of the read.
+	 *
+	 * \return The ID of the read.
+	 */
+	int getID();
+	
+	/*!
+	 * Compares reads
+	 *
+	 */
+	bool operator<(const Read& src) const
+	{
+	    return (this->ID < src.ID);
+	}
 };
 
 #endif
