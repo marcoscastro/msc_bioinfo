@@ -66,15 +66,6 @@ public:
 	 * \return The ID of the read.
 	 */
 	int getID();
-	
-	/*!
-	 * Compares reads
-	 *
-	 */
-	bool operator<(const Read& src) const
-	{
-	    return (this->ID < src.ID);
-	}
 };
 
 #endif

@@ -14,6 +14,8 @@
  *
  * The application is being made in C++ language.
  *
+ * Very useful: http://www.cs.northwestern.edu/~riesbeck/programming/c++/stl-summary.html
+ *
  * News coming soon...
  *
  * \section install_sec Installation
@@ -54,8 +56,9 @@ int main(int argc, char *argv[])
 		std::cout << "Total de reads: " << fastq_reader.getTotalReads() << "\n\n";
 
 		// test DeBruijnGraph class
-		int K = 30;
+		int K = 5;
 
+		// creates the graph
 		DeBruijnGraph graph(K, fastq_reader.getReads(),
 							fastq_reader.getTotalReads());
 
