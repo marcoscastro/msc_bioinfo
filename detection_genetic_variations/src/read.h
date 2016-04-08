@@ -35,6 +35,7 @@ public:
 	 * Constructor
 	 *
 	 * @param[in] read_data The data of read.
+	 * @param[in] ID id of the read.
 	 */
 	Read(const std::string& read_data, int ID);
 

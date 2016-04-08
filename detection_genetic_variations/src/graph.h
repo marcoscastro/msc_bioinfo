@@ -53,6 +53,12 @@ public:
 	 * \return the total of k-mers.
 	 */
 	unsigned long long getTotalKMers();
+	
+	/*!
+	 * Builds the graph.
+	 *
+	 */
+	void build();
 };
 
 #endif

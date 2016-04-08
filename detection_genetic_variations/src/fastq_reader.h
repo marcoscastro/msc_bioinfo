@@ -60,6 +60,7 @@ public:
 	/*!
 	 * Shows a read by index.
 	 *
+	 * @param[in] index index of the read.
 	 */
 	void showRead(long long int index);
 };

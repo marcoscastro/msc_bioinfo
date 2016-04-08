@@ -72,6 +72,11 @@ void DeBruijnGraph::showKMers()
 	{
 		/** @bug NOT is bug, but improve it PLEASE!! */
 		
+		/*
+			it->first is a constant, gets compilation
+			error if to try (it->first).getSequence()
+		*/
+		
 		KMer kmer = it->first;
 		
 		std::cout << "K-Mer: " << kmer.getSequence() << ", ";
@@ -83,3 +88,9 @@ unsigned long long DeBruijnGraph::getTotalKMers()
 {
 	return total_kmers;
 }
+
+void DeBruijnGraph::build()
+{
+	// TODO
+}
+

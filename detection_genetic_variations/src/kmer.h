@@ -27,6 +27,8 @@ public:
 
 	/*!
 	 * Construtor of the KMer class.
+	 *
+	 * @param[in] sequence sequence k-mer.
 	 */
 	KMer(std::string& sequence);
 
