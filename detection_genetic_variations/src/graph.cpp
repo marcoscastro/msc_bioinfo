@@ -15,7 +15,7 @@ DeBruijnGraph::DeBruijnGraph(int K, std::vector<Read>& reads, int total_reads, b
 {
 	// length of the k-mer
 	this->K = K;
-	
+
 	// shows the information
 	this->verbose = verbose;
 
@@ -81,13 +81,13 @@ DeBruijnGraph::DeBruijnGraph(int K, std::vector<Read>& reads, int total_reads, b
 		std::cout << "Total K-mers: " << total_kmers << "\n\n";
 		std::cout << "Building the graph...";
 	}
-	
+
 	// builds the graph
 	build();
-	
+
 	if(verbose)
 		std::cout << " Graph was built!\n";
-	
+
 }
 
 void DeBruijnGraph::showKMers(bool show_details)
@@ -117,28 +117,44 @@ int DeBruijnGraph::getTotalKMers()
 void DeBruijnGraph::build()
 {
 	// iterators for the map of k-mers
-	std::map<KMer, std::map<int, int> >::iterator it1_kmers;
-	std::map<KMer, std::map<int, int> >::iterator it2_kmers;
-	
-	// VERY SLOW!!!
+	std::map<KMer, std::map<int, int> >::iterator it_kmers;
 
 	// iterates in the map of k-mers
-	for(it1_kmers = kmers.begin(); it1_kmers != kmers.end(); it1_kmers++)
+	for(it_kmers = kmers.begin(); it_kmers != kmers.end(); it_kmers++)
 	{
 		// gets the k-mer source
-		KMer kmer_src = it1_kmers->first;
+		KMer kmer_src = it_kmers->first;
 
-		// iterates again in the map of k-mers
-		for(it2_kmers = kmers.begin(); it2_kmers != kmers.end(); it2_kmers++)
+		// gets the suffix of the sequence of the k-mer of source
+		std::string kmer_src_suffix = kmer_src.getSequence().substr(1, K - 1);
+
+		// possibles nucleotides
+		std::string nucleotides("ACTG");
+
+		// trying to find the k-mer in the map
+
+		for(int i = 0; i < 4; i++)
 		{
-			// gets the k-mer destination
-			KMer kmer_dest = it2_kmers->first;
+			std::string kmer_dest_seq(kmer_src_suffix);
+			std::string kmer_dest_prefix, kmer_dest_suffix;
+			
+			// forms the sequence of the k-mer destination
+			kmer_dest_seq.push_back(nucleotides[i]);
+			
+			// forms the prefix and suffix of the k-mer destination
+			kmer_dest_prefix = kmer_dest_seq.substr(0, K - 1);
+			kmer_dest_suffix = kmer_dest_seq.substr(1, K - 1);
+			
+			// forms the k-mer destination
+			KMer kmer_dest(kmer_dest_seq, kmer_dest_prefix, kmer_dest_suffix);
+			
+			// iterator for the k-mer destination
+			std::map<KMer, std::map<int, int> >::iterator it_kmer_dest;
 
-			/*
-				checks if suffix of the k-mer source match
-				with prefix of the k-mer destionation
-			*/
-			if(kmer_src.getSuffix() == kmer_dest.getPrefix())
+			// tries to find the kmer-dest in the map of the k-mers
+			it_kmer_dest = kmers.find(kmer_dest);
+
+			if(it_kmer_dest != kmers.end())
 			{
 				// builds the edge
 				Edge edge(kmer_src.getSequence(), kmer_dest.getSequence());
@@ -153,33 +169,34 @@ void DeBruijnGraph::build()
 					read and the value is a counter of the read
 				*/
 
-				std::map<int, int>::iterator it1_reads;
-				std::map<int, int>::iterator it2_reads;
+				std::map<int, int>::iterator it_reads;
 
-				it1_reads = (it1_kmers->second).begin();
+				// iterates in the reads of the k-mer source
+				
+				it_reads = (it_kmers->second).begin();
 
-				while(it1_reads != (it1_kmers->second).end())
+				while(it_reads != (it_kmers->second).end())
 				{
 					// gets ID of the read
-					int ID_read = it1_reads->first;
+					int ID_read = it_reads->first;
 
 					/*
 						tries to find the ID of the read of the kmer_src
 						in the map of reads of the kmer_dest
 					*/
-					if((it2_kmers->second).find(ID_read) !=
-							(it2_kmers->second).end())
+					if((it_kmer_dest->second).find(ID_read) !=
+							(it_kmer_dest->second).end())
 					{
 						// inserts in the vector of reads
 						vec_reads.push_back(ID_read);
 					}
-					
-					it1_reads++;
+
+					it_reads++;
 				}
 
 				// adds the set of reads in edge
 				edge.setReads(vec_reads);
-				
+
 				// adds the edge in the vector of edges
 				edges.push_back(edge);
 			}
@@ -190,7 +207,7 @@ void DeBruijnGraph::build()
 void DeBruijnGraph::showEdges()
 {
 	std::vector<Edge>::iterator it;
-	
+
 	for(it = edges.begin(); it != edges.end(); it++)
 	{
 		std::cout << it->getKMerSrc() << " -> " << it->getKMerDest() << ", ";

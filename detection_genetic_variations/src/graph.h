@@ -38,6 +38,7 @@ private:
 	*/
 	std::map<KMer, std::map<int, int> > kmers; //**< Map of K-mers */
 	
+	// stores all the edges of the graph
 	std::vector<Edge> edges; //**< vector of edges */
 
 public:
