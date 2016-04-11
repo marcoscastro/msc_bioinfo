@@ -40,7 +40,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -96,21 +95,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a82eba44b97aeef9ba1b205bf28aa5515"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_read.html#a82eba44b97aeef9ba1b205bf28aa5515">Read</a> (const std::string &amp;read_data)</td></tr>
-<tr class="separator:a82eba44b97aeef9ba1b205bf28aa5515"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af56b6755a97653a0b570abff8bb905be"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_read.html#af56b6755a97653a0b570abff8bb905be">Read</a> (const std::string &amp;read_data, int ID)</td></tr>
+<tr class="separator:af56b6755a97653a0b570abff8bb905be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2a7c35a8da562a8e69a0aca95bf686da"><td class="memItemLeft" align="right" valign="top">std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_read.html#a2a7c35a8da562a8e69a0aca95bf686da">getHeader</a> ()</td></tr>
 <tr class="separator:a2a7c35a8da562a8e69a0aca95bf686da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a82ab15c3fb5712b0d2c003818039be03"><td class="memItemLeft" align="right" valign="top">std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_read.html#a82ab15c3fb5712b0d2c003818039be03">getSequence</a> ()</td></tr>
 <tr class="separator:a82ab15c3fb5712b0d2c003818039be03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeaf12ee8ef28072450a53976c0a85208"><td class="memItemLeft" align="right" valign="top">std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_read.html#aeaf12ee8ef28072450a53976c0a85208">getQualityScore</a> ()</td></tr>
 <tr class="separator:aeaf12ee8ef28072450a53976c0a85208"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e1a37c865cde9046e379283605a510d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_read.html#a1e1a37c865cde9046e379283605a510d">getID</a> ()</td></tr>
+<tr class="separator:a1e1a37c865cde9046e379283605a510d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class that represents a read. </p>
 
 <p>Definition at line <a class="el" href="read_8h_source.html#l00024">24</a> of file <a class="el" href="read_8h_source.html">read.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a82eba44b97aeef9ba1b205bf28aa5515"></a>
+<a class="anchor" id="af56b6755a97653a0b570abff8bb905be"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -118,8 +119,18 @@ Public Member Functions</h2></td></tr>
           <td class="memname">Read::Read </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>read_data</em></td><td>)</td>
+          <td class="paramname"><em>read_data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ID</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -127,6 +138,7 @@ Public Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">read_data</td><td>The data of read. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ID</td><td>id of the read. </td></tr>
   </table>
   </dd>
 </dl>
@@ -151,7 +163,26 @@ Public Member Functions</h2></td></tr>
 <p>Gets the header.</p>
 <dl class="section return"><dt>Returns</dt><dd>The header of read. </dd></dl>
 
-<p>Definition at line <a class="el" href="read_8cpp_source.html#l00039">39</a> of file <a class="el" href="read_8cpp_source.html">read.cpp</a>.</p>
+<p>Definition at line <a class="el" href="read_8cpp_source.html#l00041">41</a> of file <a class="el" href="read_8cpp_source.html">read.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1e1a37c865cde9046e379283605a510d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Read::getID </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ID of the read.</p>
+<dl class="section return"><dt>Returns</dt><dd>The ID of the read. </dd></dl>
+
+<p>Definition at line <a class="el" href="read_8cpp_source.html#l00056">56</a> of file <a class="el" href="read_8cpp_source.html">read.cpp</a>.</p>
 
 </div>
 </div>
@@ -170,7 +201,7 @@ Public Member Functions</h2></td></tr>
 <p>Gets the quality score.</p>
 <dl class="section return"><dt>Returns</dt><dd>The quality score. </dd></dl>
 
-<p>Definition at line <a class="el" href="read_8cpp_source.html#l00049">49</a> of file <a class="el" href="read_8cpp_source.html">read.cpp</a>.</p>
+<p>Definition at line <a class="el" href="read_8cpp_source.html#l00051">51</a> of file <a class="el" href="read_8cpp_source.html">read.cpp</a>.</p>
 
 </div>
 </div>
@@ -189,7 +220,7 @@ Public Member Functions</h2></td></tr>
 <p>Gets the sequence.</p>
 <dl class="section return"><dt>Returns</dt><dd>The sequence. </dd></dl>
 
-<p>Definition at line <a class="el" href="read_8cpp_source.html#l00044">44</a> of file <a class="el" href="read_8cpp_source.html">read.cpp</a>.</p>
+<p>Definition at line <a class="el" href="read_8cpp_source.html#l00046">46</a> of file <a class="el" href="read_8cpp_source.html">read.cpp</a>.</p>
 
 </div>
 </div>

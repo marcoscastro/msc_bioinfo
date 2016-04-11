@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['kmer',['KMer',['../class_k_mer.html#a7e837a012d1d4b66f36efe955318327d',1,'KMer']]]
+  ['fastqreader',['FASTQReader',['../class_f_a_s_t_q_reader.html#a59f97834a7eb820da16fcb868237dd20',1,'FASTQReader']]]
 ];

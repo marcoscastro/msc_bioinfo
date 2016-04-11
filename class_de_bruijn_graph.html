@@ -40,7 +40,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -96,19 +95,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a6e015a56cf3ac5c14e5dbd19445830a3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_de_bruijn_graph.html#a6e015a56cf3ac5c14e5dbd19445830a3">DeBruijnGraph</a> (int K, std::vector&lt; <a class="el" href="class_read.html">Read</a> &gt; &amp;reads, int total_reads)</td></tr>
-<tr class="separator:a6e015a56cf3ac5c14e5dbd19445830a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a091b2f92525e09ff2a3d6a1730613a73"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_de_bruijn_graph.html#a091b2f92525e09ff2a3d6a1730613a73">showKMears</a> ()</td></tr>
-<tr class="separator:a091b2f92525e09ff2a3d6a1730613a73"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b08260c0fac9c4d201634032801a42f"><td class="memItemLeft" align="right" valign="top">long long int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_de_bruijn_graph.html#a1b08260c0fac9c4d201634032801a42f">getTotalKMears</a> ()</td></tr>
-<tr class="separator:a1b08260c0fac9c4d201634032801a42f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63406a46d00e9b687f1138629165fe0c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_de_bruijn_graph.html#a63406a46d00e9b687f1138629165fe0c">DeBruijnGraph</a> (int K, std::vector&lt; <a class="el" href="class_read.html">Read</a> &gt; &amp;reads, int total_reads, bool verbose=false)</td></tr>
+<tr class="separator:a63406a46d00e9b687f1138629165fe0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fa28452be7536048b57a2e97635ca8c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_de_bruijn_graph.html#a9fa28452be7536048b57a2e97635ca8c">showKMers</a> (bool show_details=true)</td></tr>
+<tr class="separator:a9fa28452be7536048b57a2e97635ca8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6aae21afd8a3540fa30f6bd24d6241ee"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_de_bruijn_graph.html#a6aae21afd8a3540fa30f6bd24d6241ee">getTotalKMers</a> ()</td></tr>
+<tr class="separator:a6aae21afd8a3540fa30f6bd24d6241ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60b4f619b3710e5ca3a236fbc5146a2d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_de_bruijn_graph.html#a60b4f619b3710e5ca3a236fbc5146a2d">build</a> ()</td></tr>
+<tr class="separator:a60b4f619b3710e5ca3a236fbc5146a2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a3ae3b76a03360c22d22147fa698617"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_de_bruijn_graph.html#a6a3ae3b76a03360c22d22147fa698617">showEdges</a> ()</td></tr>
+<tr class="separator:a6a3ae3b76a03360c22d22147fa698617"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class that represents the De Bruijn Graph. </p>
 
-<p>Definition at line <a class="el" href="graph_8h_source.html#l00025">25</a> of file <a class="el" href="graph_8h_source.html">graph.h</a>.</p>
+<p>Definition at line <a class="el" href="graph_8h_source.html#l00026">26</a> of file <a class="el" href="graph_8h_source.html">graph.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a6e015a56cf3ac5c14e5dbd19445830a3"></a>
+<a class="anchor" id="a63406a46d00e9b687f1138629165fe0c"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -128,7 +131,13 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>total_reads</em>&#160;</td>
+          <td class="paramname"><em>total_reads</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>verbose</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -143,21 +152,40 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">K</td><td>length of the k-mers. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">reads</td><td>vector of reads. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">total_reads</td><td>the total of reads. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">verbose</td><td>flag to show the information about the execution. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="graph_8cpp_source.html#l00013">13</a> of file <a class="el" href="graph_8cpp_source.html">graph.cpp</a>.</p>
+<p>Definition at line <a class="el" href="graph_8cpp_source.html#l00014">14</a> of file <a class="el" href="graph_8cpp_source.html">graph.cpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a1b08260c0fac9c4d201634032801a42f"></a>
+<a class="anchor" id="a60b4f619b3710e5ca3a236fbc5146a2d"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">long long int DeBruijnGraph::getTotalKMears </td>
+          <td class="memname">void DeBruijnGraph::build </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Builds the De Bruijn Graph </p>
+
+<p>Definition at line <a class="el" href="graph_8cpp_source.html#l00117">117</a> of file <a class="el" href="graph_8cpp_source.html">graph.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6aae21afd8a3540fa30f6bd24d6241ee"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int DeBruijnGraph::getTotalKMers </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -165,28 +193,46 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Return the total of k-mers.</p>
-<dl class="section return"><dt>Returns</dt><dd>the total of k-mers. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the total of k-mers unique. </dd></dl>
 
-<p>Definition at line <a class="el" href="graph_8cpp_source.html#l00086">86</a> of file <a class="el" href="graph_8cpp_source.html">graph.cpp</a>.</p>
+<p>Definition at line <a class="el" href="graph_8cpp_source.html#l00112">112</a> of file <a class="el" href="graph_8cpp_source.html">graph.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a091b2f92525e09ff2a3d6a1730613a73"></a>
+<a class="anchor" id="a6a3ae3b76a03360c22d22147fa698617"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void DeBruijnGraph::showKMears </td>
+          <td class="memname">void DeBruijnGraph::showEdges </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Show all the k-mers. </p>
-<dl class="bug"><dt><b><a class="el" href="bug.html#_bug000001">Bug:</a></b></dt><dd>NOT is bug, but improve it PLEASE!! </dd></dl>
+<p>Shows the edges of the De Bruijn Graph </p>
 
-<p>Definition at line <a class="el" href="graph_8cpp_source.html#l00071">71</a> of file <a class="el" href="graph_8cpp_source.html">graph.cpp</a>.</p>
+<p>Definition at line <a class="el" href="graph_8cpp_source.html#l00190">190</a> of file <a class="el" href="graph_8cpp_source.html">graph.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9fa28452be7536048b57a2e97635ca8c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DeBruijnGraph::showKMers </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>show_details</em> = <code>true</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Show all the k-mers. </p>
+
+<p>Definition at line <a class="el" href="graph_8cpp_source.html#l00093">93</a> of file <a class="el" href="graph_8cpp_source.html">graph.cpp</a>.</p>
 
 </div>
 </div>

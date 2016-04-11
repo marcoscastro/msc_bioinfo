@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['operator_3c',['operator&lt;',['../class_k_mer.html#aad5a8fd01a8f4d7f308632a09e8e5ccc',1,'KMer']]]
+  ['kmer',['KMer',['../class_k_mer.html#afcc07ffc83ab97fc6f6b7304ebf6c2a7',1,'KMer']]]
 ];

@@ -40,7 +40,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -96,10 +95,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a7e837a012d1d4b66f36efe955318327d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_k_mer.html#a7e837a012d1d4b66f36efe955318327d">KMer</a> (std::string &amp;name)</td></tr>
-<tr class="separator:a7e837a012d1d4b66f36efe955318327d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0b6a9da118f2f862ee0af8c00de10b4f"><td class="memItemLeft" align="right" valign="top">std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_k_mer.html#a0b6a9da118f2f862ee0af8c00de10b4f">getName</a> ()</td></tr>
-<tr class="separator:a0b6a9da118f2f862ee0af8c00de10b4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afcc07ffc83ab97fc6f6b7304ebf6c2a7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_k_mer.html#afcc07ffc83ab97fc6f6b7304ebf6c2a7">KMer</a> (std::string &amp;sequence, std::string &amp;prefix, std::string &amp;suffix)</td></tr>
+<tr class="separator:afcc07ffc83ab97fc6f6b7304ebf6c2a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8396200cd9e179555cbf5a8037cebb0"><td class="memItemLeft" align="right" valign="top">std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_k_mer.html#aa8396200cd9e179555cbf5a8037cebb0">getSequence</a> ()</td></tr>
+<tr class="separator:aa8396200cd9e179555cbf5a8037cebb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ab2b61675ce90f161727bd39223902b"><td class="memItemLeft" align="right" valign="top">std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_k_mer.html#a9ab2b61675ce90f161727bd39223902b">getPrefix</a> ()</td></tr>
+<tr class="separator:a9ab2b61675ce90f161727bd39223902b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5750bfef36a72f74355e068f575c63eb"><td class="memItemLeft" align="right" valign="top">std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_k_mer.html#a5750bfef36a72f74355e068f575c63eb">getSuffix</a> ()</td></tr>
+<tr class="separator:a5750bfef36a72f74355e068f575c63eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aad5a8fd01a8f4d7f308632a09e8e5ccc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_k_mer.html#aad5a8fd01a8f4d7f308632a09e8e5ccc">operator&lt;</a> (const <a class="el" href="class_k_mer.html">KMer</a> &amp;src) const </td></tr>
 <tr class="separator:aad5a8fd01a8f4d7f308632a09e8e5ccc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -108,7 +111,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Definition at line <a class="el" href="kmer_8h_source.html#l00021">21</a> of file <a class="el" href="kmer_8h_source.html">kmer.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a7e837a012d1d4b66f36efe955318327d"></a>
+<a class="anchor" id="afcc07ffc83ab97fc6f6b7304ebf6c2a7"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -116,24 +119,67 @@ Public Member Functions</h2></td></tr>
           <td class="memname">KMer::KMer </td>
           <td>(</td>
           <td class="paramtype">std::string &amp;&#160;</td>
-          <td class="paramname"><em>name</em></td><td>)</td>
+          <td class="paramname"><em>sequence</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">std::string &amp;&#160;</td>
+          <td class="paramname"><em>prefix</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string &amp;&#160;</td>
+          <td class="paramname"><em>suffix</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Construtor of the <a class="el" href="class_k_mer.html">KMer</a> class. </p>
+<p>Construtor of the <a class="el" href="class_k_mer.html">KMer</a> class.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">sequence</td><td>k-mer. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">prefix</td><td>of the k-mer. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">suffix</td><td>of the k-mer. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="kmer_8cpp_source.html#l00011">11</a> of file <a class="el" href="kmer_8cpp_source.html">kmer.cpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a0b6a9da118f2f862ee0af8c00de10b4f"></a>
+<a class="anchor" id="a9ab2b61675ce90f161727bd39223902b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::string &amp; KMer::getName </td>
+          <td class="memname">std::string &amp; KMer::getPrefix </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Gets the prefix of the K-mer.</p>
+<dl class="section return"><dt>Returns</dt><dd>the prefix of the K-mer. </dd></dl>
+
+<p>Definition at line <a class="el" href="kmer_8cpp_source.html#l00023">23</a> of file <a class="el" href="kmer_8cpp_source.html">kmer.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa8396200cd9e179555cbf5a8037cebb0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string &amp; KMer::getSequence </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -143,7 +189,26 @@ Public Member Functions</h2></td></tr>
 <p>Gets the name of the K-mer.</p>
 <dl class="section return"><dt>Returns</dt><dd>the name of the K-mer. </dd></dl>
 
-<p>Definition at line <a class="el" href="kmer_8cpp_source.html#l00016">16</a> of file <a class="el" href="kmer_8cpp_source.html">kmer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="kmer_8cpp_source.html#l00018">18</a> of file <a class="el" href="kmer_8cpp_source.html">kmer.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5750bfef36a72f74355e068f575c63eb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string &amp; KMer::getSuffix </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Gets the suffix of the K-mer.</p>
+<dl class="section return"><dt>Returns</dt><dd>the suffix of the K-mer. </dd></dl>
+
+<p>Definition at line <a class="el" href="kmer_8cpp_source.html#l00028">28</a> of file <a class="el" href="kmer_8cpp_source.html">kmer.cpp</a>.</p>
 
 </div>
 </div>
@@ -169,7 +234,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="kmer_8h_source.html#l00040">40</a> of file <a class="el" href="kmer_8h_source.html">kmer.h</a>.</p>
+<p>Definition at line <a class="el" href="kmer_8h_source.html#l00060">60</a> of file <a class="el" href="kmer_8h_source.html">kmer.h</a>.</p>
 
 </div>
 </div>

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['showkmears',['showKMears',['../class_de_bruijn_graph.html#a091b2f92525e09ff2a3d6a1730613a73',1,'DeBruijnGraph']]],
-  ['showread',['showRead',['../class_f_a_s_t_q_reader.html#a10863036d1fd4762daf873d93b7dd99f',1,'FASTQReader']]]
+  ['operator_3c',['operator&lt;',['../class_k_mer.html#aad5a8fd01a8f4d7f308632a09e8e5ccc',1,'KMer']]]
 ];
