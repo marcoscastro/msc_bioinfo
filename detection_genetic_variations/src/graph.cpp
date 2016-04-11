@@ -119,6 +119,8 @@ void DeBruijnGraph::build()
 	// iterators for the map of k-mers
 	std::map<KMer, std::map<int, int> >::iterator it1_kmers;
 	std::map<KMer, std::map<int, int> >::iterator it2_kmers;
+	
+	// VERY SLOW!!!
 
 	// iterates in the map of k-mers
 	for(it1_kmers = kmers.begin(); it1_kmers != kmers.end(); it1_kmers++)
