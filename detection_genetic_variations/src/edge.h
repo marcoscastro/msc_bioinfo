@@ -1,6 +1,7 @@
 #ifndef EDGE_H
 #define EDGE_H
 
+#include <vector>
 #include "kmer.h"
 
 /*! \file edge.h
@@ -21,6 +22,7 @@ class Edge
 private:
 	std::string kmer_src, kmer_dest;
 	int total_reads;
+	std::vector<int> reads;
 
 public:
 
@@ -30,7 +32,7 @@ public:
 	 * @param[in] kmer_src vertex of source.
 	 * @param[in] kmer_dest vertex of destination.
 	 */
-	Edge(std::string& kmer_src, std::string& kmer_dest, int total_reads);
+	Edge(std::string& kmer_src, std::string& kmer_dest);
 
 	/*!
 	 * Return the k-mer of source.
@@ -52,6 +54,12 @@ public:
 	 * \return the total of reads of the edge.
 	 */
 	int getTotalReads();
+	
+	/*!
+	 * Set the set of reads
+	 *
+	 */
+	void setReads(std::vector<int>& reads);
 };
 
 #endif

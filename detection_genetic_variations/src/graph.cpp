@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stdlib.h>
+#include <set>
 #include "graph.h"
 
 /*! \file graph.cpp
@@ -8,13 +9,15 @@
  *	\copyright GNU Public License.
  *	\date 04/04/2016
  *
- *	Comple
  */
 
-DeBruijnGraph::DeBruijnGraph(int K, std::vector<Read>& reads, int total_reads)
+DeBruijnGraph::DeBruijnGraph(int K, std::vector<Read>& reads, int total_reads, bool verbose)
 {
 	// length of the k-mer
 	this->K = K;
+	
+	// shows the information
+	this->verbose = verbose;
 
 	// gets the size of the read
 	int size_read = reads[0].getSequence().size();
@@ -71,9 +74,20 @@ DeBruijnGraph::DeBruijnGraph(int K, std::vector<Read>& reads, int total_reads)
 
 	// gets the total k-mers number
 	total_kmers = kmers.size();
+
+	if(verbose)
+	{
+		std::cout << "\nK-mers generated.\n";
+		std::cout << "Total K-mers: " << total_kmers << "\n\n";
+		std::cout << "Building the graph...";
+	}
 	
 	// builds the graph
 	build();
+	
+	if(verbose)
+		std::cout << " Graph was built!\n";
+	
 }
 
 void DeBruijnGraph::showKMers(bool show_details)
@@ -102,21 +116,82 @@ int DeBruijnGraph::getTotalKMers()
 
 void DeBruijnGraph::build()
 {
-	// TODO
+	// iterators for the map of k-mers
+	std::map<KMer, std::map<int, int> >::iterator it1_kmers;
+	std::map<KMer, std::map<int, int> >::iterator it2_kmers;
+
+	// iterates in the map of k-mers
+	for(it1_kmers = kmers.begin(); it1_kmers != kmers.end(); it1_kmers++)
+	{
+		// gets the k-mer source
+		KMer kmer_src = it1_kmers->first;
+
+		// iterates again in the map of k-mers
+		for(it2_kmers = kmers.begin(); it2_kmers != kmers.end(); it2_kmers++)
+		{
+			// gets the k-mer destination
+			KMer kmer_dest = it2_kmers->first;
+
+			/*
+				checks if suffix of the k-mer source match
+				with prefix of the k-mer destionation
+			*/
+			if(kmer_src.getSuffix() == kmer_dest.getPrefix())
+			{
+				// builds the edge
+				Edge edge(kmer_src.getSequence(), kmer_dest.getSequence());
+
+				// vector of reads of the edge, stores the ID's
+				std::vector<int> vec_reads;
+
+				/*
+					iterates of the values (maps) of the map of k-mers
+					the values of the map of k-mers too is a map, but is
+					a map of ID's of reads where the key is the ID of the
+					read and the value is a counter of the read
+				*/
+
+				std::map<int, int>::iterator it1_reads;
+				std::map<int, int>::iterator it2_reads;
+
+				it1_reads = (it1_kmers->second).begin();
+
+				while(it1_reads != (it1_kmers->second).end())
+				{
+					// gets ID of the read
+					int ID_read = it1_reads->first;
+
+					/*
+						tries to find the ID of the read of the kmer_src
+						in the map of reads of the kmer_dest
+					*/
+					if((it2_kmers->second).find(ID_read) !=
+							(it2_kmers->second).end())
+					{
+						// inserts in the vector of reads
+						vec_reads.push_back(ID_read);
+					}
+					
+					it1_reads++;
+				}
+
+				// adds the set of reads in edge
+				edge.setReads(vec_reads);
+				
+				// adds the edge in the vector of edges
+				edges.push_back(edge);
+			}
+		}
+	}
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+void DeBruijnGraph::showEdges()
+{
+	std::vector<Edge>::iterator it;
+	
+	for(it = edges.begin(); it != edges.end(); it++)
+	{
+		std::cout << it->getKMerSrc() << " -> " << it->getKMerDest() << ", ";
+		std::cout << "amount of reads: " << it->getTotalReads() << "\n";
+	}
+}

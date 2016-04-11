@@ -101,6 +101,7 @@ void FASTQReader::showRead(long long int index)
 		exit(0); // terminates the execution
 	}
 	
+	// shows information of the reads
 	std::cout << reads[index].getHeader() << "\n";
 	std::cout << reads[index].getSequence() << "\n";
 	std::cout << reads[index].getQualityScore() << "\n";

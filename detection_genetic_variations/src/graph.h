@@ -28,6 +28,7 @@ class DeBruijnGraph
 private:
 	int K; //**< Length of the K-mer */
 	int total_kmers; //**< Total of K-mers */
+	bool verbose; //**< shows the information about the execution */
 	
 	/*
 		the key is a KMer object.
@@ -47,8 +48,9 @@ public:
 	 * @param[in] K length of the k-mers.
 	 * @param[in] reads vector of reads.
 	 * @param[in] total_reads the total of reads.
+	 * @param[in] verbose flag to show the information about the execution.
 	 */
-	DeBruijnGraph(int K, std::vector<Read>& reads, int total_reads);
+	DeBruijnGraph(int K, std::vector<Read>& reads, int total_reads, bool verbose = false);
 
 	/*!
 	 * Show all the k-mers.
@@ -66,6 +68,11 @@ public:
 	 * Builds the De Bruijn Graph
 	 */
 	void build();
+	
+	/*!
+	 * Shows the edges of the De Bruijn Graph
+	 */
+	void showEdges();
 };
 
 #endif
