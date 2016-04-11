@@ -5,6 +5,7 @@
 #include <map>
 #include "read.h"
 #include "kmer.h"
+#include "edge.h"
 
 /*! \file graph.h
  *	\brief De Bruijn Graph representation.
@@ -31,10 +32,12 @@ private:
 	/*
 		the key is a KMer object.
 		
-		the value is a map: the key is ID read and value is
+		the value is a map: the key is the ID read and value is
 		a counter of the amount of times that the read appears.
 	*/
 	std::map<KMer, std::map<int, int> > kmers; //**< Map of K-mers */
+	
+	std::vector<Edge> edges; //**< vector of edges */
 
 public:
 
@@ -50,7 +53,7 @@ public:
 	/*!
 	 * Show all the k-mers.
 	 */
-	void showKMers(bool show_sequence = true);
+	void showKMers(bool show_details = true);
 
 	/*!
 	 * Return the total of k-mers.
@@ -60,7 +63,7 @@ public:
 	int getTotalKMers();
 	
 	/*!
-	 * Builds the graph.
+	 * Builds the De Bruijn Graph
 	 */
 	void build();
 };
