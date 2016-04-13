@@ -125,18 +125,14 @@ void DeBruijnGraph::build()
 	{
 		// gets the k-mer source
 		KMer kmer_src = it_kmers->first;
-		
-		// gets the k-mer source
-		kmer_src = it_kmers->first;
 
 		// gets the suffix of the sequence of the k-mer of source
 		kmer_src_suffix = kmer_src.getSequence().substr(1, K - 1);
 
-		// tries to find the possibles k-mer in the map
+		// tries to find the possibles k-mers in the map
 		for(int i = 0; i < 4; i++)
 		{
 			std::string kmer_dest_seq(kmer_src_suffix);
-			std::string kmer_dest_prefix, kmer_dest_suffix;
 			
 			// forms the sequence of the k-mer destination
 			kmer_dest_seq.push_back(nucleotides[i]);

@@ -55,10 +55,10 @@ int main(int argc, char *argv[])
 		fastq_reader.addFASTQ(argv[1]);
 
 		// shows the total of reads
-		std::cout << "Total de reads: " << fastq_reader.getTotalReads() << "\n";
+		std::cout << "Total of reads: " << fastq_reader.getTotalReads() << "\n";
 
 		// length of the k-mer
-		int K = 10;
+		int K = 2;
 
 		// creates the graph
 		DeBruijnGraph graph(K, fastq_reader.getReads(),
