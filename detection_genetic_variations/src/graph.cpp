@@ -102,6 +102,8 @@ DeBruijnGraph::DeBruijnGraph(int K, std::vector<Read>& reads, int total_reads, b
 
 void DeBruijnGraph::showKMers()
 {
+	std::cout << "\nShowing the k-mers...\n\n";
+	
 	for(std::map<std::string, KMer>::iterator it = kmers.begin();
 			it != kmers.end(); it++)
 	{
@@ -177,6 +179,8 @@ void DeBruijnGraph::build()
 
 void DeBruijnGraph::showEdges()
 {
+	std::cout << "\nShowing the edges...\n\n";
+	
 	std::map<std::string, std::vector<Edge> >::iterator it;
 	int total_edges, i;
 
