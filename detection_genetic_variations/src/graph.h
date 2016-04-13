@@ -40,7 +40,7 @@ private:
 	/*
 		Stores all the edges of the graph.
 		The key is a k-mer.
-		The value is the edges of a k-mer.
+		The value is a vector of edges.
 	*/
 	std::map<std::string, std::vector<Edge> > edges; //**< Map of edges. */
 

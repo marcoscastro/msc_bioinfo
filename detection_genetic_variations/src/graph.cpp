@@ -140,7 +140,7 @@ void DeBruijnGraph::build()
 			std::string kmer_dest(kmer_src.substr(1, K - 1) + nucleotides[i]);
 
 			// tries to find the k-mer of destination in the map of k-mers
-			if(kmer_src != kmer_dest && kmers.find(kmer_dest) != kmers.end())
+			if(kmers.find(kmer_dest) != kmers.end() && kmer_src != kmer_dest)
 			{
 				// vector of reads that passing by the edge
 				std::vector<int> vec_reads;
