@@ -22,8 +22,6 @@ class KMer
 {
 private:
 	std::string sequence; //**< sequence kmer */
-	std::string prefix; //**< prefix kmer */
-	std::string suffix; //**< suffix kmer */
 
 public:
 
@@ -34,7 +32,7 @@ public:
 	 * @param[in] prefix of the k-mer.
 	 * @param[in] suffix of the k-mer.
 	 */
-	KMer(std::string& sequence, std::string& prefix, std::string& suffix);
+	KMer(std::string& sequence);
 
 	/*!
 	 * Gets the name of the K-mer.
@@ -42,20 +40,6 @@ public:
 	 * \return the name of the K-mer.
 	 */
 	std::string& getSequence();
-
-	/*!
-	 * Gets the prefix of the K-mer.
-	 *
-	 * \return the prefix of the K-mer.
-	 */
-	std::string& getPrefix();
-
-	/*!
-	 * Gets the suffix of the K-mer.
-	 *
-	 * \return the suffix of the K-mer.
-	 */
-	std::string& getSuffix();
 
 	bool operator<(const KMer& src) const
 	{

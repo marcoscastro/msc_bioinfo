@@ -8,24 +8,12 @@
  *
  */
 
-KMer::KMer(std::string& sequence, std::string& prefix, std::string& suffix)
+KMer::KMer(std::string& sequence)
 {
 	this->sequence = sequence;
-	this->prefix = prefix;
-	this->suffix = suffix;
 }
 
 std::string& KMer::getSequence()
 {
 	return sequence;
-}
-
-std::string& KMer::getPrefix()
-{
-	return prefix;
-}
-
-std::string& KMer::getSuffix()
-{
-	return suffix;
 }
