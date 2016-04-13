@@ -30,3 +30,6 @@ __pycache__/
 *.exe
 *.out
 *.txt
+
+# Files Project
+*.layout
