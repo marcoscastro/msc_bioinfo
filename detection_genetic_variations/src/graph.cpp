@@ -64,16 +64,6 @@ DeBruijnGraph::DeBruijnGraph(int K, std::vector<Read>& reads, int total_reads, b
 				kmer_sequence += read_sequence[k];
 			}
 
-			// checks if the k-mer yet exists
-			if(kmers.find(kmer_sequence) == kmers.end())
-			{
-				// forms the k-mer object
-				KMer kmer(kmer_sequence);
-
-				// insert the k-mer object in the map of k-mers
-				kmers[kmer_sequence] = kmer;
-			}
-
 			// adds the ID of the read to the k-mer
 			kmers[kmer_sequence].addRead(reads[i].getID());
 

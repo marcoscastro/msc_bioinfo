@@ -67,12 +67,11 @@ public:
 	 */
 	int getTotalReads();
 	
-	/*
+	
 	bool operator<(const KMer& src) const
 	{
 		return (this->sequence < src.sequence);
 	}
-	*/
 };
 
 #endif
