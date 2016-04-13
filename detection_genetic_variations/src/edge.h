@@ -20,9 +20,10 @@
 class Edge
 {
 private:
-	std::string kmer_src, kmer_dest;
-	int total_reads;
-	std::vector<int> reads;
+	std::string kmer_src; //**< k-mer of source*/
+	std::string kmer_dest; //**< k-mer of destination */
+	int total_reads; //**< total of reads of the edge */
+	std::vector<int> reads; //**< vector of ID of reads of the edge */
 
 public:
 

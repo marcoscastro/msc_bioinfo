@@ -25,8 +25,9 @@
 class DeBruijnGraph
 {
 private:
-	int K; //**< Length of the K-mer */
-	int total_kmers; //**< Total of K-mers */
+	int K; //**< Length of the k-mer */
+	int total_kmers; //**< Total of k-mers */
+	int total_edges; //**< Total of edges */
 	bool verbose; //**< shows the information about the execution */
 	
 	/*
@@ -37,8 +38,12 @@ private:
 	*/
 	std::map<std::string, std::map<int, int> > kmers; //**< Map of K-mers */
 	
-	// stores all the edges of the graph
-	std::vector<Edge> edges; //**< vector of edges */
+	/*
+		stores all the edges of the graph
+		the key is a k-mer
+		the value is the edges of a k-mer
+	*/
+	std::map<std::string, std::vector<Edge> > edges; //**< Map of edges */
 
 public:
 

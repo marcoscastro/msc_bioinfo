@@ -21,6 +21,8 @@ DeBruijnGraph::DeBruijnGraph(int K, std::vector<Read>& reads, int total_reads, b
 
 	// gets the size of the read
 	int size_read = reads[0].getSequence().size();
+	
+	total_edges = 0;
 
 	// validates the K value
 	if(K < 0 || K >= size_read)
@@ -60,12 +62,12 @@ DeBruijnGraph::DeBruijnGraph(int K, std::vector<Read>& reads, int total_reads, b
 				kmer += read_sequence[k];
 			}
 
-			// insert the k-mer in the map and adds the read
+			// insert the k-mer in the map and adds the ID of the read
 			kmers[kmer][reads[i].getID()]++;
 		}
 	}
 
-	// gets the total k-mers number
+	// gets the total of k-mers
 	total_kmers = kmers.size();
 
 	if(verbose)
@@ -79,8 +81,10 @@ DeBruijnGraph::DeBruijnGraph(int K, std::vector<Read>& reads, int total_reads, b
 	build();
 
 	if(verbose)
+	{
 		std::cout << " Graph was built!\n";
-
+		std::cout << "\nTotal of edges: " << total_edges << "\n";
+	}
 }
 
 void DeBruijnGraph::showKMers(bool show_details)
@@ -111,30 +115,31 @@ void DeBruijnGraph::build()
 	// iterators for the map of k-mers
 	std::map<std::string, std::map<int, int> >::iterator it_kmers;
 	std::map<std::string, std::map<int, int> >::iterator it_kmer_dest;
-	
-	// strings
-	std::string kmer_src_suffix; // suffix of the source k-mer
-	std::string nucleotides("ACTG"); // possibles nucleotides
+
+	// possibles nucleotides
+	std::string nucleotides("ACTG");
+
+	// iterator for the value of the map of k-mers
+	std::map<int, int>::iterator it_reads;
 
 	// iterates in the map of k-mers
 	for(it_kmers = kmers.begin(); it_kmers != kmers.end(); it_kmers++)
 	{
-		// k-mer of source
+		// get the k-mer sequence
 		std::string kmer_src(it_kmers->first);
-		
-		// gets the suffix of the k-mer of source
-		kmer_src_suffix = kmer_src.substr(1, K - 1);
 
 		// tries to find the possibles k-mers in the map
 		for(int i = 0; i < 4; i++)
 		{
-			// the k-mer destination
-			std::string kmer_dest(kmer_src_suffix);
-			
-			// forms the sequence of the k-mer destination
-			kmer_dest.push_back(nucleotides[i]);
+			// forms the k-mer destination
+			std::string kmer_dest(kmer_src.substr(1, K - 1) + nucleotides[i]);
 
-			// tries to find the k-mer of destination in the map of k-mers
+			/*
+				tries to find the k-mer of destination in the map of k-mers
+				to find a key in the map is O(logn)
+
+				SLOW??
+			*/
 			it_kmer_dest = kmers.find(kmer_dest);
 
 			// checks if was found
@@ -143,25 +148,22 @@ void DeBruijnGraph::build()
 				// builds the edge
 				Edge edge(kmer_src, kmer_dest);
 
-				// vector of reads of the edge, stores the ID's
+				// vector of reads that passing by the edge
 				std::vector<int> vec_reads;
 
 				/*
-					iterates of the values (maps) of the map of k-mers
+					iterates of the values of the map of k-mers
 					the values of the map of k-mers too is a map, but is
 					a map of ID's of reads where the key is the ID of the
 					read and the value is a counter of the read
+
+					iterates in the reads of the k-mer source
 				*/
-
-				std::map<int, int>::iterator it_reads;
-
-				// iterates in the reads of the k-mer source
-				
 				it_reads = (it_kmers->second).begin();
 
 				while(it_reads != (it_kmers->second).end())
 				{
-					// gets ID of the read
+					// gets the ID of the read
 					int ID_read = it_reads->first;
 
 					/*
@@ -178,11 +180,14 @@ void DeBruijnGraph::build()
 					it_reads++;
 				}
 
-				// adds the set of reads in edge
+				// adds the set of reads in the edge
 				edge.setReads(vec_reads);
+				
+				// increments the total of edges
+				total_edges++;
 
-				// adds the edge in the vector of edges
-				edges.push_back(edge);
+				// adds the edge in the map of edges
+				edges[kmer_src].push_back(edge);
 			}
 		}
 	}
@@ -190,11 +195,17 @@ void DeBruijnGraph::build()
 
 void DeBruijnGraph::showEdges()
 {
-	std::vector<Edge>::iterator it;
+	std::map<std::string, std::vector<Edge> >::iterator it;
+	int total_edges, i;
 
 	for(it = edges.begin(); it != edges.end(); it++)
 	{
-		std::cout << it->getKMerSrc() << " -> " << it->getKMerDest() << ", ";
-		std::cout << "amount of reads: " << it->getTotalReads() << "\n";
+		total_edges = (it->second).size();
+
+		for(i = 0; i < total_edges; i++)
+		{
+			std::cout << (it->second)[i].getKMerSrc() << " -> " << (it->second)[i].getKMerDest() << ", ";
+			std::cout << "amount of reads: " << (it->second)[i].getTotalReads() << "\n";
+		}
 	}
 }
