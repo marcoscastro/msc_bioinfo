@@ -20,10 +20,10 @@
 class Edge
 {
 private:
-	std::string kmer_src; //**< k-mer of source*/
-	std::string kmer_dest; //**< k-mer of destination */
-	int total_reads; //**< total of reads of the edge */
-	std::vector<int> reads; //**< vector of ID of reads of the edge */
+	std::string kmer_src; //**< K-mer of source. */
+	std::string kmer_dest; //**< K-mer of destination. */
+	int total_reads; //**< Total of reads of the edge. */
+	std::vector<int> reads; //**< Vector of ID of reads of the edge. */
 
 public:
 
@@ -32,7 +32,7 @@ public:
 	 *
 	 * @param[in] kmer_src vertex of source.
 	 * @param[in] kmer_dest vertex of destination.
-	 * @param[in] reads vector of reads
+	 * @param[in] reads vector of reads.
 	 */
 	Edge(std::string& kmer_src, std::string& kmer_dest, std::vector<int>& reads);
 
@@ -51,7 +51,7 @@ public:
 	std::string& getKMerDest();
 	
 	/*!
-	 * Return the total of reads that passing in the edge
+	 * Return the total of reads that passing in the edge.
 	 *
 	 * \return the total of reads of the edge.
 	 */

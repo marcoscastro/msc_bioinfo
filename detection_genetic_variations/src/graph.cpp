@@ -21,7 +21,7 @@ DeBruijnGraph::DeBruijnGraph(int K, std::vector<Read>& reads, int total_reads, b
 
 	// gets the size of the read
 	int size_read = reads[0].getSequence().size();
-	
+
 	total_edges = 0;
 
 	// validates the K value
@@ -39,7 +39,7 @@ DeBruijnGraph::DeBruijnGraph(int K, std::vector<Read>& reads, int total_reads, b
 		Breaks the reads in substrings of length K.
 	*/
 
-	std::string read_sequence, kmer;
+	std::string read_sequence, kmer_sequence;
 	int i, j, counter, k;
 
 	// iterates in all the reads
@@ -55,15 +55,20 @@ DeBruijnGraph::DeBruijnGraph(int K, std::vector<Read>& reads, int total_reads, b
 			if((size_read - j) < K)
 				break;
 
-			// forms the kmer
-			kmer = "";
+			// forms the kmer sequence
+			kmer_sequence = "";
 			for(counter = 0, k = j; counter < K; counter++, k++)
 			{
-				kmer += read_sequence[k];
+				kmer_sequence += read_sequence[k];
 			}
 
-			// insert the k-mer in the map and adds the ID of the read
-			kmers[kmer][reads[i].getID()]++;
+			// forms the k-mer object
+			KMer kmer(kmer_sequence);
+
+			// insert the k-mer in the map of k-mers
+			kmers[kmer_sequence] = kmer;
+			// adds read to the k-mer
+			kmers[kmer_sequence].addRead(reads[i].getID());
 		}
 	}
 
@@ -72,9 +77,10 @@ DeBruijnGraph::DeBruijnGraph(int K, std::vector<Read>& reads, int total_reads, b
 
 	if(verbose)
 	{
-		std::cout << "\nK-mers generated.\n";
+		std::cout << "Total of reads: " << total_reads << "\n\n";
+		std::cout << "Generating k-mers...\n";
 		std::cout << "Total K-mers: " << total_kmers << "\n\n";
-		std::cout << "Building the graph...";
+		std::cout << "Building the graph...\n";
 	}
 
 	// builds the graph
@@ -82,14 +88,14 @@ DeBruijnGraph::DeBruijnGraph(int K, std::vector<Read>& reads, int total_reads, b
 
 	if(verbose)
 	{
-		std::cout << " Graph was built!\n";
-		std::cout << "\nTotal of edges: " << total_edges << "\n";
+		std::cout << "The graph was built!\n";
+		std::cout << "Total of edges: " << total_edges << "\n";
 	}
 }
 
 void DeBruijnGraph::showKMers(bool show_details)
 {
-	std::map<std::string, std::map<int, int> >::iterator it;
+	std::map<std::string, KMer>::iterator it;
 
 	// shows the information of each kmer
 
@@ -98,7 +104,7 @@ void DeBruijnGraph::showKMers(bool show_details)
 		for(it = kmers.begin(); it != kmers.end(); it++)
 		{
 			std::cout << "K-Mer: " << it->first << ", ";
-			std::cout << "amount of reads: " << (it->second).size() << "\n";
+			std::cout << "amount of reads: " << kmers[it->first].getTotalReads() << "\n";
 		}
 	}
 
@@ -113,14 +119,17 @@ int DeBruijnGraph::getTotalKMers()
 void DeBruijnGraph::build()
 {
 	// iterators for the map of k-mers
-	std::map<std::string, std::map<int, int> >::iterator it_kmers;
-	std::map<std::string, std::map<int, int> >::iterator it_kmer_dest;
+	std::map<std::string, KMer>::iterator it_kmers;
+	std::map<std::string, KMer>::iterator it_kmer_dest;
 
 	// possibles nucleotides
 	std::string nucleotides("ACTG");
 
-	// iterator for the value of the map of k-mers
-	std::map<int, int>::iterator it_reads;
+	// sets of reads
+	std::set<int> reads_kmer_src, reads_kmer_dest;
+
+	// iterator to the set
+	std::set<int>::iterator it_read;
 
 	// iterates in the map of k-mers
 	for(it_kmers = kmers.begin(); it_kmers != kmers.end(); it_kmers++)
@@ -137,8 +146,6 @@ void DeBruijnGraph::build()
 			/*
 				tries to find the k-mer of destination in the map of k-mers
 				to find a key in the map is O(logn)
-
-				SLOW??
 			*/
 			it_kmer_dest = kmers.find(kmer_dest);
 
@@ -148,41 +155,35 @@ void DeBruijnGraph::build()
 				// vector of reads that passing by the edge
 				std::vector<int> vec_reads;
 
-				/*
-					iterates of the values of the map of k-mers
-					the values of the map of k-mers too is a map, but is
-					a map of ID's of reads where the key is the ID of the
-					read and the value is a counter of the read
+				// set of reads of the k-mers
+				reads_kmer_src = kmers[kmer_src].getReads();
+				reads_kmer_dest = kmers[kmer_dest].getReads();
 
-					iterates in the reads of the k-mer source
-				*/
-				it_reads = (it_kmers->second).begin();
-
-				while(it_reads != (it_kmers->second).end())
+				// iterates in the set of reads of the k-mer of source
+				for(it_read = reads_kmer_src.begin();
+						it_read != reads_kmer_src.end(); it_read++)
 				{
 					// gets the ID of the read
-					int ID_read = it_reads->first;
+					int ID_read = *it_read;
 
 					/*
 						tries to find the ID of the read of the kmer_src
-						in the map of reads of the kmer_dest
+						in the set of reads of the kmer_dest
 					*/
-					if((it_kmer_dest->second).find(ID_read) !=
-							(it_kmer_dest->second).end())
+					if(reads_kmer_dest.find(ID_read) !=
+							reads_kmer_dest.end())
 					{
 						// inserts in the vector of reads
 						vec_reads.push_back(ID_read);
 					}
-
-					it_reads++;
 				}
-				
+
 				// builds the edge
 				Edge edge(kmer_src, kmer_dest, vec_reads);
 
 				// adds the edge in the map of edges
 				edges[kmer_src].push_back(edge);
-				
+
 				// increments the total of edges
 				total_edges++;
 			}

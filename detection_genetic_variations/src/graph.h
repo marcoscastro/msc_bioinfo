@@ -4,6 +4,7 @@
 #include <vector>
 #include <map>
 #include "read.h"
+#include "kmer.h"
 #include "edge.h"
 
 /*! \file graph.h
@@ -25,25 +26,23 @@
 class DeBruijnGraph
 {
 private:
-	int K; //**< Length of the k-mer */
-	int total_kmers; //**< Total of k-mers */
-	int total_edges; //**< Total of edges */
-	bool verbose; //**< shows the information about the execution */
+	int K; //**< Length of the k-mer. */
+	int total_kmers; //**< Total of k-mers. */
+	int total_edges; //**< Total of edges. */
+	bool verbose; //**< Shows the information about the execution. */
 	
 	/*
-		the key is the sequence k-mer.
-		
-		the value is a map: the key is the ID read and value is
-		a counter of the amount of times that the read appears.
+		The key is the k-mer sequence.
+		The value is the k-mer object.
 	*/
-	std::map<std::string, std::map<int, int> > kmers; //**< Map of K-mers */
+	std::map<std::string, KMer> kmers; //**< Map of K-mers. */
 	
 	/*
-		stores all the edges of the graph
-		the key is a k-mer
-		the value is the edges of a k-mer
+		Stores all the edges of the graph.
+		The key is a k-mer.
+		The value is the edges of a k-mer.
 	*/
-	std::map<std::string, std::vector<Edge> > edges; //**< Map of edges */
+	std::map<std::string, std::vector<Edge> > edges; //**< Map of edges. */
 
 public:
 
@@ -70,12 +69,12 @@ public:
 	int getTotalKMers();
 	
 	/*!
-	 * Builds the De Bruijn Graph
+	 * Builds the De Bruijn Graph.
 	 */
 	void build();
 	
 	/*!
-	 * Shows the edges of the De Bruijn Graph
+	 * Shows the edges of the De Bruijn Graph.
 	 */
 	void showEdges();
 };

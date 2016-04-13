@@ -1,5 +1,13 @@
 #include "edge.h"
 
+/*! \file edge.cpp
+ *	\brief Source-code of the class Edge.
+ *	\author Marcos Castro
+ *	\copyright GNU Public License.
+ *	\date 08/04/2016
+ *
+ */
+
 Edge::Edge(std::string& kmer_src, std::string& kmer_dest, std::vector<int>& reads)
 {
 	this->kmer_src = kmer_src;
