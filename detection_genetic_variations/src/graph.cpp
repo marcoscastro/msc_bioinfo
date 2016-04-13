@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <set>
+#include <algorithm>
 #include "graph.h"
 
 /*! \file graph.cpp
@@ -103,7 +104,7 @@ DeBruijnGraph::DeBruijnGraph(int K, std::vector<Read>& reads, int total_reads, b
 void DeBruijnGraph::showKMers()
 {
 	std::cout << "\nShowing the k-mers...\n\n";
-	
+
 	for(std::map<std::string, KMer>::iterator it = kmers.begin();
 			it != kmers.end(); it++)
 	{
@@ -148,21 +149,10 @@ void DeBruijnGraph::build()
 				reads_kmer_src = kmers[kmer_src].getReads();
 				reads_kmer_dest = kmers[kmer_dest].getReads();
 
-				// iterates in the set of reads of the k-mer of source
-				for(std::set<int>::iterator it_read = reads_kmer_src.begin();
-						it_read != reads_kmer_src.end(); it_read++)
-				{
-					/*
-						tries to find the ID of the read of the
-						kmer_src in the set of reads of the kmer_dest
-					*/
-					if(reads_kmer_dest.find(*it_read) !=
-							reads_kmer_dest.end())
-					{
-						// inserts in the vector of reads
-						vec_reads.push_back(*it_read);
-					}
-				}
+				// gets the intersection between two sets
+				std::set_intersection(reads_kmer_src.begin(), reads_kmer_src.end(),
+									  reads_kmer_dest.begin(), reads_kmer_dest.end(),
+									  std::inserter(vec_reads, vec_reads.end()));
 
 				// builds the edge
 				Edge edge(kmer_src, kmer_dest, vec_reads);
@@ -180,7 +170,7 @@ void DeBruijnGraph::build()
 void DeBruijnGraph::showEdges()
 {
 	std::cout << "\nShowing the edges...\n\n";
-	
+
 	std::map<std::string, std::vector<Edge> >::iterator it;
 	int total_edges, i;
 
