@@ -1,10 +1,11 @@
 #include "edge.h"
 
-Edge::Edge(std::string& kmer_src, std::string& kmer_dest)
+Edge::Edge(std::string& kmer_src, std::string& kmer_dest, std::vector<int>& reads)
 {
 	this->kmer_src = kmer_src;
 	this->kmer_dest = kmer_dest;
-	total_reads = 0;
+	this->reads = reads;
+	total_reads = reads.size();
 }
 
 std::string& Edge::getKMerSrc()
@@ -20,12 +21,4 @@ std::string& Edge::getKMerDest()
 int Edge::getTotalReads()
 {
 	return total_reads;
-}
-
-void Edge::setReads(std::vector<int>& reads)
-{
-	this->reads = reads;
-	
-	// updates the number of reads
-	total_reads = reads.size();
 }

@@ -32,8 +32,9 @@ public:
 	 *
 	 * @param[in] kmer_src vertex of source.
 	 * @param[in] kmer_dest vertex of destination.
+	 * @param[in] reads vector of reads
 	 */
-	Edge(std::string& kmer_src, std::string& kmer_dest);
+	Edge(std::string& kmer_src, std::string& kmer_dest, std::vector<int>& reads);
 
 	/*!
 	 * Return the k-mer of source.
@@ -55,12 +56,6 @@ public:
 	 * \return the total of reads of the edge.
 	 */
 	int getTotalReads();
-	
-	/*!
-	 * Set the set of reads
-	 *
-	 */
-	void setReads(std::vector<int>& reads);
 };
 
 #endif

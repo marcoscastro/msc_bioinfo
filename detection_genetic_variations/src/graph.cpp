@@ -145,9 +145,6 @@ void DeBruijnGraph::build()
 			// checks if was found
 			if(it_kmer_dest != kmers.end())
 			{
-				// builds the edge
-				Edge edge(kmer_src, kmer_dest);
-
 				// vector of reads that passing by the edge
 				std::vector<int> vec_reads;
 
@@ -179,15 +176,15 @@ void DeBruijnGraph::build()
 
 					it_reads++;
 				}
-
-				// adds the set of reads in the edge
-				edge.setReads(vec_reads);
 				
-				// increments the total of edges
-				total_edges++;
+				// builds the edge
+				Edge edge(kmer_src, kmer_dest, vec_reads);
 
 				// adds the edge in the map of edges
 				edges[kmer_src].push_back(edge);
+				
+				// increments the total of edges
+				total_edges++;
 			}
 		}
 	}
