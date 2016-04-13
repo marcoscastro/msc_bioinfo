@@ -37,7 +37,7 @@ DeBruijnGraph::DeBruijnGraph(int K, std::vector<Read>& reads, int total_reads, b
 		Breaks the reads in substrings of length K.
 	*/
 
-	std::string read_sequence, kmer_sequence, kmer_prefix, kmer_suffix;
+	std::string read_sequence, kmer;
 	int i, j, counter, k;
 
 	// iterates in all the reads
@@ -54,14 +54,11 @@ DeBruijnGraph::DeBruijnGraph(int K, std::vector<Read>& reads, int total_reads, b
 				break;
 
 			// forms the kmer
-			kmer_sequence = "";
+			kmer = "";
 			for(counter = 0, k = j; counter < K; counter++, k++)
 			{
-				kmer_sequence += read_sequence[k];
+				kmer += read_sequence[k];
 			}
-
-			// creates the k-mer
-			KMer kmer(kmer_sequence);
 
 			// insert the k-mer in the map and adds the read
 			kmers[kmer][reads[i].getID()]++;
@@ -88,7 +85,7 @@ DeBruijnGraph::DeBruijnGraph(int K, std::vector<Read>& reads, int total_reads, b
 
 void DeBruijnGraph::showKMers(bool show_details)
 {
-	std::map<KMer, std::map<int, int> >::iterator it;
+	std::map<std::string, std::map<int, int> >::iterator it;
 
 	// shows the information of each kmer
 
@@ -96,8 +93,7 @@ void DeBruijnGraph::showKMers(bool show_details)
 	{
 		for(it = kmers.begin(); it != kmers.end(); it++)
 		{
-			KMer kmer = it->first;
-			std::cout << "K-Mer: " << kmer.getSequence() << ", ";
+			std::cout << "K-Mer: " << it->first << ", ";
 			std::cout << "amount of reads: " << (it->second).size() << "\n";
 		}
 	}
@@ -113,8 +109,8 @@ int DeBruijnGraph::getTotalKMers()
 void DeBruijnGraph::build()
 {
 	// iterators for the map of k-mers
-	std::map<KMer, std::map<int, int> >::iterator it_kmers;
-	std::map<KMer, std::map<int, int> >::iterator it_kmer_dest;
+	std::map<std::string, std::map<int, int> >::iterator it_kmers;
+	std::map<std::string, std::map<int, int> >::iterator it_kmer_dest;
 	
 	// strings
 	std::string kmer_src_suffix; // suffix of the source k-mer
@@ -123,31 +119,29 @@ void DeBruijnGraph::build()
 	// iterates in the map of k-mers
 	for(it_kmers = kmers.begin(); it_kmers != kmers.end(); it_kmers++)
 	{
-		// gets the k-mer source
-		KMer kmer_src = it_kmers->first;
-
-		// gets the suffix of the sequence of the k-mer of source
-		kmer_src_suffix = kmer_src.getSequence().substr(1, K - 1);
+		// k-mer of source
+		std::string kmer_src(it_kmers->first);
+		
+		// gets the suffix of the k-mer of source
+		kmer_src_suffix = kmer_src.substr(1, K - 1);
 
 		// tries to find the possibles k-mers in the map
 		for(int i = 0; i < 4; i++)
 		{
-			std::string kmer_dest_seq(kmer_src_suffix);
+			// the k-mer destination
+			std::string kmer_dest(kmer_src_suffix);
 			
 			// forms the sequence of the k-mer destination
-			kmer_dest_seq.push_back(nucleotides[i]);
-			
-			// forms the k-mer destination
-			KMer kmer_dest(kmer_dest_seq);
+			kmer_dest.push_back(nucleotides[i]);
 
-			// tries to find the kmer-dest in the map of k-mers
+			// tries to find the k-mer of destination in the map of k-mers
 			it_kmer_dest = kmers.find(kmer_dest);
 
 			// checks if was found
 			if(it_kmer_dest != kmers.end())
 			{
 				// builds the edge
-				Edge edge(kmer_src.getSequence(), kmer_dest.getSequence());
+				Edge edge(kmer_src, kmer_dest);
 
 				// vector of reads of the edge, stores the ID's
 				std::vector<int> vec_reads;

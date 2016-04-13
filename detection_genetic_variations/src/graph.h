@@ -4,7 +4,6 @@
 #include <vector>
 #include <map>
 #include "read.h"
-#include "kmer.h"
 #include "edge.h"
 
 /*! \file graph.h
@@ -31,12 +30,12 @@ private:
 	bool verbose; //**< shows the information about the execution */
 	
 	/*
-		the key is a KMer object.
+		the key is the sequence k-mer.
 		
 		the value is a map: the key is the ID read and value is
 		a counter of the amount of times that the read appears.
 	*/
-	std::map<KMer, std::map<int, int> > kmers; //**< Map of K-mers */
+	std::map<std::string, std::map<int, int> > kmers; //**< Map of K-mers */
 	
 	// stores all the edges of the graph
 	std::vector<Edge> edges; //**< vector of edges */

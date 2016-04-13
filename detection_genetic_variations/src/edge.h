@@ -2,7 +2,7 @@
 #define EDGE_H
 
 #include <vector>
-#include "kmer.h"
+#include <string>
 
 /*! \file edge.h
  *	\brief Edge representation.
