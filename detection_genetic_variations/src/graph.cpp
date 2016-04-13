@@ -22,6 +22,7 @@ DeBruijnGraph::DeBruijnGraph(int K, std::vector<Read>& reads, int total_reads, b
 	// gets the size of the read
 	int size_read = reads[0].getSequence().size();
 
+	// total of edges of the graph
 	total_edges = 0;
 
 	// validates the K value
@@ -62,13 +63,19 @@ DeBruijnGraph::DeBruijnGraph(int K, std::vector<Read>& reads, int total_reads, b
 				kmer_sequence += read_sequence[k];
 			}
 
-			// forms the k-mer object
-			KMer kmer(kmer_sequence);
+			// checks if the k-mer yet exists
+			if(kmers.find(kmer_sequence) == kmers.end())
+			{
+				// forms the k-mer object
+				KMer kmer(kmer_sequence);
 
-			// insert the k-mer in the map of k-mers
-			kmers[kmer_sequence] = kmer;
-			// adds read to the k-mer
+				// insert the k-mer object in the map of k-mers
+				kmers[kmer_sequence] = kmer;
+			}
+
+			// adds the ID of the read to the k-mer
 			kmers[kmer_sequence].addRead(reads[i].getID());
+
 		}
 	}
 
@@ -93,22 +100,14 @@ DeBruijnGraph::DeBruijnGraph(int K, std::vector<Read>& reads, int total_reads, b
 	}
 }
 
-void DeBruijnGraph::showKMers(bool show_details)
+void DeBruijnGraph::showKMers()
 {
-	std::map<std::string, KMer>::iterator it;
-
-	// shows the information of each kmer
-
-	if(show_details)
+	for(std::map<std::string, KMer>::iterator it = kmers.begin();
+			it != kmers.end(); it++)
 	{
-		for(it = kmers.begin(); it != kmers.end(); it++)
-		{
-			std::cout << "K-Mer: " << it->first << ", ";
-			std::cout << "amount of reads: " << kmers[it->first].getTotalReads() << "\n";
-		}
+		std::cout << "K-Mer: " << it->first << ", ";
+		std::cout << "amount of reads: " << kmers[it->first].getTotalReads() << "\n";
 	}
-
-	std::cout << "\nTotal k-mers: " << total_kmers << "\n";
 }
 
 int DeBruijnGraph::getTotalKMers()
@@ -118,39 +117,27 @@ int DeBruijnGraph::getTotalKMers()
 
 void DeBruijnGraph::build()
 {
-	// iterators for the map of k-mers
-	std::map<std::string, KMer>::iterator it_kmers;
-	std::map<std::string, KMer>::iterator it_kmer_dest;
-
-	// possibles nucleotides
+	// all the possibles nucleotides
 	std::string nucleotides("ACTG");
 
-	// sets of reads
+	// sets of reads of the k-mers
 	std::set<int> reads_kmer_src, reads_kmer_dest;
 
-	// iterator to the set
-	std::set<int>::iterator it_read;
-
 	// iterates in the map of k-mers
-	for(it_kmers = kmers.begin(); it_kmers != kmers.end(); it_kmers++)
+	for(std::map<std::string, KMer>::iterator it_kmers = kmers.begin();
+			it_kmers != kmers.end(); it_kmers++)
 	{
-		// get the k-mer sequence
+		// get the sequence of the k-mer of source
 		std::string kmer_src(it_kmers->first);
 
-		// tries to find the possibles k-mers in the map
+		// tries to find the possibles k-mers of destination in the map
 		for(int i = 0; i < 4; i++)
 		{
 			// forms the k-mer destination
 			std::string kmer_dest(kmer_src.substr(1, K - 1) + nucleotides[i]);
 
-			/*
-				tries to find the k-mer of destination in the map of k-mers
-				to find a key in the map is O(logn)
-			*/
-			it_kmer_dest = kmers.find(kmer_dest);
-
-			// checks if was found
-			if(it_kmer_dest != kmers.end())
+			// tries to find the k-mer of destination in the map of k-mers
+			if(kmers.find(kmer_dest) != kmers.end())
 			{
 				// vector of reads that passing by the edge
 				std::vector<int> vec_reads;
@@ -160,21 +147,18 @@ void DeBruijnGraph::build()
 				reads_kmer_dest = kmers[kmer_dest].getReads();
 
 				// iterates in the set of reads of the k-mer of source
-				for(it_read = reads_kmer_src.begin();
+				for(std::set<int>::iterator it_read = reads_kmer_src.begin();
 						it_read != reads_kmer_src.end(); it_read++)
 				{
-					// gets the ID of the read
-					int ID_read = *it_read;
-
 					/*
-						tries to find the ID of the read of the kmer_src
-						in the set of reads of the kmer_dest
+						tries to find the ID of the read of the
+						kmer_src in the set of reads of the kmer_dest
 					*/
-					if(reads_kmer_dest.find(ID_read) !=
+					if(reads_kmer_dest.find(*it_read) !=
 							reads_kmer_dest.end())
 					{
 						// inserts in the vector of reads
-						vec_reads.push_back(ID_read);
+						vec_reads.push_back(*it_read);
 					}
 				}
 

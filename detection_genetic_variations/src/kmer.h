@@ -66,14 +66,13 @@ public:
 	 * \return the total of reads.
 	 */
 	int getTotalReads();
-
-	/*!
-	 * Override operator.
-	 */
+	
+	/*
 	bool operator<(const KMer& src) const
 	{
 		return (this->sequence < src.sequence);
 	}
+	*/
 };
 
 #endif

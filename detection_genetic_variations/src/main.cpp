@@ -62,7 +62,7 @@ int main(int argc, char *argv[])
 							fastq_reader.getTotalReads(), true);
 
 		// shows the information of the k-mers
-		//graph.showKMers(false);
+		//graph.showKMers();
 		
 		// shows the edges of the graph
 		//graph.showEdges();

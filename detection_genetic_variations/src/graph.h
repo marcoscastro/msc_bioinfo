@@ -59,7 +59,7 @@ public:
 	/*!
 	 * Show all the k-mers.
 	 */
-	void showKMers(bool show_details = true);
+	void showKMers();
 
 	/*!
 	 * Return the total of k-mers.
