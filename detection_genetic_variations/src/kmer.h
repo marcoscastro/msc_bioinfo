@@ -21,7 +21,6 @@ class KMer
 {
 private:
 	std::string sequence; //**< String that represents the k-mer. */
-	std::set<int> reads;	//**< Set of IDs of the reads. */
 
 public:
 
@@ -45,27 +44,6 @@ public:
 	 * \return the sequence of the k-mer.
 	 */
 	std::string& getSequence();
-
-	/*!
-	 * Return the set of reads associated to the k-mer.
-	 *
-	 * \return the set of reads associated to the k-mer.
-	 */
-	std::set<int> getReads();
-	
-	/*!
-	 * Adds a read to the set of reads of the k-mer.
-	 *
-	 * @param[in] ID ID of the read.
-	 */
-	void addRead(int ID_read);
-	
-	/*!
-	 * Gets the total of reads.
-	 *
-	 * \return the total of reads.
-	 */
-	int getTotalReads();
 	
 	
 	bool operator<(const KMer& src) const

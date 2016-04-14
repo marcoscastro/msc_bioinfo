@@ -1,8 +1,8 @@
 #ifndef EDGE_H
 #define EDGE_H
 
-#include <vector>
 #include <string>
+#include <set>
 
 /*! \file edge.h
  *	\brief Edge representation.
@@ -20,35 +20,27 @@
 class Edge
 {
 private:
-	std::string kmer_src; //**< K-mer of source. */
-	std::string kmer_dest; //**< K-mer of destination. */
+	std::string sequence; //**< Sequence of the read. */
 	int total_reads; //**< Total of reads of the edge. */
-	std::vector<int> reads; //**< Vector of ID of reads of the edge. */
+	std::set<int> reads; //**< Set of the ID's of the reads. */
 
 public:
 
 	/*!
 	 * Constructor
 	 *
-	 * @param[in] kmer_src vertex of source.
-	 * @param[in] kmer_dest vertex of destination.
-	 * @param[in] reads vector of reads.
+	 * @param[in] sequence sequence of the read.
 	 */
-	Edge(std::string& kmer_src, std::string& kmer_dest, std::vector<int>& reads);
+	Edge(std::string& sequence);
+	
+	Edge(){}
 
 	/*!
-	 * Return the k-mer of source.
+	 * Return the sequence of the read.
 	 *
-	 * \return the k-mer of source.
+	 * \return the sequence of the read.
 	 */
-	std::string& getKMerSrc();
-
-	/*!
-	 * Return the k-mer of destination.
-	 *
-	 * \return the k-mer of destination.
-	 */
-	std::string& getKMerDest();
+	std::string& getSequence();
 	
 	/*!
 	 * Return the total of reads that passing in the edge.
@@ -56,6 +48,19 @@ public:
 	 * \return the total of reads of the edge.
 	 */
 	int getTotalReads();
+	
+	
+	/*!
+	 * Adds a ID of a read to the set of reads of the edge.
+	 *
+	 * @param[in] ID_read ID of the read.
+	 */
+	void addRead(int ID_read);
+	
+	bool operator<(const Edge& src) const
+	{
+		return (this->sequence < src.sequence);
+	}
 };
 
 #endif

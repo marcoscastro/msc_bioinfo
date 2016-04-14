@@ -33,16 +33,11 @@ private:
 	
 	/*
 		The key is the k-mer sequence.
-		The value is the k-mer object.
+		The value is a set of edges.
+		
+		Each KMer is associated to a set of edges.
 	*/
-	std::map<std::string, KMer> kmers; //**< Map of K-mers. */
-	
-	/*
-		Stores all the edges of the graph.
-		The key is a k-mer.
-		The value is a vector of edges.
-	*/
-	std::map<std::string, std::vector<Edge> > edges; //**< Map of edges. */
+	std::map<KMer, std::set<Edge> > graph; //**< Map of K-mers. */
 
 public:
 
@@ -67,11 +62,6 @@ public:
 	 * \return the total of k-mers unique.
 	 */
 	int getTotalKMers();
-	
-	/*!
-	 * Builds the De Bruijn Graph.
-	 */
-	void build();
 	
 	/*!
 	 * Shows the edges of the De Bruijn Graph.

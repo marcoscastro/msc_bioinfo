@@ -8,25 +8,22 @@
  *
  */
 
-Edge::Edge(std::string& kmer_src, std::string& kmer_dest, std::vector<int>& reads)
+Edge::Edge(std::string& sequence)
 {
-	this->kmer_src = kmer_src;
-	this->kmer_dest = kmer_dest;
-	this->reads = reads;
-	total_reads = reads.size();
+	this->sequence = sequence;
 }
 
-std::string& Edge::getKMerSrc()
+std::string& Edge::getSequence()
 {
-	return kmer_src;
-}
-
-std::string& Edge::getKMerDest()
-{
-	return kmer_dest;
+	return sequence;
 }
 
 int Edge::getTotalReads()
 {
 	return total_reads;
+}
+
+void Edge::addRead(int ID_read)
+{
+	reads.insert(ID_read);
 }
