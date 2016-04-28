@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>Detection of Genetic Variations: C:/Users/Marcos/Documents/Mestrado/Projeto/Codigo/detection_genetic_variations/src/graph.h File Reference</title>
+<title>Detection of Genetic Variations: C:/Users/Marcos/Documents/Mestrado/Projeto/Codigo/detection_genetic_variations/src/node.cpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -86,40 +86,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 </div><!-- top -->
 <div class="header">
-  <div class="summary">
-<a href="#nested-classes">Classes</a>  </div>
   <div class="headertitle">
-<div class="title">graph.h File Reference</div>  </div>
+<div class="title">node.cpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>De Bruijn Graph representation.  
-<a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;vector&gt;</code><br />
-<code>#include &lt;map&gt;</code><br />
-<code>#include &quot;<a class="el" href="read_8h_source.html">read.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="kmer_8h_source.html">kmer.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="node_8h_source.html">node.h</a>&quot;</code><br />
-</div>
-<p><a href="graph_8h_source.html">Go to the source code of this file.</a></p>
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_de_bruijn_graph.html">DeBruijnGraph</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>De Bruijn Graph representation. </p>
-<dl class="section author"><dt>Author</dt><dd>Marcos Castro </dd></dl>
-<dl class="section copyright"><dt>Copyright</dt><dd>GNU Public License. </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>04/04/2016</dd></dl>
-<p>This file represents the De Bruijn Graph.</p>
-<p>References: <br />
- <a href="https://www.youtube.com/watch?v=f-ecmECK7lw">https://www.youtube.com/watch?v=f-ecmECK7lw</a> <br />
- <a href="http://www.cs.jhu.edu/~langmea/resources/lecture_notes/assembly_dbg.pdf">http://www.cs.jhu.edu/~langmea/resources/lecture_notes/assembly_dbg.pdf</a> </p>
-
-<p>Definition in file <a class="el" href="graph_8h_source.html">graph.h</a>.</p>
-</div></div><!-- contents -->
+<a href="node_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="node_8h.html">node.h</a>&quot;</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div><div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="class_node.html#a4f7b112bfa05976b57b4b4225b23a635">   11</a></span>&#160;<a class="code" href="class_node.html#ad7a34779cad45d997bfd6d3d8043c75f">Node::Node</a>(std::string&amp; sequence)</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    this-&gt;sequence = sequence;</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;}</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div><div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="class_node.html#a6e58c58e12ae52f54ae673ceb598f0fd">   16</a></span>&#160;std::string&amp; <a class="code" href="class_node.html#a6e58c58e12ae52f54ae673ceb598f0fd">Node::getSequence</a>()</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;{</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keywordflow">return</span> sequence;</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;}</div><div class="ttc" id="node_8h_html"><div class="ttname"><a href="node_8h.html">node.h</a></div><div class="ttdoc">Node representation. </div></div>
+<div class="ttc" id="class_node_html_a6e58c58e12ae52f54ae673ceb598f0fd"><div class="ttname"><a href="class_node.html#a6e58c58e12ae52f54ae673ceb598f0fd">Node::getSequence</a></div><div class="ttdeci">std::string &amp; getSequence()</div><div class="ttdef"><b>Definition:</b> <a href="node_8cpp_source.html#l00016">node.cpp:16</a></div></div>
+<div class="ttc" id="class_node_html_ad7a34779cad45d997bfd6d3d8043c75f"><div class="ttname"><a href="class_node.html#ad7a34779cad45d997bfd6d3d8043c75f">Node::Node</a></div><div class="ttdeci">Node()</div><div class="ttdef"><b>Definition:</b> <a href="node_8h_source.html#l00039">node.h:39</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

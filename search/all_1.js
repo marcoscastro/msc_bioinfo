@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['build',['build',['../class_de_bruijn_graph.html#a60b4f619b3710e5ca3a236fbc5146a2d',1,'DeBruijnGraph']]]
+  ['debruijngraph',['DeBruijnGraph',['../class_de_bruijn_graph.html',1,'DeBruijnGraph'],['../class_de_bruijn_graph.html#a63406a46d00e9b687f1138629165fe0c',1,'DeBruijnGraph::DeBruijnGraph()']]]
 ];

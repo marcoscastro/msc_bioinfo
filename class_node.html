@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>Detection of Genetic Variations: DeBruijnGraph Class Reference</title>
+<title>Detection of Genetic Variations: Node Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -85,98 +85,129 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="class_de_bruijn_graph-members.html">List of all members</a>  </div>
+<a href="class_node-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">DeBruijnGraph Class Reference</div>  </div>
+<div class="title">Node Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p><code>#include &lt;<a class="el" href="graph_8h_source.html">graph.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="node_8h_source.html">node.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a63406a46d00e9b687f1138629165fe0c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_de_bruijn_graph.html#a63406a46d00e9b687f1138629165fe0c">DeBruijnGraph</a> (int K, std::vector&lt; <a class="el" href="class_read.html">Read</a> &gt; &amp;reads, int total_reads, bool verbose=false)</td></tr>
-<tr class="separator:a63406a46d00e9b687f1138629165fe0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae87bce7cfda85eb941d598cbedf933c6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_de_bruijn_graph.html#ae87bce7cfda85eb941d598cbedf933c6">showKMers</a> ()</td></tr>
-<tr class="separator:ae87bce7cfda85eb941d598cbedf933c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f7b112bfa05976b57b4b4225b23a635"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a4f7b112bfa05976b57b4b4225b23a635">Node</a> (std::string &amp;sequence)</td></tr>
+<tr class="separator:a4f7b112bfa05976b57b4b4225b23a635"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7a34779cad45d997bfd6d3d8043c75f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#ad7a34779cad45d997bfd6d3d8043c75f">Node</a> ()</td></tr>
+<tr class="separator:ad7a34779cad45d997bfd6d3d8043c75f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e58c58e12ae52f54ae673ceb598f0fd"><td class="memItemLeft" align="right" valign="top">std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a6e58c58e12ae52f54ae673ceb598f0fd">getSequence</a> ()</td></tr>
+<tr class="separator:a6e58c58e12ae52f54ae673ceb598f0fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d3c08a9257a27d65b1b77d5b4aed715"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a9d3c08a9257a27d65b1b77d5b4aed715">operator&lt;</a> (const <a class="el" href="class_node.html">Node</a> &amp;src) const </td></tr>
+<tr class="separator:a9d3c08a9257a27d65b1b77d5b4aed715"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Class that represents the De Bruijn Graph. </p>
+<div class="textblock"><p>Class that represents the vertex of the graph. </p>
 
-<p>Definition at line <a class="el" href="graph_8h_source.html#l00026">26</a> of file <a class="el" href="graph_8h_source.html">graph.h</a>.</p>
+<p>Definition at line <a class="el" href="node_8h_source.html#l00020">20</a> of file <a class="el" href="node_8h_source.html">node.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a63406a46d00e9b687f1138629165fe0c"></a>
+<a class="anchor" id="a4f7b112bfa05976b57b4b4225b23a635"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">DeBruijnGraph::DeBruijnGraph </td>
+          <td class="memname">Node::Node </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>K</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">std::string &amp;&#160;</td>
+          <td class="paramname"><em>sequence</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="class_read.html">Read</a> &gt; &amp;&#160;</td>
-          <td class="paramname"><em>reads</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>total_reads</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>verbose</em> = <code>false</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 <p>Constructor</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">K</td><td>length of the k-mers. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">reads</td><td>vector of reads. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">total_reads</td><td>the total of reads. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">verbose</td><td>flag to show the information about the execution. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sequence</td><td>node sequence. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="graph_8cpp_source.html#l00015">15</a> of file <a class="el" href="graph_8cpp_source.html">graph.cpp</a>.</p>
+<p>Definition at line <a class="el" href="node_8cpp_source.html#l00011">11</a> of file <a class="el" href="node_8cpp_source.html">node.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad7a34779cad45d997bfd6d3d8043c75f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Node::Node </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="node_8h_source.html#l00039">39</a> of file <a class="el" href="node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="ae87bce7cfda85eb941d598cbedf933c6"></a>
+<a class="anchor" id="a6e58c58e12ae52f54ae673ceb598f0fd"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void DeBruijnGraph::showKMers </td>
+          <td class="memname">std::string &amp; Node::getSequence </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Show all the k-mers. </p>
+<p>Return the sequence of the node.</p>
+<dl class="section return"><dt>Returns</dt><dd>the sequence of the node. </dd></dl>
 
-<p>Definition at line <a class="el" href="graph_8cpp_source.html#l00094">94</a> of file <a class="el" href="graph_8cpp_source.html">graph.cpp</a>.</p>
+<p>Definition at line <a class="el" href="node_8cpp_source.html#l00016">16</a> of file <a class="el" href="node_8cpp_source.html">node.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9d3c08a9257a27d65b1b77d5b4aed715"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Node::operator&lt; </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_node.html">Node</a> &amp;&#160;</td>
+          <td class="paramname"><em>src</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="node_8h_source.html#l00048">48</a> of file <a class="el" href="node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>C:/Users/Marcos/Documents/Mestrado/Projeto/Codigo/detection_genetic_variations/src/<a class="el" href="graph_8h_source.html">graph.h</a></li>
-<li>C:/Users/Marcos/Documents/Mestrado/Projeto/Codigo/detection_genetic_variations/src/<a class="el" href="graph_8cpp_source.html">graph.cpp</a></li>
+<li>C:/Users/Marcos/Documents/Mestrado/Projeto/Codigo/detection_genetic_variations/src/<a class="el" href="node_8h_source.html">node.h</a></li>
+<li>C:/Users/Marcos/Documents/Mestrado/Projeto/Codigo/detection_genetic_variations/src/<a class="el" href="node_8cpp_source.html">node.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

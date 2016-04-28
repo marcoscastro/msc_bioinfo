@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['kmer',['KMer',['../class_k_mer.html#a4d107526495ef103a12beb0e04c351fa',1,'KMer::KMer(std::string &amp;sequence)'],['../class_k_mer.html#a65c74aa0544e8783a02e55bee7d27407',1,'KMer::KMer()']]]
+  ['node',['Node',['../class_node.html#a4f7b112bfa05976b57b4b4225b23a635',1,'Node::Node(std::string &amp;sequence)'],['../class_node.html#ad7a34779cad45d997bfd6d3d8043c75f',1,'Node::Node()']]]
 ];
