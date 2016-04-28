@@ -30,7 +30,7 @@ private:
 	int total_kmers; //**< Total of k-mers. */
 	bool verbose; //**< Shows the information about the execution. */
 	
-	std::map<std::string, KMer > kmers; //**< Map of k-mers */
+	std::map<std::string, KMer> kmers; //**< Map of k-mers */
 
 public:
 

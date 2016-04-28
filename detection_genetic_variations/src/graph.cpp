@@ -68,7 +68,7 @@ DeBruijnGraph::DeBruijnGraph(int K, std::vector<Read>& reads, int total_reads, b
 
 			if(j != 0)
 			{
-				// set the successor
+				// set the successor: A, T, C or G?
 				if(kmer_sequence[K - 1] == 'A')
 					kmers[read_sequence.substr(j - 1, K)].setSuccessor(0);
 				else if(kmer_sequence[K - 1] == 'T')
