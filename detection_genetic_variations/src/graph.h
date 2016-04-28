@@ -5,7 +5,7 @@
 #include <map>
 #include "read.h"
 #include "kmer.h"
-#include "edge.h"
+#include "node.h"
 
 /*! \file graph.h
  *	\brief De Bruijn Graph representation.
@@ -28,16 +28,9 @@ class DeBruijnGraph
 private:
 	int K; //**< Length of the k-mer. */
 	int total_kmers; //**< Total of k-mers. */
-	int total_edges; //**< Total of edges. */
 	bool verbose; //**< Shows the information about the execution. */
 	
-	/*
-		The key is the k-mer sequence.
-		The value is a set of edges.
-		
-		Each KMer is associated to a set of edges.
-	*/
-	std::map<KMer, std::set<Edge> > graph; //**< Map of K-mers. */
+	std::map<std::string, KMer > kmers; //**< Map of k-mers */
 
 public:
 
@@ -55,18 +48,6 @@ public:
 	 * Show all the k-mers.
 	 */
 	void showKMers();
-
-	/*!
-	 * Return the total of k-mers.
-	 *
-	 * \return the total of k-mers unique.
-	 */
-	int getTotalKMers();
-	
-	/*!
-	 * Shows the edges of the De Bruijn Graph.
-	 */
-	void showEdges();
 };
 
 #endif

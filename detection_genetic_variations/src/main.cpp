@@ -14,7 +14,7 @@
  *
  * The application is being made in C++ language.
  *
- * Last update: 13/04/2016
+ * Last update: 28/04/2016
  *
  * Very useful: http://www.cs.northwestern.edu/~riesbeck/programming/c++/stl-summary.html
  *
@@ -57,17 +57,14 @@ int main(int argc, char *argv[])
 		fastq_reader.addFASTQ(argv[1]);
 
 		// length of the k-mer
-		int K = 20;
+		int K = 10;
 
 		// creates the graph
 		DeBruijnGraph graph(K, fastq_reader.getReads(),
 							fastq_reader.getTotalReads(), true);
 
 		// shows the information of the k-mers
-		//graph.showKMers();
-		
-		// shows the edges of the graph
-		//graph.showEdges();
+		graph.showKMers();
 	}
 
 	return 0;
