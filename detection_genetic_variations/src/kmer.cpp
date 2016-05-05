@@ -38,7 +38,6 @@ void KMer::setSuccessor(char base)
 		successors[2] = true;
 	else // base G
 		successors[3] = true;
-	
 }
 
 void KMer::addRead(int id)

@@ -55,7 +55,7 @@ public:
 	 *
 	 * @param[in] ID_read read's ID
 	 */
-	void showReadsPassingByPathRead(int read_ID);
+	void showReadsSharesKMersByRead(int read_ID);
 };
 
 #endif

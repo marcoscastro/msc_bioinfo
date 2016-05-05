@@ -57,14 +57,14 @@ int main(int argc, char *argv[])
 		fastq_reader.addFASTQ(argv[1]);
 
 		// length of the k-mer
-		int K = 6;
+		int K = 7;
 
 		// creates the graph
 		DeBruijnGraph graph(K, fastq_reader.getReads(),
-							fastq_reader.getTotalReads(), false);
+							fastq_reader.getTotalReads(), true);
 
 		// show the reads that passing by a read
-		graph.showReadsPassingByPathRead(0);
+		graph.showReadsSharesKMersByRead(0);
 	}
 
 	return 0;

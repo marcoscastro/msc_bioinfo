@@ -82,8 +82,9 @@ void DeBruijnGraph::showInfoGraph()
 {
 	std::map<std::string, KMer>::iterator it;
 
-	std::cout << "Total of reads: " << total_reads << "\n\n";
-	std::cout << "Total K-mers: " << total_kmers << "\n";
+	std::cout << "K: " << K << "\n";
+	std::cout << "Total of reads: " << total_reads << "\n";
+	std::cout << "Total k-mers: " << total_kmers << "\n";
 	std::cout << "\nShowing the k-mers...\n\n";
 
 	for(it = kmers.begin(); it != kmers.end(); it++)
@@ -94,7 +95,7 @@ void DeBruijnGraph::showInfoGraph()
 	}
 }
 
-void DeBruijnGraph::showReadsPassingByPathRead(int read_ID)
+void DeBruijnGraph::showReadsSharesKMersByRead(int read_ID)
 {
 	// validate the read's ID
 	if(read_ID < 0 || read_ID >= total_reads)
@@ -123,15 +124,14 @@ void DeBruijnGraph::showReadsPassingByPathRead(int read_ID)
 		for(it_reads_id = reads_id.begin(); it_reads_id != reads_id.end(); it_reads_id++)
 			reads_count[*it_reads_id]++; // count the read
 	}
+	
+	std::cout << "\nReads that shares k-mers with the read " << read_ID + 1 << ":\n\n";
 
 	// shows the reads that passing by the read
 	for(it_reads_count = reads_count.begin(); it_reads_count !=
 			reads_count.end(); it_reads_count++)
 	{
-		std::cout << "The read " << it_reads_count->first << " shares " <<
-				  it_reads_count->second << " " << K << "-mers with the read "
-				  << it_reads_count->first << ".\n";
-
-		if(it_reads_count->first >= 10) break;
+		std::cout << "The read " << it_reads_count->first + 1 << " shares " <<
+				  it_reads_count->second << " k-mers with the read " << read_ID + 1 << ".\n";
 	}
 }
