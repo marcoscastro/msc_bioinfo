@@ -51,9 +51,9 @@ public:
 	/*!
 	 * Set base_index for the successor.
 	 *
-	 * @param[in] base_index index of the base.
+	 * @param[in] base character base.
 	 */
-	void setSuccessor(int base_index);
+	void setSuccessor(char base);
 	
 	/*!
 	 * Adds ID of the read.
@@ -68,6 +68,13 @@ public:
 	 * \return the total of reads.
 	 */
 	int getTotalReads();
+	
+	/*!
+	 * Return the successors.
+	 *
+	 * \return the successors.
+	 */
+	std::set<int>& getReads();
 	
 	/*!
 	 * Return the total of successors.

@@ -28,9 +28,17 @@ std::string& KMer::getSequence()
 	return sequence;
 }
 
-void KMer::setSuccessor(int base_index)
+void KMer::setSuccessor(char base)
 {
-	successors[base_index] = true;
+	if(base == 'A')
+		successors[0] = true;
+	else if(base == 'T')
+		successors[1] = true;
+	else if(base == 'C')
+		successors[2] = true;
+	else // base G
+		successors[3] = true;
+	
 }
 
 void KMer::addRead(int id)
@@ -48,4 +56,7 @@ int KMer::getTotalSuccessors()
 	return std::accumulate(successors.begin(), successors.end(), 0);
 }
 
-
+std::set<int>& KMer::getReads()
+{
+	return reads_id;
+}

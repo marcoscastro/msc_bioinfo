@@ -28,9 +28,10 @@ class DeBruijnGraph
 private:
 	int K; //**< Length of the k-mer. */
 	int total_kmers; //**< Total of k-mers. */
+	int total_reads; //**< Total of reads. */
 	bool verbose; //**< Shows the information about the execution. */
-	
-	std::map<std::string, KMer> kmers; //**< Map of k-mers */
+	std::vector<Read> reads; //**< The reads. */
+	std::map<std::string, KMer> kmers; //**< Map of k-mers. */
 
 public:
 
@@ -45,9 +46,16 @@ public:
 	DeBruijnGraph(int K, std::vector<Read>& reads, int total_reads, bool verbose = false);
 
 	/*!
-	 * Show all the k-mers.
+	 * Show the information about graph
 	 */
-	void showKMers();
+	void showInfoGraph();
+	
+	/*!
+	 * Show all reads that passing by the path of a read
+	 *
+	 * @param[in] ID_read read's ID
+	 */
+	void showReadsPassingByPathRead(int read_ID);
 };
 
 #endif
