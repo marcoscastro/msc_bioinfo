@@ -45,21 +45,16 @@ DeBruijnGraph::DeBruijnGraph(int K, std::vector<Read>& reads, int total_reads, b
 		read_sequence = reads[i].getSequence();
 
 		// iterates in the characters of each read
-		for(j = 0; j < (size_read - j); j++)
+		for(j = 0; (j + K) <= size_read; j++)
 		{
 			// forms the k-mer sequence
-			kmer_sequence = "";
-			for(counter = 0, k = j; counter < K; counter++, k++)
-				kmer_sequence += read_sequence[k];
+			kmer_sequence = read_sequence.substr(j, K);
 
 			// checks if the key not exists
 			if(kmers.find(kmer_sequence) == kmers.end())
 			{
-				// creates the k-mer
-				KMer kmer(kmer_sequence);
-
-				// insert in the map
-				kmers[kmer_sequence] = kmer;
+				KMer kmer(kmer_sequence); // creates the k-mer
+				kmers[kmer_sequence] = kmer; // insert in the map
 			}
 
 			// add read ID in the set of the k-mer

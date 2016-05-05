@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
 		fastq_reader.addFASTQ(argv[1]);
 
 		// length of the k-mer
-		int K = 7;
+		int K = 3;
 
 		// creates the graph
 		DeBruijnGraph graph(K, fastq_reader.getReads(),
