@@ -116,8 +116,9 @@ void DeBruijnGraph::showReadsSharesKMersByRead(int read_ID)
 		// get set of reads that shares the k-mer
 		reads_id = kmers[it_kmers->first].getReads();
 
+		// count the reads
 		for(it_reads_id = reads_id.begin(); it_reads_id != reads_id.end(); it_reads_id++)
-			reads_count[*it_reads_id]++; // count the read
+			reads_count[*it_reads_id]++;
 	}
 	
 	std::cout << "\nReads that shares k-mers with the read " << read_ID + 1 << ":\n\n";
