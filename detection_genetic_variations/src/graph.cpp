@@ -32,7 +32,7 @@ DeBruijnGraph::DeBruijnGraph(int K, std::vector<Read>& reads, int total_reads, b
 	}
 
 	std::string read_sequence, kmer_sequence;
-	int i, j, counter, k;
+	int i, j;
 
 	if(verbose)
 		std::cout << "Building the graph...\n\n";
@@ -100,22 +100,22 @@ void DeBruijnGraph::showReadsSharesKMersByRead(int read_ID)
 	}
 
 	std::string kmer_sequence, read_sequence;
+	int size_read;
 	std::set<int> reads_id;
-	std::set<int>::iterator it_reads_id;
 	std::map<int, int> reads_count;
+	std::set<int>::iterator it_reads_id;
 	std::map<int, int>::iterator it_reads_count;
-	int i, size_read;
+	std::map<std::string, KMer>::iterator it_kmers;
 
 	read_sequence = reads[read_ID].getSequence();
 	size_read = read_sequence.size();
 
 	// k-mers of the read
-	for(i = 0; i < (size_read - i); i++)
+	for(it_kmers = kmers.begin(); it_kmers != kmers.end(); it_kmers++)
 	{
-		kmer_sequence = read_sequence.substr(i, K);
-		reads_id = kmers[kmer_sequence].getReads();
+		// get set of reads that shares the k-mer
+		reads_id = kmers[it_kmers->first].getReads();
 
-		// reads that passing by the k-mer
 		for(it_reads_id = reads_id.begin(); it_reads_id != reads_id.end(); it_reads_id++)
 			reads_count[*it_reads_id]++; // count the read
 	}
