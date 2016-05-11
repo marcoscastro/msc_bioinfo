@@ -26,11 +26,11 @@
  *
  * \section Workflow
  *
- * <center><img src="my_images/workflow.png" /></center><br/>
+ * <center><img src="my_images/workflow.png" /></center>
  *
  * \section Graph Graph structure idea
  *
- * <center><img src="my_images/graph_structure.jpg" height="720" width="1282" /></center><br/><br/><br/>
+ * <center><img src="my_images/graph_structure.jpg" height="720" width="1282" /></center>
  *
  * \section Graph_Representation Graph representation
  *
