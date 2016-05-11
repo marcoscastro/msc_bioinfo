@@ -101,12 +101,14 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a65c74aa0544e8783a02e55bee7d27407"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa8396200cd9e179555cbf5a8037cebb0"><td class="memItemLeft" align="right" valign="top">std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_k_mer.html#aa8396200cd9e179555cbf5a8037cebb0">getSequence</a> ()</td></tr>
 <tr class="separator:aa8396200cd9e179555cbf5a8037cebb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a920e60ce3377d5217708b3425e9e2529"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_k_mer.html#a920e60ce3377d5217708b3425e9e2529">setSuccessor</a> (int base_index)</td></tr>
-<tr class="separator:a920e60ce3377d5217708b3425e9e2529"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4740edbea0c7765e25a7d47b88cfb5d3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_k_mer.html#a4740edbea0c7765e25a7d47b88cfb5d3">setSuccessor</a> (char base)</td></tr>
+<tr class="separator:a4740edbea0c7765e25a7d47b88cfb5d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab115e428415adae6589194a47b2311ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_k_mer.html#ab115e428415adae6589194a47b2311ea">addRead</a> (int read_id)</td></tr>
 <tr class="separator:ab115e428415adae6589194a47b2311ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a90d4bb7df6173b327a208f16d3f317d3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_k_mer.html#a90d4bb7df6173b327a208f16d3f317d3">getTotalReads</a> ()</td></tr>
 <tr class="separator:a90d4bb7df6173b327a208f16d3f317d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18da44755ba93d132d4ae2690d064fe7"><td class="memItemLeft" align="right" valign="top">std::set&lt; int &gt; const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_k_mer.html#a18da44755ba93d132d4ae2690d064fe7">getReads</a> ()</td></tr>
+<tr class="separator:a18da44755ba93d132d4ae2690d064fe7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adff9d75dc5fd5ef51ef7629cb897ef89"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_k_mer.html#adff9d75dc5fd5ef51ef7629cb897ef89">getTotalSuccessors</a> ()</td></tr>
 <tr class="separator:adff9d75dc5fd5ef51ef7629cb897ef89"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aad5a8fd01a8f4d7f308632a09e8e5ccc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_k_mer.html#aad5a8fd01a8f4d7f308632a09e8e5ccc">operator&lt;</a> (const <a class="el" href="class_k_mer.html">KMer</a> &amp;src) const </td></tr>
@@ -189,7 +191,26 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="kmer_8cpp_source.html#l00036">36</a> of file <a class="el" href="kmer_8cpp_source.html">kmer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="kmer_8cpp_source.html#l00043">43</a> of file <a class="el" href="kmer_8cpp_source.html">kmer.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a18da44755ba93d132d4ae2690d064fe7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::set&lt; int &gt; const &amp; KMer::getReads </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Return the ID's of the reads.</p>
+<dl class="section return"><dt>Returns</dt><dd>the ID's of the reads. </dd></dl>
+
+<p>Definition at line <a class="el" href="kmer_8cpp_source.html#l00058">58</a> of file <a class="el" href="kmer_8cpp_source.html">kmer.cpp</a>.</p>
 
 </div>
 </div>
@@ -227,7 +248,7 @@ Public Member Functions</h2></td></tr>
 <p>Return the total of reads.</p>
 <dl class="section return"><dt>Returns</dt><dd>the total of reads. </dd></dl>
 
-<p>Definition at line <a class="el" href="kmer_8cpp_source.html#l00041">41</a> of file <a class="el" href="kmer_8cpp_source.html">kmer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="kmer_8cpp_source.html#l00048">48</a> of file <a class="el" href="kmer_8cpp_source.html">kmer.cpp</a>.</p>
 
 </div>
 </div>
@@ -246,7 +267,7 @@ Public Member Functions</h2></td></tr>
 <p>Return the total of successors.</p>
 <dl class="section return"><dt>Returns</dt><dd>the total of successors. </dd></dl>
 
-<p>Definition at line <a class="el" href="kmer_8cpp_source.html#l00046">46</a> of file <a class="el" href="kmer_8cpp_source.html">kmer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="kmer_8cpp_source.html#l00053">53</a> of file <a class="el" href="kmer_8cpp_source.html">kmer.cpp</a>.</p>
 
 </div>
 </div>
@@ -272,19 +293,19 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="kmer_8h_source.html#l00079">79</a> of file <a class="el" href="kmer_8h_source.html">kmer.h</a>.</p>
+<p>Definition at line <a class="el" href="kmer_8h_source.html#l00086">86</a> of file <a class="el" href="kmer_8h_source.html">kmer.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a920e60ce3377d5217708b3425e9e2529"></a>
+<a class="anchor" id="a4740edbea0c7765e25a7d47b88cfb5d3"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void KMer::setSuccessor </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>base_index</em></td><td>)</td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>base</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -292,7 +313,7 @@ Public Member Functions</h2></td></tr>
 <p>Set base_index for the successor.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">base_index</td><td>index of the base. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">base</td><td>character base. </td></tr>
   </table>
   </dd>
 </dl>
