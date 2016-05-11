@@ -3,6 +3,7 @@
 #include <set>
 #include <algorithm>
 #include "graph.h"
+#include "common.h"
 
 /*! \file graph.cpp
  *	\brief Source-code of the class DeBruijnGraph.
@@ -31,7 +32,7 @@ DeBruijnGraph::DeBruijnGraph(int K, std::vector<Read>& reads, int total_reads, b
 		exit(0); // terminates the execution
 	}
 
-	std::string read_sequence, kmer_sequence;
+	std::string read_sequence, kmer_sequence, kmer_reverse, previous_kmer;
 	int i, j;
 
 	if(verbose)
@@ -41,23 +42,32 @@ DeBruijnGraph::DeBruijnGraph(int K, std::vector<Read>& reads, int total_reads, b
 	// iterates in all the reads
 	for(i = 0; i < total_reads; i++)
 	{
-		// gets the sequence of the read
+		/*
+			gets the sequence of the read
+
+			Attention: the first k-mer not contains
+			successor neither antecessor.
+		*/
 		read_sequence = reads[i].getSequence();
 
 		// gets the first k-mer
 		kmer_sequence = read_sequence.substr(0, K);
 
-		// checks if the key not exists
+		// checks if the key kmer_sequence not exists
 		if(kmers.find(kmer_sequence) == kmers.end())
 		{
+			// generates the reverse complement
+			kmer_reverse = getReverseComplement(kmer_sequence);
+
 			KMer kmer(kmer_sequence); // creates the k-mer
-			kmers[kmer_sequence] = kmer; // insert in the map
+
+			// insert in the map, to point to the same object
+			kmers[kmer_sequence] = kmer;
+			kmers[kmer_reverse] = kmer;
 		}
-		
+
 		// add read ID in the set of the k-mer
 		kmers[kmer_sequence].addRead(reads[i].getID());
-		
-		// Attention: the first k-mer not contains successor neither antecessor
 
 		// iterates in the characters of each read
 		// forms the k-mers remaining
@@ -69,15 +79,27 @@ DeBruijnGraph::DeBruijnGraph(int K, std::vector<Read>& reads, int total_reads, b
 			// checks if the key not exists
 			if(kmers.find(kmer_sequence) == kmers.end())
 			{
+				// generates the reverse complement
+				kmer_reverse = getReverseComplement(kmer_sequence);
+
 				KMer kmer(kmer_sequence); // creates the k-mer
-				kmers[kmer_sequence] = kmer; // insert in the map
+
+				// insert in the map, to point to the same object
+				kmers[kmer_sequence] = kmer;
+				kmers[kmer_reverse] = kmer;
 			}
 
 			// add read ID in the set of the k-mer
 			kmers[kmer_sequence].addRead(reads[i].getID());
+			
+			// get the previous k-mer
+			previous_kmer = read_sequence.substr(j - 1, K);
 
 			// set the successor: +A, +T, +C or +G?
-			kmers[read_sequence.substr(j - 1, K)].setSuccessor(kmer_sequence[K - 1]);
+			kmers[previous_kmer].setSuccessor(kmer_sequence[K - 1]);
+			
+			// set the antecessor: +A, +T, +C or +G?
+			//kmers[previous_kmer].setAntecessor(kmer_sequence[K - 1]);
 		}
 	}
 
