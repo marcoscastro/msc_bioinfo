@@ -30,7 +30,7 @@
  *
  * \section Graph Graph structure idea
  *
- * <center><img src="my_images/graph_structure.jpg" height="720" width="1282" /></center><br/>
+ * <center><img src="my_images/graph_structure.jpg" height="720" width="1282" /></center><br/><br/><br/>
  *
  * \section Graph_Representation Graph representation
  *
