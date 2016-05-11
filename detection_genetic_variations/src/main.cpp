@@ -14,8 +14,6 @@
  *
  * The application is being made in C++ language.
  *
- * Last update: 28/04/2016
- *
  * Very useful: http://www.cs.northwestern.edu/~riesbeck/programming/c++/stl-summary.html
  *
  * News coming soon...
