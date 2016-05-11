@@ -28,7 +28,7 @@
  *
  * <center><img src="my_images/workflow.png" /></center>
  *
- * \section Graph Graph structure idea
+ * \section Graph <center>Graph structure idea</center>
  *
  * <center><img src="my_images/graph_structure.jpg" height="720" width="1282" /></center>
  *
