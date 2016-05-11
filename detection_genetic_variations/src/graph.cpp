@@ -44,8 +44,24 @@ DeBruijnGraph::DeBruijnGraph(int K, std::vector<Read>& reads, int total_reads, b
 		// gets the sequence of the read
 		read_sequence = reads[i].getSequence();
 
+		// gets the first k-mer
+		kmer_sequence = read_sequence.substr(0, K);
+
+		// checks if the key not exists
+		if(kmers.find(kmer_sequence) == kmers.end())
+		{
+			KMer kmer(kmer_sequence); // creates the k-mer
+			kmers[kmer_sequence] = kmer; // insert in the map
+		}
+		
+		// add read ID in the set of the k-mer
+		kmers[kmer_sequence].addRead(reads[i].getID());
+		
+		// Attention: the first k-mer not contains successor neither antecessor
+
 		// iterates in the characters of each read
-		for(j = 0; (j + K) <= size_read; j++)
+		// forms the k-mers remaining
+		for(j = 1; (j + K) <= size_read; j++)
 		{
 			// forms the k-mer sequence
 			kmer_sequence = read_sequence.substr(j, K);
@@ -61,8 +77,7 @@ DeBruijnGraph::DeBruijnGraph(int K, std::vector<Read>& reads, int total_reads, b
 			kmers[kmer_sequence].addRead(reads[i].getID());
 
 			// set the successor: +A, +T, +C or +G?
-			if(j != 0)
-				kmers[read_sequence.substr(j - 1, K)].setSuccessor(kmer_sequence[K - 1]);
+			kmers[read_sequence.substr(j - 1, K)].setSuccessor(kmer_sequence[K - 1]);
 		}
 	}
 
@@ -120,7 +135,7 @@ void DeBruijnGraph::showReadsSharesKMersByRead(int read_ID)
 		for(it_reads_id = reads_id.begin(); it_reads_id != reads_id.end(); it_reads_id++)
 			reads_count[*it_reads_id]++;
 	}
-	
+
 	std::cout << "\nReads that shares k-mers with the read " << read_ID + 1 << ":\n\n";
 
 	// shows the reads that passing by the read

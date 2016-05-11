@@ -26,12 +26,15 @@
  *
  * \section Workflow
  *
- * <center><img src="workflow.png" /></center>
+ * <center><img src="my_images/workflow.png" /></center>
  *
  * \section Graph Graph structure idea
  *
- * <center><img src="graph_structure.jpg" height="720" width="1282" /></center>
+ * <center><img src="my_images/graph_structure.jpg" height="720" width="1282" /></center>
  *
+ * \section Graph_Representation Graph representation
+ *
+ * <center><img src="my_images/graph_representation.png"/></center>
  */
 
 /*! \brief Main function of the application.

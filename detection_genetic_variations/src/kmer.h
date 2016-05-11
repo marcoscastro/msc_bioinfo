@@ -70,11 +70,11 @@ public:
 	int getTotalReads();
 	
 	/*!
-	 * Return the successors.
+	 * Return the ID's of the reads.
 	 *
-	 * \return the successors.
+	 * \return the ID's of the reads.
 	 */
-	std::set<int>& getReads();
+	std::set<int> const& getReads();
 	
 	/*!
 	 * Return the total of successors.

@@ -55,7 +55,7 @@ int KMer::getTotalSuccessors()
 	return std::accumulate(successors.begin(), successors.end(), 0);
 }
 
-std::set<int>& KMer::getReads()
+std::set<int> const & KMer::getReads()
 {
 	return reads_id;
 }
