@@ -28,6 +28,9 @@ std::string getReverseComplement(std::string& s)
 
 	}
 	
+	// reverse string
+	std::reverse(new_s.begin(), new_s.end());
+	
 	return new_s;
 }
 

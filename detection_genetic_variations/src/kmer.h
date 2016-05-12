@@ -11,7 +11,7 @@
  *	\copyright GNU Public License.
  *	\date 08/04/2016
  *
- *	KMer represents the edge of the De Bruijn Graph.
+ *	KMer object represents the edge of the De Bruijn Graph.
  *
  */
 
@@ -24,6 +24,7 @@ private:
 	std::string sequence; //**< Sequence kmer. */
 	std::set<int> reads_id; //**< IDs of the reads. */
 	std::vector<bool> successors; //**< K-Mer's successors. */
+	std::vector<bool> antecessors; //**< K-Mer's antecessors. */
 
 public:
 
@@ -54,6 +55,13 @@ public:
 	 * @param[in] base character base.
 	 */
 	void setSuccessor(char base);
+	
+	/*!
+	 * Set base_index for the antecessor.
+	 *
+	 * @param[in] base character base.
+	 */
+	void setAntecessor(char base);
 	
 	/*!
 	 * Adds ID of the read.

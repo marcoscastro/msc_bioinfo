@@ -98,8 +98,8 @@ DeBruijnGraph::DeBruijnGraph(int K, std::vector<Read>& reads, int total_reads, b
 			// set the successor: +A, +T, +C or +G?
 			kmers[previous_kmer].setSuccessor(kmer_sequence[K - 1]);
 			
-			// set the antecessor: +A, +T, +C or +G?
-			//kmers[previous_kmer].setAntecessor(kmer_sequence[K - 1]);
+			// set the antecessor
+			kmers[previous_kmer].setAntecessor(kmer_sequence[K - 1]);
 		}
 	}
 
